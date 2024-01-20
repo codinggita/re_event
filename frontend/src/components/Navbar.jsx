@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { RiBox3Fill } from "react-icons/ri";
 
 const Navbar = () => {
   return (
     <>
         <div className="w-full flex items-center justify-between px-12 py-4 border-b bg-transparent">
             <div className="flex">
-                <Link to="/" className="text-xl font-semibold">
+                <Link to="/" className="text-xl flex items-center gap-2 group font-semibold">
+                    <RiBox3Fill className='text-2xl transform group-hover:rotate-180 transition-all'/> 
                     Re:Event
                 </Link>
             </div>

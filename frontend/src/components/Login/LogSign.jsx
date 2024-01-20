@@ -1,12 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
-import { FaGoogle } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaGoogle, FaChevronLeft } from "react-icons/fa";
 import OtpInput from "react-otp-input";
 import { FaChevronLeft } from "react-icons/fa";
 import { RiBox3Fill } from "react-icons/ri";
+import { toast } from "sonner";
 
 const LogSign = () => {
   const [oncontinue, setOncontinue] = useState(false);
   const [otp, setOtp] = useState("");
+
+  useEffect(() => {
+    if (otp.length === 5) {
+      handleSubmit();
+    }
+  }, [otp]);
+
+  const handleSubmit = () => {
+    console.log(otp);
+    toast.success("Osama bin laden");
+  };
 
   return (
     <>
@@ -30,10 +42,10 @@ const LogSign = () => {
               <h2 className=" text-md">Please use your email below</h2>
             </div>
             <div className="flex flex-col">
-              <h1 className=" mb-2  tracking-wider text-sm font-bold">Email</h1>
-              <form className=" flex flex-col gap-5">
+              <h1 className="mb-2 tracking-wider text-sm font-bold">Email</h1>
+              <form className="flex flex-col gap-5">
                 <input
-                  className=" focus:border-1 outline-none bg-transparent border-gray-500 rounded-md pl-4 w-[300px] py-2 border-[1px] "
+                  className="focus:border-1 outline-none bg-transparent border-gray-500 rounded-md pl-4 w-[300px] py-2 border-[1px]"
                   type="text"
                   placeholder="email"
                 />
@@ -55,24 +67,23 @@ const LogSign = () => {
           </div>
         ) : (
           <>
-            <div className=" flex flex-col gap-5  ">
+            <div className="flex flex-col gap-5 ">
               <div
-                className="rounded-xl  flex items-center cursor-pointer justify-center -mt-6 border  border-gray-500 w-8 h-8"
+                className="rounded-xl flex items-center cursor-pointer justify-center -mt-6 border border-gray-500 w-8 h-8"
                 onClick={() => setOncontinue(false)}
               >
-                <FaChevronLeft className="  text-lg  text-white/60 " />
+                <FaChevronLeft className="text-lg text-white/60 " />
               </div>
-
-              <h1 className="text-2xl  text-white">Enter Code </h1>
+              <h1 className="text-2xl text-white">Enter Code </h1>
               <h1>{otp}</h1>
-              <div className=" flex flex-col gap-1 mb-5">
-                <h2 className=" text-sm text-white/80">
-                  please enter the 5 digit code sent to{" "}
+              <div className="flex flex-col gap-1 mb-5">
+                <h2 className="text-sm text-white/80">
+                  Please enter the 5 digit code sent to{" "}
                 </h2>
                 <h3 className="text-sm">shivatadigadapa@gmail.com</h3>
               </div>
             </div>
-            <div className="flex flex-col    items-center justify-center gap-10">
+            <div className="flex flex-col items-center justify-center gap-10">
               <form className="w-full flex items-center justify-center flex-col">
                 <OtpInput
                   value={otp}
@@ -83,7 +94,6 @@ const LogSign = () => {
                   inputStyle={{
                     width: "40px",
                     height: "40px",
-                    // outline:"none",
                     border: "1px",
                     borderRadius: "5px",
                     backgroundColor: "black",
@@ -92,12 +102,15 @@ const LogSign = () => {
                     fontWeight: "bold",
                   }}
                 />
-                <button
-                  type="submit"
-                  className="mt-4 border bg-gray-600  border-gray-500 text-white py-2 px-4 rounded-md shadow-md font-semibold tracking-wider"
-                >
-                  ReSend code
-                </button>
+                <div className="flex gap-2 mt-4">
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    className="mt-4 border bg-gray-600 border-gray-500 text-white py-2 px-4 rounded-md shadow-md font-semibold tracking-wider"
+                  >
+                    ReSend code
+                  </button>
+                </div>
               </form>
             </div>
           </>

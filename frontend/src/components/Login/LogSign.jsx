@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaGoogle } from "react-icons/fa";
 import OtpInput from "react-otp-input";
 import { FaChevronLeft } from "react-icons/fa";
+import { RiBox3Fill } from "react-icons/ri";
 
 const LogSign = () => {
   const [oncontinue, setOncontinue] = useState(false);
@@ -9,7 +10,7 @@ const LogSign = () => {
 
   return (
     <>
-      <div className=" absolute  backdrop-blur-lg  shadow-xl border-white/70  border  px-8 py-12  rounded-3xl  bg-[#212325]/80 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className=" absolute  backdrop-blur-lg  shadow-xl border-white/40  border  px-8 py-12  rounded-3xl  bg-[#212325]/90 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {!oncontinue ? (
           <div className="flex flex-col  items-center justify-between  gap-10 ">
             {/* <img
@@ -17,7 +18,13 @@ const LogSign = () => {
               alt="logo"
               className="w-1/2 invert  mx-auto"
             /> */}
-            <h1 className=" text-5xl">re:Event</h1>
+            <div className="flex items-center group justify-center  cursor-default">
+              <RiBox3Fill className="text-5xl  transform mr-2 group-hover:rotate-180 transition-all  " />
+              <h1 className=" text-5xl">re:</h1>
+              <h1 className=" text-5xl  bg-gradient-to-r from-white/50 to-pink-500 text-transparent bg-clip-text">
+                Event
+              </h1>
+            </div>
             <div className=" flex flex-col  items-center gap-2">
               <h1 className="  text-3xl">Welcome to re:Event</h1>
               <h2 className=" text-md">Please use your email below</h2>
@@ -37,12 +44,12 @@ const LogSign = () => {
                   Continue with Email
                 </button>
                 <hr className="    border-gray-400  " />
-                <div className=" rounded-md flex bg-gray-700 px-8 py-2 items-center justify-center gap-2">
+                <button className=" rounded-md flex bg-[#212325] border-white/30 border px-8 py-2 items-center justify-center gap-2">
                   <FaGoogle className="text-gray-200" />
-                  <button className="    text-gray-200 ">
+                  <h1 className="    text-gray-200 ">
                     Continue with Google
-                  </button>
-                </div>
+                  </h1>
+                </button>
               </form>
             </div>
           </div>

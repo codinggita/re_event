@@ -21,10 +21,13 @@ const Navbar = () => {
         <div className="flex">
           <Link
             to="/"
-            className="text-xl flex items-center gap-2 group font-semibold"
+            className="text-xl flex items-center  group font-semibold"
           >
-            <RiBox3Fill className="text-2xl transform group-hover:rotate-180 transition-all" />
-            Re:Event
+            <RiBox3Fill className="text-2xl transform mr-2 group-hover:rotate-180 transition-all " />
+            Re:
+            <h1 className="bg-gradient-to-r from-white/50 to-pink-500 text-transparent bg-clip-text">
+              Event
+            </h1>
           </Link>
         </div>
         <div className="hidden md:flex gap-4">

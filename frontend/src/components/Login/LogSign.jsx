@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaGoogle, FaChevronLeft } from "react-icons/fa";
 import OtpInput from "react-otp-input";
-import { FaChevronLeft } from "react-icons/fa";
+// import { FaChevronLeft } from "react-icons/fa";
 import { RiBox3Fill } from "react-icons/ri";
 import { toast } from "sonner";
 

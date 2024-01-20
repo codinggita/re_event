@@ -4,13 +4,17 @@ const MainDashContext = createContext();
 
 export const MainDashProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState('upcoming');
+  const [openlogin, setOpenlogin] = useState(false);
 
   return (
     <MainDashContext.Provider
       value={{
         activeTab,
-        setActiveTab
+        setActiveTab,
+        openlogin,
+        setOpenlogin,
       }}
+
     >
       {children}
     </MainDashContext.Provider>

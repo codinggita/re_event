@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { RiBox3Fill } from 'react-icons/ri';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { RiBox3Fill } from "react-icons/ri";
+import { useMainDashContext } from "../context/AppContext";
+import LogSign from "./Login/LogSign";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const { openlogin, setOpenlogin } = useMainDashContext();
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
+  };
+  const handleLoginClick = () => {
+    setOpenlogin(!openlogin);
   };
 
   return (
@@ -22,22 +28,20 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex gap-4">
-          {/* Desktop menu */}
           <Link
             to="/create"
             className="text-sm bg-gray-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
           >
             Create Event
           </Link>
-          <Link
-            to="/login"
-            className="text-sm  rounded-xl shadow-lg text-white px-4 py-1.5 hover:scale-105 hover:bg-gray-200 hover:text-black transition-all cursor-pointer"
+          <button
+            className="text-sm bg-black rounded-xl shadow-lg text-white px-4 py-1.5 hover:scale-105 hover:bg-black/80 transition-all cursor-pointer"
+            onClick={handleLoginClick}
           >
             Login / Register
-          </Link>
+          </button>
         </div>
         <div className="md:hidden flex items-center">
-          {/* Hamburger menu for mobile */}
           <button
             onClick={toggleMobileMenu}
             className="text-xl focus:outline-none"
@@ -47,7 +51,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {showMobileMenu && (
         <div className="md:hidden flex flex-col items-center bg-gray-100 absolute px-20 top-10 border rounded-xl right-20 py-4">
           <Link to="/create" className="text-sm my-2 border-b">

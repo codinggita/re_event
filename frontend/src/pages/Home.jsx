@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
+import LogSign from '../components/Login/LogSign'
 const Home = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/').then((response) => {
@@ -9,7 +10,7 @@ const Home = () => {
   return (
     <>
       <div className="w-full flex items-center justify-center">
-        <h1 className="text-4xl">Home</h1>
+        <LogSign />
       </div>
     </>
   )

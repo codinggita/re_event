@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import CreateNew from './pages/CreateNew';
 import Dashboard from './pages/Dashboard';
+import {Toaster } from 'sonner';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/create" element={<CreateNew />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
+        <Toaster position="top-center"/>
       </div>
 
     </>

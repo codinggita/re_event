@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 const MainDashContext = createContext();
 
 export const MainDashProvider = ({ children }) => {
-  const [activeTab, setActiveTab] = useState('upcoming');
+  const [activeTab, setActiveTab] = useState("upcoming");
   const [openlogin, setOpenlogin] = useState(false);
 
   return (
@@ -14,7 +14,6 @@ export const MainDashProvider = ({ children }) => {
         openlogin,
         setOpenlogin,
       }}
-
     >
       {children}
     </MainDashContext.Provider>

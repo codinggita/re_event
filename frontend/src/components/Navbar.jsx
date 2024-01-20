@@ -6,7 +6,7 @@ const Navbar = () => {
         <div className="w-full flex px-12 py-4">
             <div className="flex">
                 <h1 className="text-xl font-semibold">
-                    Sub
+                    hello world
                 </h1>
             </div>
         </div>

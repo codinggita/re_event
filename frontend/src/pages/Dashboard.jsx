@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="w-full p-10 flex items-center justify-center">
+      <div className="w-full p-10 text-white flex items-center justify-center">
         <div className="w-2/3 flex justify-between">
           <h1 className="text-3xl font-bold mb-5">Events</h1>
           <div className="flex gap-4 bg-gray-100 p-2 rounded-lg border items-center">

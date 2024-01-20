@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full flex items-center justify-between px-12 py-4 border-b bg-transparent">
+      <div className="w-full flex items-center justify-between px-12 py-4 border-b border-gray-600 text-white">
         <div className="flex">
           <Link
             to="/"
@@ -31,7 +31,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/login"
-            className="text-sm bg-black rounded-xl shadow-lg text-white px-4 py-1.5 hover:scale-105 hover:bg-black/80 transition-all cursor-pointer"
+            className="text-sm  rounded-xl shadow-lg text-white px-4 py-1.5 hover:scale-105 hover:bg-gray-200 hover:text-black transition-all cursor-pointer"
           >
             Login / Register
           </Link>

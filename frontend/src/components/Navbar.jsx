@@ -5,12 +5,14 @@ import { RiBox3Fill } from "react-icons/ri";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
+  const { openlogin, setOpenlogin } = useMainDashContext();
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
-
+  const handleLoginClick = () => {
+    setOpenlogin(!openlogin);
+  };
 
   return (
     <>
@@ -36,7 +38,8 @@ const Navbar = () => {
           </Link>
           <button
             className="text-sm bg-black rounded-xl shadow-lg text-white px-4 py-1.5 hover:scale-105 hover:bg-black/80 transition-all cursor-pointer"
-          >
+            onClick={handleLoginClick}
+         >
             Login / Register
           </button>
         </div>

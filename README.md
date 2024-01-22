@@ -7,6 +7,9 @@
 ## API Documentation : https://documenter.getpostman.com/view/19902058/2s9YymFjGx
 <br>
 
+## FIGMA Link : https://www.figma.com/file/Azwbe6cIDtYnQIyqfgiXu7/re%3AEvent
+<br>
+
 - Which problem Project is Solving?
 
   - re:Event streamlines events with real-time collaboration, smart resource allocation, and automated scheduling. From simplified ticketing to secure authentication and hosts effortlessly create, manage, and enhance events.

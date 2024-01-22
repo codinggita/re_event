@@ -12,8 +12,8 @@ const UpcomingEvents = () => {
               Date
             </div>
             <div className="w-3/4 flex flex-col gap-4">
-              <EventCard eventname="How to roast people (dark edition) 💗" location="Bora Bora Islands" time="10.30 AM" organiser="Bals Shiva"/>
-              <EventCard eventname="How to fuck people (cute edition) 💗" location="Republican of Congo" time="10.30 AM" organiser="Bals Shiva"/>
+              <EventCard eventname="Test event 1" location="Bora Bora Islands" time="10.30 AM" organiser="Bals Shiva"/>
+              <EventCard eventname="Test event 2" location="Republican of Congo" time="10.30 AM" organiser="Bals Shiva"/>
               {/* <EventCard /> */}
             </div>
           </div>

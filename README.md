@@ -4,6 +4,9 @@
 
 ### Project Name: re:Event
 
+## API Documentation : https://documenter.getpostman.com/view/19902058/2s9YymFjGx
+<br>
+
 - Which problem Project is Solving?
 
   - re:Event streamlines events with real-time collaboration, smart resource allocation, and automated scheduling. From simplified ticketing to secure authentication and hosts effortlessly create, manage, and enhance events.

@@ -18,13 +18,19 @@ const EventPage = () => {
               </div>
               <h1 className="text-xl font-medium p-3">10.30 AM</h1>
             </div>
-            <div className="flex items-center justify-between p-3">
-              <div className="flex items-center gap-2 justify-center bg-zinc-600 p-2 rounded-lg">
-                <IoCalendarClearOutline />
-                <h1 className='text-md'>21st Aug, 2024</h1>
-              </div>
-              <div className="flex items-center">
-                <IoLocationOutline />
+            <div className="flex justify-between py-3 px-12 gap-5 items-start">
+              <div className="flex w-1/2 items-center shadow-gray-200/20 gap-3 justify-start  p-2 rounded-lg">
+                <IoCalendarClearOutline className='border p-1 rounded-md text-4xl' />
+                <div className="flex flex-col">
+                  <h1 className='text-md font-semibold'>Friday, 21 Jan, 2024</h1>
+                  <h1 className='text-md'>10:00 AM</h1>
+                </div>              </div>
+              <div className="flex w-1/2 items-center shadow-gray-200/20 gap-3 justify-start p-2 rounded-lg">
+                <IoLocationOutline className='border p-1 rounded-md text-4xl' />
+                <div className="flex flex-col">
+                  <h1 className='text-md font-semibold'>Indian Institute of Technology</h1>
+                  <h1 className='text-md'>Bombay, India</h1>
+                </div>
               </div>
             </div>
           </div>

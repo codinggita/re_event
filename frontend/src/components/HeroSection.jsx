@@ -12,12 +12,20 @@ const HeroSection = () => {
               Plan your events.
             </span>
           </h1>
-          <Link
-            to="/create"
-            className="bg-white px-4 py-2 mx-4 rounded-2xl text-black shadow-lg hover:scale-105 transition-all"
-          >
-            Create Event
-          </Link>
+          <div className="flex flex-row items-center gap-4">
+            <Link
+              to="/create"
+              className="bg-white px-4 py-2  rounded-2xl text-black shadow-lg hover:scale-105 transition-all"
+            >
+              Create Event
+            </Link>
+            <Link
+              to="/dashboard"
+              className="bg-zinc-800 px-4 py-2 border border-zinc-600/60 rounded-2xl text-white shadow-lg hover:scale-105 transition-all"
+            >
+              Dashboard
+            </Link>
+          </div>
         </div>
         <div className="flex w-full lg:w-1/2 flex-col gap-4 lg:p-2">
           <div className="flex gap-3 w-full">

@@ -5,10 +5,10 @@ const MainDashContext = createContext();
 export const MainDashProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState("upcoming");
   const [openlogin, setOpenlogin] = useState(false);
-
+  const [managetab, setManagetab] = useState("Overview");
   const [activemenuItem, setActivemenuItem] = useState("zoom");
-
   const [managetab, setManagetab] = useState("overview");
+
 
   return (
     <MainDashContext.Provider

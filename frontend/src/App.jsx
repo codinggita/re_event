@@ -6,6 +6,7 @@ import CreateNew from './pages/CreateNew';
 import Dashboard from './pages/Dashboard';
 import {Toaster } from 'sonner';
 import EventPage from './pages/EventPage';
+import ManageEvent from './pages/ManageEvent';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<h1>Not Found</h1>} />
           <Route path="/e/:id" element={<EventPage/>} />
+          <Route path="/manage/:id" element={<ManageEvent/>} />
         </Routes>
         <Toaster position="top-center"/>
       </div>

@@ -1,31 +1,30 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { IoCalendarClearOutline, IoLocationOutline } from "react-icons/io5";
+import Banner from '../components/EventPage/Banner';
+import Location from '../components/EventPage/Location';
+import HostDetails from '../components/EventPage/HostDetails';
+import AboutComponent from '../components/EventPage/AboutComponent';
+import RegisterComponent from '../components/EventPage/RegisterComponent';
+
 
 
 const EventPage = () => {
   const { id } = useParams();
+
   return (
     <>
-      <div className="w-full flex items-center justify-center p-10">
-        <div className="w-2/3 ">
-          <div className="w-full flex flex-col bg-zinc-800 p-3 rounded-2xl">
-            <div className="w-full p-10 rounded-xl bg-yellow-100"></div>
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col items-start p-3 justify-center">
-                <h1 className="text-3xl font-semibold">{id}</h1>
-                <h1 className="text-lg font-light flex items-center gap-2"><span className='p-3 bg-pink-200 rounded-full'></span>by Host Name</h1>
-              </div>
-              <h1 className="text-xl font-medium p-3">10.30 AM</h1>
+      <div className="w-full mt-10 flex items-center justify-center p-10">
+        <div className="w-full md:w-2/3 ">
+          <Banner img="https://miro.medium.com/v2/resize:fit:1400/1*O9ZowM6DT_MRqCNjr79ZrA.jpeg" />
+          <div className="w-full flex flex-col md:flex-row gap-4 py-5">
+            <div className="md:w-1/3 w-full flex flex-col gap-4">
+              <Location />
+              <HostDetails />
+
             </div>
-            <div className="flex items-center justify-between p-3">
-              <div className="flex items-center gap-2 justify-center bg-zinc-600 p-2 rounded-lg">
-                <IoCalendarClearOutline />
-                <h1 className='text-md'>21st Aug, 2024</h1>
-              </div>
-              <div className="flex items-center">
-                <IoLocationOutline />
-              </div>
+            <div className="w-full md:w-2/3 flex flex-col gap-4">
+              <RegisterComponent />
+              <AboutComponent />
             </div>
           </div>
         </div>

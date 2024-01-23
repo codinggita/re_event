@@ -15,7 +15,7 @@ const EventPage = () => {
     <>
       <div className="w-full mt-10 flex items-center justify-center p-10">
         <div className="w-full md:w-2/3 ">
-          <Banner img="https://miro.medium.com/v2/resize:fit:1400/1*O9ZowM6DT_MRqCNjr79ZrA.jpeg" />
+          <Banner img="https://cdn.motor1.com/images/mgl/g440ng/s3/rimac-nevera.jpg" />
           <div className="w-full flex flex-col md:flex-row gap-4 py-5">
             <div className="md:w-1/3 w-full flex flex-col gap-4">
               <Location />

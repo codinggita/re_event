@@ -1,0 +1,25 @@
+
+.rdp {
+    --rdp-cell-size: 45px; /* Size of the day cells. */
+    --rdp-caption-font-size: 22px; /* Font size for the caption labels. */
+    --rdp-accent-color: #404040; /* Accent color for the background of selected days. */
+    --rdp-background-color: #000000; /* Background color for the hovered/focused elements. */
+    --rdp-accent-color-dark: #60cc2a; /* Accent color for the background of selected days (to use in dark-mode). */
+    --rdp-background-color-dark: #2fd00b; /* Background color for the hovered/focused elements (to use in dark-mode). */
+    --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
+    --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
+    --rdp-selected-color: #000000; /* Color of selected day text */
+    --rdp-selected-color-dark: #000; /* Color of selected day text (to use in dark-mode) */
+    --rdp-disabled-color: #999; /* Color of disabled day text */
+    --rdp-disabled-color-dark: #666; /* Color of disabled day text (to use in dark-mode) */
+    background-color: #323436b9;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+     border: #000;
+    display: flex ;
+    align-items: center;
+    margin-left: 20px;
+    padding: 10px;
+     
+  }
+  

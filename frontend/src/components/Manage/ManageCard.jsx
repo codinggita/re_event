@@ -12,7 +12,7 @@ const   ManageCard = (props) => {
 
     return (
         <>
-            <Link to={`/e/${eventname}`} className="w-full md:flex-row flex-col transition-all hover:border hover:border-zinc-400/40 border border-zinc-800 shadow-zinc-800 rounded-2xl shadow-2xl m-2 gap-4 bg-zinc-800 p-8 flex">
+            <div className="w-full md:flex-row flex-col transition-all hover:border hover:border-zinc-400/40 border border-zinc-800 shadow-zinc-800 rounded-2xl shadow-2xl m-2 gap-4 bg-zinc-800 p-8 flex">
                 <div className="w-full md:w-1/3">
                     <img src={"https://media.gq-magazine.co.uk/photos/5d80ad292e812f000817b75c/1:1/w_1600%2Cc_limit/20190917-GT-05.jpg"} alt="" className='rounded-2xl w-full' />
                 </div>
@@ -43,12 +43,12 @@ const   ManageCard = (props) => {
                     </div>
 
                     <div className="flex w-full gap-2 items-center">
-                        <p className='w-1/2 bg-zinc-700 rounded-lg hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1'>Edit Event</p>
-                        <p className='w-1/2 bg-zinc-700 rounded-lg hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1'>Check-in</p>
+                        <p className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1'>Edit Event</p>
+                        <p className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1'>Check-in</p>
                     </div>
                 </div>
 
-            </Link >
+            </div >
         </>
     )
 }

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiBox3Fill } from "react-icons/ri";
-import { useMainDashContext } from "../context/AppContext";
-import LogSign from "./Login/LogSign";
+import { useMainDashContext } from "./../context/AppContext";
+
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full flex items-center justify-between px-12 py-4 border-b border-gray-600 text-white">
+      <div className="w-full flex fixed bg-zinc-900/80 items-center justify-between px-12 py-4 border-b border-gray-600 text-white">
         <div className="flex">
           <Link
             to="/"

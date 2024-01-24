@@ -1,48 +1,55 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
-import Overview from '../components/Manage/Items/Overview';
-import Guests from '../components/Manage/Items/GuestsCard';
-import Analytics from '../components/Manage/Items/Analytics';
-import MoreCard from '../components/Manage/Items/MoreCArd';
-import { useMainDashContext } from '../context/AppContext';
-import ManageMenuItem from '../components/Manage/ManageMenuItem';
+import Overview from "../components/Manage/Items/Overview";
+import Guests from "../components/Manage/Items/GuestsCard";
+import Analytics from "../components/Manage/Items/Analytics";
+import MoreCard from "../components/Manage/Items/MoreCArd";
+import EditEvent from "../components/Manage/Items/EditEvent";
+import Questions from "../components/Manage/Items/Questions";
+import { useMainDashContext } from "../context/AppContext";
+import ManageMenuItem from "../components/Manage/ManageMenuItem";
+import { FaRegEyeSlash } from "react-icons/fa6";
+import { MdContentCopy } from "react-icons/md";
+import Header from "../components/EventConform/Header";
+import Sticky from "react-stickynode";
 
 const components = {
   Overview: Overview,
   Guests: Guests,
   Analytics: Analytics,
   More: MoreCard,
+  Questions: Questions,
+  EditEvent: EditEvent,
 };
 
 const ManageEvent = () => {
   const { managetab } = useMainDashContext();
   const ActiveComponent = components[managetab] || null;
 
-
-  const { id } = useParams()
+  const { id } = useParams();
   return (
     <>
-      <div className="w-full my-20 flex flex-col items-center justify-center">
-        <div className="w-full md:w-2/3 px-8 md:px-0 flex flex-col">
-          <p className='text-sm font-light text-zinc-500'>Manage <FaArrowRight className='inline text-xs' /></p>
-          <div className="flex items-center w-full justify-between">
-            <h1 className="text-2xl font-bold">{id}</h1>
-            <Link to={`/e/${id}`} className="bg-zinc-700 hover:bg-zinc-100 hover:text-black transition-all hover:scale-105 text-white shadow py-1.5 px-4 rounded-xl">Event Page <FaArrowRight className='inline text-xs' /></Link>
-          </div>
-
-          <div className="flex items-center mt-4 gap-2 w-full">
-            <ManageMenuItem tab='Overview' />
-            <ManageMenuItem tab='Guests' />
-            <ManageMenuItem tab='Analytics' />
-            <ManageMenuItem tab='More' />
-          </div>
-          <hr className='mb-4 border-zinc-500/60' />
+      <div className="w-full my-24 flex flex-col  bg-[#131517]  items-center  justify-around">
+        <div className="w-full md:w-3/4 px-8  md:px-0 flex flex-col">
+          {/* <p className='text-sm font-light text-zinc-500'>Manage <FaArrowRight className='inline text-xs' /></p> */}
+          <Header />
+          <Sticky enabled={true} top={67}>
+            <div className="flex items-center    rounded-lg h-20  bg-[#131517] gap-2 w-[100%]">
+              <ManageMenuItem tab="Overview" />
+              <ManageMenuItem tab="Guests" />
+              <ManageMenuItem tab="EditEvent" />
+              <ManageMenuItem tab="Questions" />
+              <ManageMenuItem tab="Analytics" />
+              <ManageMenuItem tab="More" />
+              <hr className="mb-4 border-zinc-500/60" />
+            </div>
+          </Sticky>
           {ActiveComponent && <ActiveComponent />}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ManageEvent
+export default ManageEvent;

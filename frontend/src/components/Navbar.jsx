@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full flex fixed bg-zinc-900/80 items-center justify-between px-12 py-4 border-b border-gray-600 text-white">
+      <div className="w-full flex fixed bg-zinc-900/80 items-center backdrop-blur-2xl justify-between px-12 py-4 border-b border-gray-600 text-white">
         <div className="flex">
           <Link
             to="/"

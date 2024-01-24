@@ -7,7 +7,7 @@ export const MainDashProvider = ({ children }) => {
   const [openlogin, setOpenlogin] = useState(false);
   const [managetab, setManagetab] = useState("Overview");
   const [activemenuItem, setActivemenuItem] = useState("zoom");
-  const [managetab, setManagetab] = useState("overview");
+  // const [managetab, setManagetab] = useState("overview");
 
 
   return (

@@ -6,6 +6,7 @@ export const MainDashProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState("upcoming");
   const [openlogin, setOpenlogin] = useState(false);
   const [activemenuItem, setActivemenuItem] = useState("zoom");
+  const [EventHeader, setEventHeader] = useState("Add Guests");
 
   return (
     <MainDashContext.Provider
@@ -16,6 +17,8 @@ export const MainDashProvider = ({ children }) => {
         setOpenlogin,
         activemenuItem,
         setActivemenuItem,
+        EventHeader,
+        setEventHeader,
       }}
     >
       {children}

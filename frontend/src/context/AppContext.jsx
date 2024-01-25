@@ -10,6 +10,9 @@ export const MainDashProvider = ({ children }) => {
   const [EventHeader, setEventHeader] = useState("Add Guests");
 
 
+  // const [managetab, setManagetab] = useState("overview");
+
+
 
   return (
     <MainDashContext.Provider

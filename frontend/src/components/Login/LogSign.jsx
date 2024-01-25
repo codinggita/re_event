@@ -21,7 +21,7 @@ const LogSign = () => {
 
   return (
     <>
-      <div className=" absolute  backdrop-blur-lg  shadow-xl border-white/40  border  px-8 py-12  rounded-3xl  bg-[#212325]/90 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className=" absolute  backdrop-blur-lg   shadow-xl border-white/40  border  px-8 py-12  rounded-3xl  bg-[#212325]/90 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {!oncontinue ? (
           <div className="flex flex-col  items-center justify-between  gap-10 ">
             <div className="flex items-center group justify-center  cursor-default">

@@ -1,11 +1,6 @@
 import React from "react";
 import HeaderItems from "./utils/HeaderItems";
-import { IoPeopleSharp } from "react-icons/io5";
-import { MdModeEditOutline } from "react-icons/md";
-import { MdEmail } from "react-icons/md";
-import { BsQuestionSquareFill } from "react-icons/bs";
-import { MdOutlinePayment } from "react-icons/md";
-import { SlGraph } from "react-icons/sl";
+
 
 const HeaderMenu = () => {
   return (

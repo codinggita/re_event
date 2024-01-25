@@ -4,7 +4,10 @@ import CreateNew from '../../../pages/CreateNew'
 const EditEvent = () => {
   return (
         <>
-            <CreateNew  width={"100%"} saveName={"Save Changes"}/>
+        <div className=' '>
+
+            <CreateNew  width={"100%"} saveName={"Save Changes"} mt={"0%"}/>
+        </div>
         </>
   )
 }

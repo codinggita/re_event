@@ -18,9 +18,11 @@ const CreateNew = ( props ) => {
 
   return (
     <>
+
       <div className=" flex  justify-center rounded-xl  mt-8 text-white ">
         <div className={` w-[${width}] bg-[#212325]     rounded-2xl p-3`}>
           <div className=" relative bg-gradient-to-r from-amber-500 to-pink-500  rounded-xl   h-[500px]">
+
             {/* <img
               src="https://image.tmdb.org/t/p/original/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg"
               alt=""
@@ -50,7 +52,7 @@ const CreateNew = ( props ) => {
               Where is the Event taking place....
             </h1>
             <div>
-              <div className=" bg-[#323436]  mt-4   w-[48%]  rounded-lg">
+              <div className=" bg-[#323436]  mt-4 w-[45%] rounded-lg">
                 <div className=" text-[#f7d5d5]  items-center justify-center flex  gap-2 px-1.5 py-1.5   ">
                   <EventUtil
                     name={"zoom"}
@@ -118,7 +120,7 @@ const CreateNew = ( props ) => {
                   name="access"
                   id="public"
                   value="public"
-                  className=" w-5 h-5  caret-slate-500"
+                  className=" w-5 h-5 caret-slate-500"
                 />
                 <div className="flex flex-col">
                   <label htmlFor="public" className=" text-lg">

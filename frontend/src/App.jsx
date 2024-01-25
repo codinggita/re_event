@@ -20,7 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create" element={<CreateNew width={"80%"}  saveName={"Create Event"}/>} />
+          <Route path="/create" element={<CreateNew width={"90%"}  saveName={"Create Event"}/>} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<h1>Not Found</h1>} />
           <Route path="/e/:id" element={<EventPage />} />

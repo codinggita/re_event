@@ -12,14 +12,17 @@ import DateTime from "../components/CreateNew/utils/DateTime";
 import { FaAnglesRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-const CreateNew = () => {
+const CreateNew = ( props ) => {
   const { activemenuItem, setActivemenuItem } = useMainDashContext();
+  const {width ,saveName} = props;
 
   return (
     <>
-      <div className=" flex  justify-center rounded-xl  mt-24 text-white ">
-        <div className=" w-[80%] bg-[#212325]     rounded-2xl p-3">
-          <div className=" relative bg-gradient-to-r from-amber-500 to-pink-500  rounded-xl    h-[500px]">
+
+      <div className=" flex  justify-center rounded-xl  mt-8 text-white ">
+        <div className={` w-[${width}] bg-[#212325]     rounded-2xl p-3`}>
+          <div className=" relative bg-gradient-to-r from-amber-500 to-pink-500  rounded-xl   h-[500px]">
+
             {/* <img
               src="https://image.tmdb.org/t/p/original/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg"
               alt=""
@@ -138,7 +141,7 @@ const CreateNew = () => {
               {/* <div className=""> */}
               <button className=" bg-[#323436] rounded-lg hover:scale-105 flex items-center group gap-2 p-4">
                 <FaAnglesRight className="text-sm " />
-                <h1 className="text-sm ">Create Event</h1>
+                <h1 className="text-sm ">{saveName}</h1>
               </button>
               {/* </div> */}
             </div>

@@ -22,12 +22,17 @@ function App() {
         {!shouldHideNavbar ? <Navbar/> : null}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create" element={<CreateNew />} />
+          <Route path="/create" element={<CreateNew width={"90%"}  saveName={"Create Event"}/>} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<h1>Not Found</h1>} />
           <Route path="/e/:id" element={<EventPage />} />
           <Route path="/create/conform" element={<EventConfrom />} />
           <Route path="/manage/:id" element={<ManageEvent />} />
+
+          <Route path="/e/:id" element={<EventPage/>} />
+          {/* <Route path="/manage" element={<EventConfrom/>} /> */}
+          <Route path="/manage/:id" element={<ManageEvent/>} />
+
         </Routes>
         <Toaster position="top-center" />
       </div>

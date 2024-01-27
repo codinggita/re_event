@@ -3,9 +3,11 @@ import ManageCard from '../ManageCard';
 import GuestListMenuItem from '../GuestListMenuItem';
 import { useMainDashContext } from '../../../context/AppContext';
 import HostProfile from '../HostProfile';
+import { useParams } from 'react-router-dom';
 
 const Overview = () => {
   const { setManagetab } = useMainDashContext();
+  const { id } = useParams();
   const guests = [
     {
       name: 'Takeshi Goda',
@@ -31,7 +33,7 @@ const Overview = () => {
   return (
     <>
       <div className="w-full">
-        <ManageCard eventname="Why Porsche is the best german ?" location="California, US" time="10.30 AM" organiser="Raiden Shogun" />
+        <ManageCard eventname={id} location="California, US" time="10.30 AM" organiser="Raiden Shogun" />
 
         <div className="w-full p-4 flex flex-col items-center">
           <div className="flex w-full px-2 py-6 items-center justify-between">

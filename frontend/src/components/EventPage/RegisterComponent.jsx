@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 const RegisterComponent = () => {
     const handleSubmit = () => {
         toast.success("Registered for the event successfully")
-      }
+    }
     return (
         <>
             <div className="w-full flex flex-col items-center rounded-2xl bg-zinc-800 border border-zinc-700">

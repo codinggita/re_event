@@ -88,7 +88,6 @@ const Explore = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
             <div className=" flex gap-[10rem]  flex-row ">
               <div className=" bg-green-600/30 mr-10  rounded-full group w-[10rem] ">

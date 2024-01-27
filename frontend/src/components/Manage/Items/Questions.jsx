@@ -44,37 +44,37 @@ const Questions = () => {
                 className="px-10 justify-center pt-5 flex flex-col gap-4"
               >
                 <input
-                  className="w-full h-full bg-zinc-800 outline-none text-white/50 border border-zinc-400/60 rounded-lg px-4 py-2"
+                  className="w-full h-full    bg-black/10 outline-none text-white/50 border border-zinc-500/60 rounded-lg px-4 py-2"
                   type={q.type}
                   placeholder={`Question ${index + 1}`}
                 />
                 <div className="flex justify-between gap-10">
                   <div className="flex gap-5">
                     <select
-                      className="outline-none h-full select-none bg-zinc-700 text-zinc-400 border-2 border-zinc-500/60 rounded-xl px-2 py-1.5"
+                      className="outline-none h-full select-none bg-[#2c2e30]/30 text-zinc-400 border-2 border-zinc-500/30 rounded-xl px-2 py-1.5"
                       name="type"
                       id={`type-${index}`}
                       onChange={(e) => handleInputChange(e, index)}
                     >
-                      <option value="text" className=" text-white">
+                      <option value="text" className=" bg-[#2c2e30]/90 text-zinc-400">
                         Text
                       </option>
-                      <option value="Long text" className=" text-white">
+                      <option value="Long text" className=" bg-[#2c2e30]/90 text-zinc-400">
                         Long text
                       </option>
-                      <option value="Checkbox" className=" text-white">
+                      <option value="Checkbox" className=" bg-[#2c2e30]/90 text-zinc-400">
                         Checkbox
                       </option>
-                      <option value="Single select" className=" text-white">
+                      <option value="Single select" className=" bg-[#2c2e30]/90 text-zinc-400">
                         Single select
                       </option>
-                      <option value="Multiple select" className=" text-white">
+                      <option value="Multiple select" className=" bg-[#2c2e30]/90 text-zinc-400">
                         Multiple select
                       </option>
-                      <option value="Url" className=" text-white">
+                      <option value="Url" className="bg-[#2c2e30]/90 text-zinc-400">
                         Url
                       </option>
-                      <option value="Date" className=" text-white">
+                      <option value="Date" className=" bg-[#2c2e30]/90 text-zinc-400">
                         Date
                       </option>
                     </select>

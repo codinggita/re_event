@@ -11,7 +11,7 @@ const RegisterComponent = () => {
     setRegisterClick(!RegisterClick);
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // This provides a smooth scroll effect
+      behavior: "smooth", // This provides a smooth scroll effect
     });
   };
   return (

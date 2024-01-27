@@ -8,6 +8,7 @@ export const MainDashProvider = ({ children }) => {
   const [managetab, setManagetab] = useState("Overview");
   const [activemenuItem, setActivemenuItem] = useState("zoom");
   const [EventHeader, setEventHeader] = useState("Add Guests");
+  const [RegisterClick , setRegisterClick] = useState(false);
 
 
   // const [managetab, setManagetab] = useState("overview");
@@ -29,6 +30,9 @@ export const MainDashProvider = ({ children }) => {
 
         managetab,
         setManagetab,
+
+        RegisterClick,
+        setRegisterClick,
 
       }}
     >

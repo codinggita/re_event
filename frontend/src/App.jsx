@@ -10,6 +10,7 @@ import EventConfrom from './pages/EventConfrom';
 import ManageEvent from './pages/ManageEvent';
 import Footer from './components/Footer';
 import Explore from './pages/Explore';
+import Checkin from './components/Manage/Checkin/Checkin';
 
 function App() {
   const location = useLocation();
@@ -29,8 +30,8 @@ function App() {
           <Route path="/e/:id" element={<EventPage />} />
           <Route path="/create/conform" element={<EventConfrom />} />
           <Route path="/manage/:id" element={<ManageEvent />} />
+          <Route path="/manage/:id/checkin" element={<Checkin />} />
           <Route path="/e/:id" element={<EventPage/>} />
-          {/* <Route path="/manage" element={<EventConfrom/>} /> */}
           <Route path="/manage/:id" element={<ManageEvent/>} />
           <Route path="/explore" element={<Explore/>} />
 

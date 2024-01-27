@@ -7,7 +7,7 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 
 import pors from '../../assets/pors.jpg';
 
-const   ManageCard = (props) => {
+const ManageCard = (props) => {
     const { eventname, time, location, organiser } = props
 
     return (

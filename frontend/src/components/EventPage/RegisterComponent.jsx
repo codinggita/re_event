@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { useMainDashContext } from "../../context/AppContext";
 
 const RegisterComponent = () => {
+
   const { RegisterClick, setRegisterClick } = useMainDashContext();
   const handleSubmit = () => {
     // toast.success("Registered for the event successfully");
@@ -43,5 +44,6 @@ const RegisterComponent = () => {
     </>
   );
 };
+
 
 export default RegisterComponent;

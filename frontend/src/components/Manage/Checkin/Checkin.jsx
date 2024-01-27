@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PiExport } from "react-icons/pi";
 import { IoIosSearch } from "react-icons/io";
 import { Link, useParams } from 'react-router-dom';
-import { MdQrCode } from "react-icons/md";
+import { FaCamera } from "react-icons/fa";
 import { RiBox3Fill } from 'react-icons/ri';
 import GuestListItem from './GuestListItem';
 import GuestDetailsPopup from './GuestDetailsPopup';
@@ -32,7 +32,67 @@ const Checkin = () => {
             name: 'Adolf Hitler',
             email: 'nuclear@bomb.com',
             time: '12:00 PM'
+        },
+        {
+            name: 'Takeshi Goda',
+            email: 'test@mail.com',
+            time: '10:30 AM'
+        },
+        {
+            name: 'Sasuke',
+            email: 'test@mail.com',
+            time: '15:30 PM'
+        },
+        {
+            name: 'Alexandar Christie',
+            email: 'mail@test.com',
+            time: '10:30 AM'
+        },
+        {
+            name: 'Adolf Hitler',
+            email: 'nuclear@bomb.com',
+            time: '12:00 PM'
+        },
+        {
+            name: 'Takeshi Goda',
+            email: 'test@mail.com',
+            time: '10:30 AM'
+        },
+        {
+            name: 'Sasuke',
+            email: 'test@mail.com',
+            time: '15:30 PM'
+        },
+        {
+            name: 'Alexandar Christie',
+            email: 'mail@test.com',
+            time: '10:30 AM'
+        },
+        {
+            name: 'Adolf Hitler',
+            email: 'nuclear@bomb.com',
+            time: '12:00 PM'
+        }, {
+            name: 'Takeshi Goda',
+            email: 'test@mail.com',
+            time: '10:30 AM'
+        },
+        {
+            name: 'Sasuke',
+            email: 'test@mail.com',
+            time: '15:30 PM'
+        },
+        {
+            name: 'Alexandar Christie',
+            email: 'mail@test.com',
+            time: '10:30 AM'
+        },
+        {
+            name: 'Adolf Hitler',
+            email: 'nuclear@bomb.com',
+            time: '12:00 PM'
         }
+        
     ]
 
     const handleGuestItemClick = (guest) => {
@@ -46,7 +106,7 @@ const Checkin = () => {
 
     return (
         <>
-            <div className="w-full flex p-12 justify-center">
+            <div className={`${selectedGuest ? 'fixed': ''} w-full flex p-12 justify-center`}>
                 <Link
                     to="/"
                     className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"
@@ -57,16 +117,17 @@ const Checkin = () => {
                         Event
                     </h1>
                 </Link>
-                <div className="w-3/4 flex flex-col gap-3">
+                <div className={`  w-3/4 flex flex-col gap-3`}>
                     <div className="flex items-center justify-between w-full">
                         <p>Check in Guests - {id} </p>
                         <div className="flex gap-2">
                             <Link to={`/manage/${id}`} className='px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5'>
                                 Export
+                                <PiExport className='ml-2 text- xl' />
                             </Link>
                             <Link to={`/manage/${id}/checkin`} className='px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5'>
                                 Scan
-                                <MdQrCode className='ml-2 text-2xl' />
+                                <FaCamera  className='ml-2 text-xl' />
                             </Link>
                         </div>
                     </div>

@@ -17,6 +17,8 @@ function App() {
 
   const hideNavbar = ['/manage/','/create'];
   const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
+  const hideFooter = ['/checkin'];
+  const shouldHideFooter = hideFooter.some((path) => location.pathname.includes(path));
 
   return (
     <>
@@ -38,7 +40,7 @@ function App() {
         </Routes>
         <Toaster position="top-center" />
       </div>
-      <Footer />
+      {!shouldHideFooter ? <Footer/> : null}
     </>
   );
 }

@@ -11,19 +11,28 @@ import InPerson from "../components/CreateNew/utils/InPerson";
 import DateTime from "../components/CreateNew/utils/DateTime";
 import { FaAnglesRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { RiBox3Fill } from "react-icons/ri";
 
 const CreateNew = (props) => {
   const { activemenuItem, setActivemenuItem } = useMainDashContext();
-  const { width, saveName ,mt} = props;
+  const { width, saveName, mt } = props;
 
   return (
     <>
-      <div className={` z-[100] mt-[${mt}]`}>
-        <h1 className="px-5 py-4 text-2xl text-zinc-400">Edit Event</h1>
-        <div className=" flex  justify-center rounded-xl   text-white ">
-          <div
-            className={` w-[${width}] bg-[#212325]    m-0   rounded-2xl p-3`}
-          >
+      <div className={` z-[100]  flex flex-col  justify-start  w-[100%]  `}>
+      <Link
+          to="/"
+          className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"
+        >
+          <RiBox3Fill className="text-2xl transform mr-2 group-hover:rotate-180 transition-all " />
+          Re:
+          <h1 className="bg-gradient-to-r from-white/50 to-pink-500 text-transparent bg-clip-text">
+            Event
+          </h1>
+        </Link>
+        <h1 className="px-10 mx-32    py-10 text-2xl text-zinc-400">{saveName}</h1>
+        <div className="   rounded-xl  flex justify-center  text-white ">
+          <div className={`  bg-[#212325] w-[${width}]    m-0   rounded-2xl p-3`}>
             <div className=" relative bg-gradient-to-r from-amber-500 to-pink-500  rounded-xl      h-[500px]">
               <img
                 src="https://image.tmdb.org/t/p/original/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg"
@@ -49,13 +58,13 @@ const CreateNew = (props) => {
               </h1>
             </div>
 
-            <div className=" p-5">
+            <div className=" flex  justify-center    w-[100%] flex-col p-5">
               <h1 className=" p-3    text-xl">
                 Where is the Event taking place....
               </h1>
-              <div>
-                <div className=" bg-[#323436]  mt-4 w-[45%] rounded-lg">
-                  <div className=" text-[#f7d5d5]  items-center justify-center flex  gap-2 px-1.5 py-1.5   ">
+              <div className=" ">
+                <div className=" bg-[#323436]   w-[45%]  mt-4   rounded-lg">
+                  <div className=" text-[#f7d5d5]    flex w-[100%]  justify-around  gap-2 px-1.5 py-1.5   ">
                     <EventUtil
                       name={"zoom"}
                       icon={<FaGlobeAmericas className=" text-lg" />}
@@ -70,7 +79,7 @@ const CreateNew = (props) => {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="">
                   {activemenuItem === "zoom" && (
                     <>
                       <Zoom />

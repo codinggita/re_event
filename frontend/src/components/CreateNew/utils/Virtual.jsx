@@ -3,7 +3,7 @@ import React from "react";
 const Virtual = () => {
   return (
     <>
-      <div className="p-4">
+      <div className="p-4  md:w-[90%] ">
         <h1>Event URL</h1>
         <div className="flex items-center  gap-16">
           <div>

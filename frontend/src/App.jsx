@@ -9,11 +9,12 @@ import EventPage from './pages/EventPage';
 import EventConfrom from './pages/EventConfrom';
 import ManageEvent from './pages/ManageEvent';
 import Footer from './components/Footer';
+import Explore from './pages/Explore';
 
 function App() {
   const location = useLocation();
 
-  const hideNavbar = ['/manage/'];
+  const hideNavbar = ['/manage/','/create'];
   const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
 
   return (
@@ -22,12 +23,17 @@ function App() {
         {!shouldHideNavbar ? <Navbar/> : null}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create" element={<CreateNew />} />
+          <Route path="/create" element={<CreateNew width={"75%"}  saveName={"Create Event"}  mt={'15%'}/>} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<h1>Not Found</h1>} />
           <Route path="/e/:id" element={<EventPage />} />
           <Route path="/create/conform" element={<EventConfrom />} />
           <Route path="/manage/:id" element={<ManageEvent />} />
+          <Route path="/e/:id" element={<EventPage/>} />
+          {/* <Route path="/manage" element={<EventConfrom/>} /> */}
+          <Route path="/manage/:id" element={<ManageEvent/>} />
+          <Route path="/explore" element={<Explore/>} />
+
         </Routes>
         <Toaster position="top-center" />
       </div>

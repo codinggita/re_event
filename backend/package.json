@@ -20,5 +20,6 @@
         "nodemailer": "^6.9.8",
         "nodemon": "^3.0.3",
         "otp-generator": "^4.0.1"
+        "nanoid": "^5.0.4",
     }
 }

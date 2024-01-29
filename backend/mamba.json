@@ -1,0 +1,36 @@
+//users
+name
+email
+password
+avatar image
+role
+registered events
+created events
+
+
+//events
+eventname
+eventdate
+eventtime
+eventbanner
+description
+eventcreatedby
+createddate
+eventticketprice - 0 if free
+eventtype-online offline
+eventurl/location/gmeet
+eventstatus - upcoming ongoing completed
+registration status - open/closed
+public/private
+questions []
+registered users [
+    {
+        name
+        email
+        avatar image
+        answered questions []
+        approve status
+        registered date
+        checkin status - checked/notchecked
+    }
+]

@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 const port = 3000;
 import mongoose from 'mongoose';
-
 import  router  from './routes/route.js';
 import cors from 'cors';
 // import express from 'express';
@@ -20,6 +19,7 @@ app.use(session({
     cookie: { secure: false },
   }));
 
+
 import eventRoutes from './routes/eventRoutes.js';
 
 app.use(express.json());
@@ -33,11 +33,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+
 app.use('/', router);
-
 app.use('/login', router);
-
-app.use('/events', eventRoutes);
 
 
 

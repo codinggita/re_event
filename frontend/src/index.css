@@ -8,3 +8,28 @@ body{
     background-color: #131517;
     color: white;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar:hover {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #2a2a2a;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #141414;
+    cursor: pointer;
+}

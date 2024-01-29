@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMainDashContext } from '../context/AppContext';
 import PastEvents from '../components/Dashboard/PastEvents';
 import UpcomingEvents from '../components/Dashboard/UpcomingEvents';
+import axios from 'axios';
+import {toast} from 'sonner';
 
 const components = {
   upcoming: UpcomingEvents,
@@ -15,39 +17,41 @@ const Dashboard = () => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-  
 
   return (
     <>
-      <div className="w-full mt-20 px-10 text-white flex items-center justify-center">
-        <div className="w-full md:w-2/3 flex justify-between">
-          <h1 className="text-3xl font-bold">Events</h1>
-          <div className="flex gap-4 bg-zinc-100 p-1 rounded-lg border items-center">
-            <button
-              className={`${
-                activeTab === 'upcoming'
-                  ? 'bg-black shadow-lg text-white hover:bg-black'
-                  : 'bg-gray-100 text-black hover:bg-black/80'
-              } rounded-lg hover:scale-105 hover:text-white px-3 py-1.5 transition-all`}
-              onClick={() => handleTabClick('upcoming')}
-            >
-              Upcoming
-            </button>
-            <button
-              className={`${
-                activeTab === 'past'
-                  ? 'bg-black shadow-lg text-white hover:bg-black'
-                  : 'bg-gray-100 text-black hover:bg-black/80'
-              } rounded-lg hover:scale-105 px-8 hover:text-white py-1.5 transition-all`}
-              onClick={() => handleTabClick('past')}
-            >
-              Past
-            </button>
+      {/* <div className="w-full flex flex-col items-center justify-center">
+        <div className="max-w-[1600px] flex flex-col items-center justify-center"> */}
+          <div className="w-full mt-20 px-10 text-white flex items-center justify-center">
+            <div className="w-full md:w-2/3 flex justify-between">
+              <h1 className="text-3xl font-bold">Events</h1>
+              <div className="flex gap-4 bg-zinc-100 p-1 rounded-lg border items-center">
+                <button
+                  className={`${activeTab === 'upcoming'
+                    ? 'bg-black shadow-lg text-white hover:bg-black'
+                    : 'bg-gray-100 text-black hover:bg-black/80'
+                    } rounded-lg hover:scale-105 hover:text-white px-3 py-1.5 transition-all`}
+                  onClick={() => handleTabClick('upcoming')}
+                >
+                  Upcoming
+                </button>
+                <button
+                  className={`${activeTab === 'past'
+                    ? 'bg-black shadow-lg text-white hover:bg-black'
+                    : 'bg-gray-100 text-black hover:bg-black/80'
+                    } rounded-lg hover:scale-105 px-8 hover:text-white py-1.5 transition-all`}
+                  onClick={() => handleTabClick('past')}
+                >
+                  Past
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {ActiveComponent && <ActiveComponent />}
+          {ActiveComponent && <ActiveComponent />}
+        {/* </div>
+
+      </div> */}
     </>
   );
 };

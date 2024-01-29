@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import EventCard from "../components/Dashboard/EventCard";
+import axios from "axios";
+import { toast } from "sonner";
+
 
 const Explore = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const getAllEvents = async () => {
+      try {
+        const response = await axios.get('/events/getevents');
+        setEvents(response.data);
+      } catch (error) {
+        console.error('Error:', error);
+        toast.error('Failed to fetch events');
+      }
+    };
+    getAllEvents();
+  }, []);
+
+
   return (
-    <div className="mt-[6%]  items-center flex ml-[10%]   ">
+    <div className="mt-[6%]  items-center flex flex-col ml-[10%]   ">
       <div className=" flex w-3/5  flex-col justify-center">
         <div className=" flex  flex-col gap-3">
           <h1 className=" text-4xl ">Explore Events</h1>
@@ -239,6 +259,35 @@ const Explore = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="w-3/4">
+
+        {events.length === 0 ? (
+          <>
+            <h1>No events ma :(</h1>
+          </>
+        ) : (
+          <div className="flex flex-col md:flex-row py-8 px-4">
+            <div className="w-full md:w-1/4 flex items-start p-4">
+              <div className="flex flex-row items-center gap-2">
+                <span className='p-2 border rounded-full'></span>
+                29th Feb, 2024
+              </div>
+            </div>
+            <div className="w-full md:w-3/4 flex flex-col gap-4">
+              {events.map((event) => (
+                <EventCard
+                  key={event.id}
+                  eventname={event.eventname}
+                  location={event.eventlocation}
+                  time={event.eventtime}
+                  organiser={event.eventcreatedby}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

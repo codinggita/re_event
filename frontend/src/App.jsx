@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -14,20 +15,33 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import { useMainDashContext } from "./context/AppContext";
 import Cookies from "js-cookie";
 import LoginNavbar from "./components/LoginNavBar";
+import Checkin from './components/Manage/Checkin/Checkin';
+import axios from 'axios';
+
+
+
+axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.withCredentials = true;
+
+
+
 function App() {
   const location = useLocation();
   const { profile, setProfile } = useMainDashContext();
 
-  const hideNavbar = ["/manage/", "/create"];
-  const shouldHideNavbar = hideNavbar.some((path) =>
-    location.pathname.includes(path)
-  );
 
   const cookie = Cookies.get("user");
+
+  const hideNavbar = ['/manage/','/create'];
+  const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
+  const hideFooter = ['/checkin'];
+  const shouldHideFooter = hideFooter.some((path) => location.pathname.includes(path));
+
 
   return (
     <>
       <div className="w-full flex flex-col">
+
         {
           cookie ? (
             <>
@@ -70,6 +84,8 @@ function App() {
         <Toaster position="top-center" />
       </div>
       {/* <Footer /> */}
+      {!shouldHideFooter ? <Footer/> : null}
+
     </>
   );
 }

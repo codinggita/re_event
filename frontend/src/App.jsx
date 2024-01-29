@@ -11,12 +11,21 @@ import ManageEvent from './pages/ManageEvent';
 import Footer from './components/Footer';
 import Explore from './pages/Explore';
 import Checkin from './components/Manage/Checkin/Checkin';
+import axios from 'axios';
+
+
+
+axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.withCredentials = true;
+
 
 function App() {
   const location = useLocation();
 
   const hideNavbar = ['/manage/','/create'];
   const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
+  const hideFooter = ['/checkin'];
+  const shouldHideFooter = hideFooter.some((path) => location.pathname.includes(path));
 
   return (
     <>
@@ -38,7 +47,7 @@ function App() {
         </Routes>
         <Toaster position="top-center" />
       </div>
-      <Footer />
+      {!shouldHideFooter ? <Footer/> : null}
     </>
   );
 }

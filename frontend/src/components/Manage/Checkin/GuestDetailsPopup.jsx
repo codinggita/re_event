@@ -15,8 +15,8 @@ const GuestDetailsPopup = ({ guest, onClose }) => {
     }
     return (
         <>
-            <div className="h-screen absolute w-full flex-items-center justify-center bg-black/30 backdrop-blur-sm">
-                <div className="fixed top-1/2 left-1/2 w-1/4 items-center flex flex-col transform -translate-x-1/2 -translate-y-1/2 bg-zinc-950/50 border border-zinc-600 p-8 rounded-xl shadow-lg">
+            <div className="h-screen w-full flex-items-center justify-center bg-black/30 backdrop-blur-sm">
+                <div className="fixed top-1/2 left-1/2 w-1/4 items-center flex flex-col transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 border border-zinc-600 p-8 rounded-2xl shadow-lg">
                     <div className="w-full items-center flex flex-col">
                         <span className="bg-indigo-400 p-7 m-2 rounded-full"></span>
                         <p className="text-xl font-bold">{name}</p>

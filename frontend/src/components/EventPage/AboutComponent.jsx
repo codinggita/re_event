@@ -1,7 +1,8 @@
 import React from 'react';
 import { IoMdInformationCircleOutline } from "react-icons/io";
 
-const AboutComponent = () => {
+const AboutComponent = (props) => {
+    const {description} = props
     return (
         <>
             <div className="w-full flex flex-col items-center rounded-2xl bg-zinc-800 border border-zinc-700">
@@ -9,7 +10,7 @@ const AboutComponent = () => {
                     <IoMdInformationCircleOutline /> About the event
                 </h1>
                 <div className="w-full px-6 py-2">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit nesciunt quae aperiam neque ipsa aliquid deserunt accusamus hic repellendus nemo. Cumque facilis similique repellat suscipit.</p>
+                    <p>{description}</p>
                 </div>
                 <hr className='w-[95%] opacity-50 my-3 bg-yellow-200' />
                 <p className="w-full px-6 py-2">

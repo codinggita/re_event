@@ -83,7 +83,7 @@ const LoginNavbar = () => {
                 <div className=" text-zinc-400  text-base    flex gap-2 mt-2 flex-col ">
                   <h1 className=" cursor-pointer hover:text-zinc-100">View Profile</h1>
                   <h1 className=" cursor-pointer hover:text-zinc-100">Settings</h1>
-                  <h1 className=" cursor-pointer hover:text-zinc-100">Logout</h1>
+                  <h1 >Logout</h1>
                 </div>
               </div>
             )}

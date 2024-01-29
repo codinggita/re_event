@@ -1,16 +1,40 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import { MdContentCopy } from "react-icons/md";
+import axios from "axios";
 const Header = () => {
   const { id } = useParams();
+  const [event, setEvent] = useState({});
+  useEffect(() => {
+    const getEvent = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/geteventbyid/${id}`
+        );
+        setEvent(response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    getEvent();
+  }, []);
+  console.log(event);
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const month = d.toLocaleString("default", { month: "short" });
+    const day = d.getDate();
+    const year = d.getFullYear();
+    return `${month} ${day}, ${year}`;
+  };
+  const eventdate = formatDate(event.eventdate);
   return (
-    <div className="flex  bg-[#131517]  justify-between">
-      <div className=" flex justify-between w-full  backdrop-blur-md mt-10">
+    <div className="flex w-full bg-[#131517]  justify-between">
+      <div className=" flex justify-between w-full md:flex-row flex-col backdrop-blur-md mt-10">
 
-        <div className=" flex flex-col gap-2 ">
-          <h1 className=" text-3xl">Re:Event {id}</h1>
+        <div className="w-full flex md:flex-col flex-row gap-2 items-center md:items-start">
+          <h1 className=" text-3xl">{event.eventname}</h1>
           <p className=" text-sm text-gray-400">
-            OCT 15 (FRI), 10:30 AM - OCT 15 (FRI), 10:30 AM
+            {eventdate}, {event.eventtime} - OCT 15 (FRI), 10:30 AM
           </p>
         </div>
         <div className="flex gap-2  items-end">

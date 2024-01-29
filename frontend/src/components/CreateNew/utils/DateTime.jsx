@@ -3,12 +3,14 @@ import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import "./style.css";
+import { useMainDashContext } from "../../../context/AppContext";
 const DateTime = () => {
   const [dateVisisble, setDateVisisble] = React.useState(false);
   const [dateVisisble2, setDateVisisble2] = React.useState(false);
   const [selected1, setSelected1] = React.useState();
   const [selected2, setSelected2] = React.useState();
   const [selectedDays, setSelectedDays] = React.useState([]);
+  const { newevent, setNewEvent } = useMainDashContext();
 
   const timehours = [
     "12:00 AM",
@@ -72,7 +74,8 @@ const DateTime = () => {
   };
   const handleDateSelect1 = (date) => {
     setSelected1(date);
-    setDateVisisble(false); // Close the date picker after selecting a date
+    setNewEvent({ ...newevent, eventdate: date });
+    setDateVisisble(false); 
   };
 
   const handleDateSelect2 = (date) => {
@@ -100,20 +103,26 @@ const DateTime = () => {
   // if (selected1) {
   //   footer = <p>You picked {format(selected1, "PPP")}.</p>;
   // }
+  const handleTimeChange = (value) => {
+    setSelectedTime(value);
+    setNewEvent({ ...newevent, eventtime: value });
+  }
+  console.log(selected1);
+  console.log(selectedTime)
   return (
     <>
       {/* <style>{css}</style> */}
-      <div className=" pl-3">
+      <div className="w-full pl-3">
         <h1 className=" text-xl"> When will it happen?</h1>
         <div className="flex  items-center p-3 ">
-          <div className=" flex flex-col rounded-xl mt-4  bg-[#323436] ">
+          <div className=" flex flex-col rounded-xl mt-4 bg-[#323436] ">
             <div className="p-3">
               <div className=" items-center flex gap-5 ">
                 <h1>starts</h1>
                 <h1
                   // type="text"
                   // placeholder={format(new Date(), "PPpp")}
-                  className=" bg-[#424446]  w-[100%] justify-center  h-[2.5rem] cursor-pointer items-center flex border-none outline-none   border-gray-500 rounded-md p-3 mt-2"
+                  className=" bg-[#424446]  w-[100%] justify-center h-[5rem] md:h-[2.5rem] cursor-pointer items-center flex border-none outline-none border-gray-500 rounded-md p-3 mt-2"
                   onClick={handleDateClick}
                 >
                   {selected1
@@ -125,7 +134,7 @@ const DateTime = () => {
                   {
                     <select
                       className=" z-[100]  h-[2.5rem]  cursor-pointer items-center   border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
-                      onChange={(e) => setSelectedTime(e.target.value)}
+                      onChange={(e) => handleTimeChange(e.target.value)}
                     >
                       {timehours.map((time) => (
                         <option key={time} className="p-2" value={time}>
@@ -143,7 +152,7 @@ const DateTime = () => {
                 <h1
                   // type="text"
                   // placeholder={format(new Date(), "PPpp")}
-                  className="  w-[100%] justify-center bg-[#424446]  h-[2.5rem] cursor-pointer items-center flex border-none outline-none  border-gray-500 rounded-md p-3 mt-2"
+                  className="  w-[100%] justify-center bg-[#424446] h-[5rem] md:h-[2.5rem] cursor-pointer items-center flex border-none outline-none  border-gray-500 rounded-md p-3 mt-2"
                   onClick={handleDateClick2}
                 >
                   {selected2
@@ -155,7 +164,7 @@ const DateTime = () => {
                   {
                     <select
                       className=" z-[100]   h-[2.5rem] cursor-pointer items-center flex border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
-                      onChange={(e) => setSelectedTime(e.target.value)}
+                      // onChange={(e) => handleTimeChange(e.target.value)}
                     >
                       {timehours.map((time) => (
                         <option key={time} value={time}>
@@ -171,7 +180,7 @@ const DateTime = () => {
         </div>
 
         {dateVisisble && (
-          <div className="  absolute  top-[80rem] left-[45%] z-10">
+          <div className="absolute right-30 top-[80rem] md:left-[45%] z-10">
             <DayPicker
               mode="single"
               selected={selected1}
@@ -181,20 +190,20 @@ const DateTime = () => {
               defaultMonth={new Date(2023, 0)}
               fromYear={2023}
               required
-              // modifiersClassNames={{
-              //   selected: "my-selected",
-              //   today: "my-today",
-              // }}
-              // modifiersStyles={{
-              //   disabled: { fontSize: "75%" },
-              // }}
-              // Remove the duplicate onSelect attribute
-              // onSelect={handleDateSelect2}
+            // modifiersClassNames={{
+            //   selected: "my-selected",
+            //   today: "my-today",
+            // }}
+            // modifiersStyles={{
+            //   disabled: { fontSize: "75%" },
+            // }}
+            // Remove the duplicate onSelect attribute
+            // onSelect={handleDateSelect2}
             />
           </div>
         )}
         {dateVisisble2 && (
-          <div className="  absolute   top-[80rem] left-[45%] z-10">
+          <div className="  absolute  left-50 top-[80rem] md:left-[45%] z-10">
             <DayPicker
               mode="single"
               selected={selected2}
@@ -203,13 +212,13 @@ const DateTime = () => {
               defaultMonth={new Date(2023, 0)}
               fromYear={2023}
               required
-              // modifiersClassNames={{
-              //   selected: "my-selected",
-              //   today: "my-today",
-              // }}
-              // modifiersStyles={{
-              //   disabled: { fontSize: "75%" },
-              // }}
+            // modifiersClassNames={{
+            //   selected: "my-selected",
+            //   today: "my-today",
+            // }}
+            // modifiersStyles={{
+            //   disabled: { fontSize: "75%" },
+            // }}
             />
           </div>
         )}

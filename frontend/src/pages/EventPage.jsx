@@ -123,32 +123,14 @@ const EventPage = () => {
             organiser={event.eventcreatedby}
           />
           <div className="w-full flex flex-col md:flex-row gap-4 py-5">
-            
+
             <div className="md:w-1/3 w-full flex flex-col gap-4">
               <Location />
-
-
-
-              <HostDetails />
-
-
               <HostDetails host={event.eventcreatedby} />
-
             </div>
             <div className="w-full md:w-2/3 flex flex-col gap-4">
-
               <RegisterComponent />
-
               <AboutComponent description={event.description} />
-
-
-
-              <AboutComponent />
-
-              <AboutComponent description={event.description} />
-
-
-
             </div>
           </div>
           {/* <RegisterQuestionComponent /> */}

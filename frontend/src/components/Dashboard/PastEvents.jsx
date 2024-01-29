@@ -74,6 +74,7 @@ const PastEvents = () => {
                     time={event.eventtime}
                     organiser={event.eventcreatedby}
                     image={event.eventbanner}
+                    id={event.eventcode}
                   />)}
                 </div>
               </div>

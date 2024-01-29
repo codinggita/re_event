@@ -36,6 +36,7 @@ app.use(cors(corsOptions));
 
 app.use('/', router);
 app.use('/login', router);
+app.use('/events', eventRoutes);
 
 
 

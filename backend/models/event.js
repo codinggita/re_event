@@ -7,11 +7,9 @@ const EventSchema = new mongoose.Schema({
     },
     eventdate: {
         type: Date,
-        required: true
     },
     eventtime: {
         type: String,
-        required: true
     },
     eventbanner: {
         type: String
@@ -21,7 +19,6 @@ const EventSchema = new mongoose.Schema({
     },
     eventcreatedby: {
         type: String,
-        required: true
     },
     eventcode:{
         type: String

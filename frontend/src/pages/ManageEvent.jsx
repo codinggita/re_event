@@ -45,7 +45,7 @@ const ManageEvent = () => {
             Event
           </h1>
         </Link>
-        <div className="flex z-50 w-full md:w-3/4 flex-col ">
+        <div className="flex z-50 w-[90%] md:w-3/4 flex-col ">
           {/* <p className='text-sm font-light text-zinc-500'>Manage <FaArrowRight className='inline text-xs' /></p> */}
           <Sticky enabled={true}>
             <div className="   ">

@@ -12,7 +12,7 @@ const UpcomingEvents = () => {
   useEffect(() => {
     const getAllEvents = async () => {
       try {
-        const response = await axios.get('/events/getevents');
+        const response = await axios.get('http://localhost:3000/events/getevents');
         setEvents(response.data);
         separateEvents(response.data);
       } catch (error) {

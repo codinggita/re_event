@@ -8,13 +8,26 @@ export const MainDashProvider = ({ children }) => {
   const [managetab, setManagetab] = useState("Overview");
   const [activemenuItem, setActivemenuItem] = useState("zoom");
   const [EventHeader, setEventHeader] = useState("Add Guests");
-  const [RegisterClick , setRegisterClick] = useState(false);
+  const [RegisterClick, setRegisterClick] = useState(false);
 
   const [profile, setProfile] = useState(null);
 
-
-  // const [managetab, setManagetab] = useState("overview");
-
+  const [newevent, setNewEvent] = useState({
+    eventname: "",
+    eventdate: "",
+    eventtime: "",
+    eventbanner: "",
+    description: "",
+    eventlocation: "",
+    eventcreatedby: "",
+    eventtype: "",
+    eventimage: "",
+    eventticketprice: "",
+    registrationstatus: "",
+    visibility: "",
+    questions: [],
+    registeredusers: []
+  });
 
 
   return (
@@ -37,7 +50,10 @@ export const MainDashProvider = ({ children }) => {
         setRegisterClick,
 
         profile,
-        setProfile  
+        setProfile,
+
+        newevent,
+        setNewEvent,
       }}
     >
       {children}

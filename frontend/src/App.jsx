@@ -25,11 +25,10 @@ function App() {
   const location = useLocation();
   const { profile, setProfile } = useMainDashContext();
 
-
-  const hideNavbar = ["/manage/", "/create"];
-  const shouldHideNavbar = hideNavbar.some((path) =>
-    location.pathname.includes(path)
-  );
+  const hideNavbar = ['/manage/', '/create'];
+  const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
+  const hideFooter = ['/checkin'];
+  const shouldHideFooter = hideFooter.some((path) => location.pathname.includes(path));
 
 
   const cookie = Cookies.get("user");
@@ -42,16 +41,7 @@ function App() {
             <>
               {!shouldHideNavbar ? <LoginNavbar /> : null}
               <Routes>
-                <Route
-                  path="/create"
-                  element={
-                    <CreateNew
-                      width={"75%"}
-                      saveName={"Create Event"}
-                      mt={"15%"}
-                    />
-                  }
-                />
+                <Route path="/create" element={<CreateNew width={"75%"} saveName={"Create Event"} mt={"15%"} />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="*" element={<h1>Not Found</h1>} />
@@ -68,7 +58,6 @@ function App() {
               {!shouldHideNavbar ? <Navbar /> : null}
               <Routes>
                 <Route path="/" element={<Home />} />
-
                 <Route path="/explore" element={<Explore />} />
               </Routes>
             </>
@@ -78,7 +67,10 @@ function App() {
 
         <Toaster position="top-center" />
       </div>
+
+      {!shouldHideFooter ? <Footer /> : null}
       {/* <Footer /> */}
+
     </>
   );
 }

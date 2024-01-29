@@ -9,15 +9,12 @@ import EditEvent from "../components/Manage/Items/EditEvent";
 import Questions from "../components/Manage/Items/Questions";
 import { useMainDashContext } from "../context/AppContext";
 import ManageMenuItem from "../components/Manage/ManageMenuItem";
-import { FaRegEyeSlash } from "react-icons/fa6";
-import { MdContentCopy } from "react-icons/md";
 import Header from "../components/EventConform/Header";
 import Sticky from "react-stickynode";
 import { IoPeopleSharp } from "react-icons/io5";
 import { MdModeEditOutline } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { BsQuestionSquareFill } from "react-icons/bs";
-import { MdOutlinePayment } from "react-icons/md";
 import { SlGraph } from "react-icons/sl";
 import { RiBox3Fill } from "react-icons/ri";
 

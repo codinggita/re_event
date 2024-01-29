@@ -2,9 +2,11 @@ import React from 'react';
 import { PiExport } from "react-icons/pi";
 import { IoIosSearch } from "react-icons/io";
 import GuestListMenuItem from '../GuestListMenuItem';
-
+import { Link, useParams } from 'react-router-dom';
+import { MdQrCode } from "react-icons/md";
 
 const GuestsCard = () => {
+  const { id } = useParams();
   const guests = [
     {
       name: 'Takeshi Goda',
@@ -27,8 +29,6 @@ const GuestsCard = () => {
       time: '12:00 PM'
     }
   ]
-
-
   return (
     <>
       <div className="w-full flex flex-col">
@@ -43,7 +43,13 @@ const GuestsCard = () => {
         <hr className="w-full mt-10 mb-4 border-zinc-700" />
 
         <div className="flex w-full flex-col p-4">
-          <h1 className="text-start text-xl">Guest List</h1>
+          <div className="flex w-full items-center justify-between">
+            <h1 className="text-start text-xl">Guest List</h1>
+            <Link to={`/manage/${id}/checkin`} className='px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5'>
+              Check-in
+              <MdQrCode className='ml-2 text-2xl' />
+            </Link>
+          </div>
           <div className="w-full flex flex-col gap-2">
             <div className="flex gap-2 items-center justify-between w-full">
               <IoIosSearch className='p-1 bg-zinc-800 border border-zinc-200/20 text-4xl rounded-lg' />

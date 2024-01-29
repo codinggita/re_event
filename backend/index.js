@@ -23,6 +23,8 @@ app.use(session({
 app.use('/', router);
 app.use('/login', router);
 
+
+
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log('Connected to MongoDB 🥳');
 }).catch((err) => {

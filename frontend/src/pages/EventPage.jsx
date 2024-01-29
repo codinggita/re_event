@@ -104,22 +104,25 @@ const EventPage = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col items-center justify-center">
-        <div className="max-w-[1600px] flex flex-col justify-center">
-          <div className="w-full mt-10 flex items-center justify-center p-10">
-            <div className="w-full md:w-2/3 ">
-              {/* <Banner img="https://cdn.motor1.com/images/mgl/g440ng/s3/rimac-nevera.jpg" /> */}
-              <Banner img={event.eventbanner} location={event.eventlocation} time={event.eventtime} date={event.eventdate} eventname={event.eventname} organiser={event.eventcreatedby} />
-              <div className="w-full flex flex-col md:flex-row gap-4 py-5">
-                <div className="md:w-1/3 w-full flex flex-col gap-4">
-                  <Location />
-                  <HostDetails host={event.eventcreatedby} />
-                </div>
-                <div className="w-full md:w-2/3 flex flex-col gap-4">
-                  <RegisterComponent />
-                  <AboutComponent description={event.description} />
-                </div>
-              </div>
+
+      <div
+        className={
+          RegisterClick
+            ? `w-full mt-10 flex  items-center justify-center p-10 bg-[#1e1f20]/90  backdrop-blur-lg fixed`
+            : `w-full mt-10 flex  items-center justify-center p-10`
+        }
+      >
+        <div className="w-full md:w-2/3 ">
+          <Banner img={event.eventbanner} location={event.eventlocation} time={event.eventtime} date={event.eventdate} eventname={event.eventname} organiser={event.eventcreatedby} />
+          <div className="w-full flex flex-col md:flex-row gap-4 py-5">
+            <div className="md:w-1/3 w-full flex flex-col gap-4">
+              <Location />
+              <HostDetails host={event.eventcreatedby} />
+            </div>
+            <div className="w-full md:w-2/3 flex flex-col gap-4">
+              <RegisterComponent />
+              <AboutComponent description={event.description} />
+
             </div>
           </div>
           {/* <RegisterQuestionComponent /> */}

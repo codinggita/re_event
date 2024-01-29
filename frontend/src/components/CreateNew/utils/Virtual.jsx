@@ -5,12 +5,12 @@ const Virtual = () => {
     <>
       <div className="p-4  md:w-[90%] ">
         <h1>Event URL</h1>
-        <div className="flex items-center  gap-16">
-          <div>
+        <div className="flex items-center w-full gap-16">
+          <div className="w-full">
             <input
               type="text"
               placeholder="Enter Event URL"
-              className=" w-[30rem] h-[2.5rem] border-none outline-none  bg-[#323436] border-gray-500 rounded-md p-3 mt-2"
+              className=" w-full h-[2.5rem] border-none outline-none  bg-[#323436] border-gray-500 rounded-md p-3 mt-2"
             />
           </div>
           <div className=" flex items-center  justify-between gap-5">

@@ -2,12 +2,23 @@ import React, { useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import LogSign from "../components/Login/LogSign";
 import { useMainDashContext } from "../context/AppContext";
+import Cookies from "js-cookie";
+import Navbar from "../components/Navbar";
 const Home = () => {
+  const cookie = Cookies.get("user");
   const { openlogin, setOpenlogin } = useMainDashContext();
   return (
     <>
       <div className="w-full flex items-center  max-w-[1500px] justify-center">
-      {openlogin && <LogSign />}
+        {cookie ? (
+          <></>
+        ) : (
+          <>
+            {openlogin && <LogSign />}
+            {/* <HeroSection /> */}
+          </>
+        )}
+        {/* {openlogin && <LogSign />} */}
         <HeroSection />
       </div>
     </>

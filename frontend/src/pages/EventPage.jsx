@@ -98,7 +98,13 @@ const EventPage = () => {
 
   return (
     <>
-      <div className="w-full mt-10 flex items-center justify-center p-10">
+      <div
+        className={
+          RegisterClick
+            ? `w-full mt-10 flex  items-center justify-center p-10 bg-[#1e1f20]/90  backdrop-blur-lg fixed`
+            : `w-full mt-10 flex  items-center justify-center p-10`
+        }
+      >
         <div className="w-full md:w-2/3 ">
           <Banner img="https://cdn.motor1.com/images/mgl/g440ng/s3/rimac-nevera.jpg" />
           <div className="w-full flex flex-col md:flex-row gap-4 py-5">

@@ -19,7 +19,7 @@ export const RegisterQuestionComponent = (props) => {
       setTimeout(() => resolve({ name: "Sonner" }), 1000)
     );
   return (
-    <div className="w-full absolute h-[100vh] bg-[#1e1f20]/90  backdrop-blur-lg">
+    <div className="w-full absolute h-[100vh] z-[1000] bg-[#1e1f20]/90  backdrop-blur-lg">
       <div className="flex items-center mt-[5%] flex-col justify-center">
         <div className=" flex flex-col gap-3">
           <h1 className=" mt-5 text-2xl">Register Your Self</h1>

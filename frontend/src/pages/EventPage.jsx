@@ -89,7 +89,7 @@ const EventPage = () => {
     const getEvent = async () => {
       try {
         // console.log(id)
-        const response = await axios.get(`/events/geteventbyid/${id}`);
+        const response = await axios.get(`http://localhost:3000/events/geteventbyid/${id}`);
         setEvent(response.data);
       } catch (error) {
         console.error('Error:', error);

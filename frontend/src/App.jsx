@@ -11,6 +11,13 @@ import ManageEvent from './pages/ManageEvent';
 import Footer from './components/Footer';
 import Explore from './pages/Explore';
 import Checkin from './components/Manage/Checkin/Checkin';
+import axios from 'axios';
+
+
+
+axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.withCredentials = true;
+
 
 function App() {
   const location = useLocation();

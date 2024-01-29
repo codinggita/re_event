@@ -22,7 +22,7 @@ const Navbar = () => {
 
       {/* <div className="w-full z-50 flex fixed bg-zinc-900/80 items-center justify-between px-12 py-4 border-b border-gray-600 text-white"> */}
 
-        <div className="flex">
+        <div className="flex gap-5">
           <Link
             to="/"
             className="text-xl flex items-center  group font-semibold"
@@ -33,6 +33,7 @@ const Navbar = () => {
               Event
             </h1>
           </Link>
+          <Link to="/explore" className="text px-4 py-1 hover:text-black hover:bg-zinc-300 cursor-pointer rounded-xl transition-all">Explore</Link>
         </div>
         <div className="hidden md:flex gap-4">
           <Link

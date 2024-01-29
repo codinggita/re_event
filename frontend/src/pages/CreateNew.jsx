@@ -20,7 +20,7 @@ const CreateNew = (props) => {
   return (
     <>
       <div className={` z-[100]  flex flex-col  justify-start  w-[100%]  `}>
-      <Link
+        <Link
           to="/"
           className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"
         >
@@ -30,9 +30,13 @@ const CreateNew = (props) => {
             Event
           </h1>
         </Link>
-        <h1 className="px-10 mx-32    py-10 text-2xl text-zinc-400">{saveName}</h1>
+        <h1 className="px-10 mx-32    py-10 text-2xl text-zinc-400">
+          {saveName}
+        </h1>
         <div className="   rounded-xl  flex justify-center  text-white ">
-          <div className={`  bg-[#212325] w-[${width}]    m-0   rounded-2xl p-3`}>
+          <div
+            className={`  bg-[#212325] w-[${width}]    m-0   rounded-2xl p-3`}
+          >
             <div className=" relative bg-gradient-to-r from-amber-500 to-pink-500  rounded-xl      h-[500px]">
               <img
                 src="https://image.tmdb.org/t/p/original/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg"
@@ -47,15 +51,28 @@ const CreateNew = (props) => {
               </div>
             </div>
 
-            <div className=" w-[90%] p-5">
-              <p className=" p-3">Event Name</p>
-              <h1
-                className=" h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-400    border-b-1 focus:border-gray-500 p-2 outline-none "
-                contentEditable="true"
-                suppressContentEditableWarning={true}
-              >
-                Enter Your Event Name
-              </h1>
+            <div className=" w-[90%] p-5 flex flex-col   gap-5">
+              <div>
+                <p className=" p-3">Event Name</p>
+                <h1
+                  className=" h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-400    border-b-1 focus:border-gray-500 p-2 outline-none "
+                  contentEditable="true"
+                  suppressContentEditableWarning={true}
+                >
+                  Enter Your Event Name
+                </h1>
+              </div>
+              <div>
+                <p className=" p-3">Event Description</p>
+                <textarea
+                  className=" h-[8rem] focus:border-b-2 w-full  rounded-lg bg-[#323436]  font-bold tracking-wide text-md  text-gray-400     focus:border-gray-500 p-2 outline-none "
+                  contentEditable="true"
+                  suppressContentEditableWarning={true}
+                  placeholder="Enter Your Event Description"
+
+                  // Enter Your Event Description
+                />
+              </div>
             </div>
 
             <div className=" flex  justify-center    w-[100%] flex-col p-5">
@@ -63,7 +80,7 @@ const CreateNew = (props) => {
                 Where is the Event taking place....
               </h1>
               <div className=" ">
-                <div className=" bg-[#323436]   w-[45%]  mt-4   rounded-lg">
+                <div className=" bg-[#323436]   w-3/5  mt-4   rounded-lg">
                   <div className=" text-[#f7d5d5]    flex w-[100%]  justify-around  gap-2 px-1.5 py-1.5   ">
                     <EventUtil
                       name={"zoom"}

@@ -10,6 +10,8 @@ export const MainDashProvider = ({ children }) => {
   const [EventHeader, setEventHeader] = useState("Add Guests");
   const [RegisterClick , setRegisterClick] = useState(false);
 
+  const [profile, setProfile] = useState(null);
+
 
   // const [managetab, setManagetab] = useState("overview");
 
@@ -34,6 +36,8 @@ export const MainDashProvider = ({ children }) => {
         RegisterClick,
         setRegisterClick,
 
+        profile,
+        setProfile  
       }}
     >
       {children}

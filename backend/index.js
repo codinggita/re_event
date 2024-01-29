@@ -20,9 +20,8 @@ app.use(session({
     cookie: { secure: false },
   }));
 
-import router from './routes/route.js';
 import eventRoutes from './routes/eventRoutes.js';
-import cors from 'cors';
+
 app.use(express.json());
 
 

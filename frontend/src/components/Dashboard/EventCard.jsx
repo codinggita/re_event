@@ -21,7 +21,7 @@ const EventCard = (props) => {
           <p className='text-md text-zinc-200/70'> <IoPeople className='inline' /> by {organiser}</p>
           <p className='text-md text-zinc-200/70'> <IoLocationOutline className='inline' /> {location}</p>
           <div className="flex gap-2 items-center">
-            <Link to={`/manage/${eventname}`} className='px-3 font-semibold rounded-md text-md py-1 my-2 bg-zinc-200 hover:shadow-xl shadow-zinc-100 group text-black text-start flex items-center gap-1'>Manage <FaArrowRight className='transform group-hover:text-black text-zinc-200/90 transition-all'/> </Link>
+            <Link to={`/manage/${id}`} className='px-3 font-semibold rounded-md text-md py-1 my-2 bg-zinc-200 hover:shadow-xl shadow-zinc-100 group text-black text-start flex items-center gap-1'>Manage <FaArrowRight className='transform group-hover:text-black text-zinc-200/90 transition-all'/> </Link>
           </div>
         </div>
         <div className="w-full md:w-1/3">

@@ -15,19 +15,6 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import { useMainDashContext } from "./context/AppContext";
 import Cookies from "js-cookie";
 import LoginNavbar from "./components/LoginNavBar";
-
-import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import CreateNew from './pages/CreateNew';
-import Dashboard from './pages/Dashboard';
-import { Toaster } from 'sonner';
-import EventPage from './pages/EventPage';
-import EventConfrom from './pages/EventConfrom';
-import ManageEvent from './pages/ManageEvent';
-import Footer from './components/Footer';
-import Explore from './pages/Explore';
 import Checkin from './components/Manage/Checkin/Checkin';
 import axios from 'axios';
 
@@ -41,11 +28,6 @@ axios.defaults.withCredentials = true;
 function App() {
   const location = useLocation();
   const { profile, setProfile } = useMainDashContext();
-
-  const hideNavbar = ["/manage/", "/create"];
-  const shouldHideNavbar = hideNavbar.some((path) =>
-    location.pathname.includes(path)
-  );
 
 
   const cookie = Cookies.get("user");

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaImages } from "react-icons/fa6";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { MdOutlineComputer } from "react-icons/md";
@@ -12,10 +12,61 @@ import DateTime from "../components/CreateNew/utils/DateTime";
 import { FaAnglesRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { RiBox3Fill } from "react-icons/ri";
+import ImageKit from 'imagekit';
+import { nanoid } from 'nanoid';
+import { toast } from 'sonner';
 
 const CreateNew = (props) => {
+  const imgID = nanoid(10);
   const { activemenuItem, setActivemenuItem } = useMainDashContext();
   const { width, saveName, mt } = props;
+  const imagekit = new ImageKit({
+    publicKey: "public_2rLWcPMCq/TpjA/J9rqwkH8YLNU=",
+    privateKey: "private_cz09upy0twlhYcqaCnHidFizWKo=",
+    urlEndpoint: "https://ik.imagekit.io/vsnlabs",
+    transformationPosition: "path",
+    authenticationEndpoint: "http://localhost:5000/imagekit",
+  });
+  const [eventdetails, setEventdetails] = useState({
+    eventName: "",
+    eventDescription: "",
+    eventLocation: "",
+    eventDate: "",
+    eventTime: "",
+    eventDuration: "",
+    eventTimeZone: "",
+    eventAccess: "",
+    eventImage: "",
+  });
+
+  const changeBackground = (imageUrl) => {
+    const bgElement = document.getElementById('heroSection');
+    if (bgElement) {
+      bgElement.style.backgroundImage = `url(${imageUrl})`;
+    }
+  };
+
+  const handleImage = async (event) => {
+    event.preventDefault();
+    console.log("ok")
+    const file = event.target.files[0];
+
+    try {
+      const response = await imagekit.upload({
+        file: file,
+        fileName: imgID,
+        folder: "/banner/",
+      });
+
+      const imageUrl = response.url;
+      setEventdetails({ ...eventdetails, eventImage: imageUrl });
+      console.log('Image URL:', imageUrl);
+      changeBackground(imageUrl);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      toast.error('Failed to upload image');
+    }
+  };
 
   return (
     <>
@@ -34,21 +85,26 @@ const CreateNew = (props) => {
           {saveName}
         </h1>
         <div className="   rounded-xl  flex justify-center  text-white ">
-          <div
-            className={`  bg-[#212325] w-[${width}]    m-0   rounded-2xl p-3`}
-          >
-            <div className=" relative bg-gradient-to-r from-amber-500 to-pink-500  rounded-xl      h-[500px]">
-              <img
-                src="https://image.tmdb.org/t/p/original/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg"
-                alt=""
-                className="w-full -z-10 h-full object-cover    "
+          <div className={`w-3/4  bg-[#212325] w-[${width}]    m-0   rounded-2xl p-3`}>
+            <div id="heroSection" className={`bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl h-[500px] relative bg-cover`}
+              >
+              {/* ... existing code ... */}
+              <input
+                type="file"
+                id="coverPhotoInput"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImage}
               />
-              <div className=" bg-[#212325]/80  bottom-10 left-10  cursor-pointer group gap-5 p-5 h-[2.5rem] backdrop-blur-xl  rounded-md border border-gray-500   flex items-center pl-3 absolute ">
-                <FaImages className=" text-white/80 text-xl group-hover:text-white" />
-                <h1 className="  font-bold text-white/80   group-hover:text-white">
+              <label
+                htmlFor="coverPhotoInput"
+                className="bg-[#212325]/80 bottom-10 left-10 cursor-pointer group gap-5 p-5 h-[2.5rem] backdrop-blur-xl rounded-md border border-gray-500 flex items-center pl-3 absolute"
+              >
+                <FaImages className="text-white/80 text-xl group-hover:text-white" />
+                <h1 className="font-bold text-white/80 group-hover:text-white">
                   Change Cover Photo
                 </h1>
-              </div>
+              </label>
             </div>
 
             <div className=" w-[90%] p-5 flex flex-col   gap-5">

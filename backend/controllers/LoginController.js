@@ -1,3 +1,4 @@
+
 import nodemailer from 'nodemailer';
 import otpGenerator from 'otp-generator';
 import OtpModel from '../models/otpModel.js';

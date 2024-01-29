@@ -19,7 +19,7 @@ export const RegisterQuestionComponent = (props) => {
       setTimeout(() => resolve({ name: "Sonner" }), 1000)
     );
   return (
-    <div className="w-full absolute h-[100vh] bg-[#1e1f20]/90  backdrop-blur-lg">
+    <div className="w-full absolute h-[100vh] z-[1000] bg-[#1e1f20]/90  backdrop-blur-lg">
       <div className="flex items-center mt-[5%] flex-col justify-center">
         <div className=" flex flex-col gap-3">
           <h1 className=" mt-5 text-2xl">Register Your Self</h1>
@@ -123,14 +123,32 @@ const EventPage = () => {
             organiser={event.eventcreatedby}
           />
           <div className="w-full flex flex-col md:flex-row gap-4 py-5">
+            
             <div className="md:w-1/3 w-full flex flex-col gap-4">
               <Location />
 
+
+
+              <HostDetails />
+
+
               <HostDetails host={event.eventcreatedby} />
+
             </div>
             <div className="w-full md:w-2/3 flex flex-col gap-4">
+
               <RegisterComponent />
+
               <AboutComponent description={event.description} />
+
+
+
+              <AboutComponent />
+
+              <AboutComponent description={event.description} />
+
+
+
             </div>
           </div>
           {/* <RegisterQuestionComponent /> */}

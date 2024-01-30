@@ -6,6 +6,7 @@ const HeroSection = () => {
   const { openlogin, setOpenlogin } = useMainDashContext();
   return (
     <>
+    
       <div className={
         `w-full items-center lg:py-24 text-white justify-center px-8 lg:px-20 gap-5 md:gap-0 py-10 flex flex-col lg:flex-row`}>
         <div className="flex flex-col gap-4 w-full lg:w-1/2 p-2 items-start">

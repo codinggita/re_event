@@ -26,6 +26,7 @@ function App() {
   const location = useLocation();
   const { profile, setProfile } = useMainDashContext();
 
+
   const hideNavbar = ['/manage/', '/create'];
   const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
   const hideFooter = ['/checkin'];

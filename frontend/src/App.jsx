@@ -15,15 +15,13 @@ import { useMainDashContext } from "./context/AppContext";
 import Cookies from "js-cookie";
 import LoginNavbar from "./components/LoginNavBar";
 
-import Checkin from './components/Manage/Checkin/Checkin';
-import axios from 'axios';
-
-
-
+import Checkin from "./components/Manage/Checkin/Checkin";
+import axios from "axios";
 
 function App() {
   const location = useLocation();
   const { profile, setProfile } = useMainDashContext();
+
 
   const hideNavbar = ['/manage/', '/create'];
   const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));

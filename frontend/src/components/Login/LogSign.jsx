@@ -76,7 +76,7 @@ const{profile, setProfile} = useMainDashContext();
         config
       );
       console.log(response.data);
-      Cookies.set("user", response.data, { expires: 1 / 24 });
+      setCookie("user", response.data, { path: "/" });
       setProfile(response.data);
     }catch (error) {
       setMessage(error.response.data);

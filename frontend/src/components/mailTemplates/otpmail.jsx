@@ -1,6 +1,9 @@
 import React from 'react'
 
-const Otpmail = () => {
+const Otpmail = (props) => {
+
+    const {  otp } = props
+
     return (
         <>
             <div className="w-full flex">
@@ -17,7 +20,7 @@ const Otpmail = () => {
                     </div>
                     <p className='text-xl'>Hi, Welcome to re:Event</p>
                     <p>Thank you for logging in re:Event. Use the following OTP to complete your Sign Up procedures. OTP is valid for 5 minutes</p>
-                    <h2 className='bg-white text-black text-2xl rounded-xl px-4 py-2'>324457</h2>
+                    <h2 className='bg-white text-black text-2xl rounded-xl px-4 py-2'>vdf3243432</h2>
                     <p className='text-sm'>Regards,<br />re:Event</p>
                     <hr className='w-full' />
                     <div>

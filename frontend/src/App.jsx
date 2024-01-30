@@ -17,6 +17,7 @@ import LoginNavbar from "./components/LoginNavBar";
 
 import Checkin from './components/Manage/Checkin/Checkin';
 import axios from 'axios';
+import SmallProfile from "./components/Login/SmallProfile";
 
 
 
@@ -24,6 +25,7 @@ import axios from 'axios';
 function App() {
   const location = useLocation();
   const { profile, setProfile } = useMainDashContext();
+
 
   const hideNavbar = ['/manage/', '/create'];
   const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
@@ -39,7 +41,7 @@ function App() {
         {
           cookie ? (
             <>
-              {!shouldHideNavbar ? <LoginNavbar /> : null}
+              {!shouldHideNavbar ? <LoginNavbar /> : <SmallProfile />}
               <Routes>
                 <Route path="/create" element={<CreateNew width={"75%"} saveName={"Create Event"} mt={"15%"} />} />
                 <Route path="/" element={<Home />} />

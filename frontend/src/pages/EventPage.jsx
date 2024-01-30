@@ -92,7 +92,11 @@ const EventPage = () => {
     const getEvent = async () => {
       try {
         // console.log(id)
+
+
+
         const response = await axios.get(`http://localhost:3000/events/geteventbyid/${id}`);
+ 
         setEvent(response.data);
       } catch (error) {
         console.error("Error:", error);
@@ -127,11 +131,13 @@ const EventPage = () => {
 
             <div className="md:w-1/3 w-full flex flex-col gap-4">
               <Location />
+
               <HostDetails host={event.eventcreatedby} />
             </div>
             <div className="w-full md:w-2/3 flex flex-col gap-4">
               <RegisterComponent />
               <AboutComponent description={event.description} />
+
             </div>
           </div>
           {/* <RegisterQuestionComponent /> */}

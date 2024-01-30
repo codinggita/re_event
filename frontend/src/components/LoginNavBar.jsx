@@ -1,12 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RiBox3Fill } from "react-icons/ri";
 import { useMainDashContext } from "./../context/AppContext";
+import Cookies from "js-cookie";
 
 const LoginNavbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { openlogin, setOpenlogin } = useMainDashContext();
   const [openProfile, setOpenProfile] = useState(false);
+  const [modifiedEmail1, setModifiedEmail] = useState("");
+
+  const { profile, setProfile } = useMainDashContext();
+  const cookie = Cookies.get("user");
+  console.log(cookie);
+  //convert to json
+  const user = JSON.parse(cookie);
+  const email = user?.decodedjwt?.email;
+
+  // Find the index of the last occurrence of '@gmail.com'
+  const lastIndex = email.lastIndexOf("@gmail.com");
+
+  useEffect(() => {
+    // Check if '@gmail.com' was found in the email
+    if (lastIndex !== -1) {
+      //   // Remove the last occurrence of '@gmail.com'
+      const modifiedEmail = email.slice(0, lastIndex);
+      setModifiedEmail(modifiedEmail);
+    }
+  }, [email]);
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -68,22 +89,35 @@ const LoginNavbar = () => {
               onClick={handleProfileClick}
             />
             {openProfile && (
-              <div className=" absolute w-[15rem] flex  flex-col  items-start  gap-2   top-[5rem]   px-4 py-5  bg-zinc-800  shadow-lg rounded-xl right-6">
-                <div className=" flex gap-3   items-center  cursor-pointer  hover:bg-black/40 w-full  px-2  rounded-xl">
+              <div className=" absolute  flex  flex-col  items-start  gap-2   top-[5rem]   px-4 py-5  bg-zinc-800  shadow-lg rounded-xl right-6">
+                <div className=" flex gap-3   items-center  cursor-pointer  hover:bg-black/20 w-full  px-2  rounded-xl">
                   <img
                     src="https://picsum.photos/200"
                     className="w-9 h-9 rounded-full border-2"
                   />
                   <div className=" flex   flex-col  items-start ">
-                    <h1 className="text-white text-lg ">User Name</h1>
-                    <h2 className="text-white/60 text-sm">User Email</h2>
+                    <h1 className="text-white text-lg "> {modifiedEmail1} </h1>
+                    <h2 className="text-white/60 text-sm">{email}</h2>
                   </div>
                 </div>
                 <hr className="   text-white/30 border-white/20  w-full" />
                 <div className=" text-zinc-400  text-base    flex gap-2 mt-2 flex-col ">
-                  <h1 className=" cursor-pointer hover:text-zinc-100">View Profile</h1>
-                  <h1 className=" cursor-pointer hover:text-zinc-100">Settings</h1>
-                  <h1 >Logout</h1>
+                  <h1 className=" cursor-pointer hover:text-zinc-100">
+                    View Profile
+                  </h1>
+                  <h1 className=" cursor-pointer hover:text-zinc-100">
+                    Settings
+                  </h1>
+                  <h1
+                    className=" cursor-pointer hover:text-zinc-100"
+                    onClick={() => {
+                      Cookies.remove("user");
+                      Cookies.remove("token");
+                      window.location.reload();
+                    }}
+                  >
+                    Logout
+                  </h1>
                 </div>
               </div>
             )}

@@ -15,17 +15,22 @@ import { useMainDashContext } from "./context/AppContext";
 import Cookies from "js-cookie";
 import LoginNavbar from "./components/LoginNavBar";
 
-import Checkin from "./components/Manage/Checkin/Checkin";
-import axios from "axios";
+import Checkin from './components/Manage/Checkin/Checkin';
+import axios from 'axios';
+import SmallProfile from "./components/Login/SmallProfile";
+
+
+
 
 function App() {
   const location = useLocation();
   const { profile, setProfile } = useMainDashContext();
 
-  const hideNavbar = ["/manage/", "/create"];
-  const shouldHideNavbar = hideNavbar.some((path) =>
-    location.pathname.includes(path)
-  );
+  const hideNavbar = ['/manage/', '/create'];
+  const shouldHideNavbar = hideNavbar.some((path) => location.pathname.includes(path));
+  const hideFooter = ['/checkin'];
+  const shouldHideFooter = hideFooter.some((path) => location.pathname.includes(path));
+
 
   const cookie = Cookies.get("user");
 
@@ -35,18 +40,9 @@ function App() {
         {
           cookie ? (
             <>
-              {!shouldHideNavbar ? <LoginNavbar /> : null}
+              {!shouldHideNavbar ? <LoginNavbar /> : <SmallProfile />}
               <Routes>
-                <Route
-                  path="/create"
-                  element={
-                    <CreateNew
-                      width={"75%"}
-                      saveName={"Create Event"}
-                      mt={"15%"}
-                    />
-                  }
-                />
+                <Route path="/create" element={<CreateNew width={"75%"} saveName={"Create Event"} mt={"15%"} />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="*" element={<h1>Not Found</h1>} />
@@ -54,6 +50,7 @@ function App() {
                 <Route path="/create/conform" element={<EventConfrom />} />
                 <Route path="/manage/:id" element={<ManageEvent />} />
                 <Route path="/e/:id" element={<EventPage />} />
+                <Route path="/manage/:id/checkin" element={<Checkin />} />
                 {/* <Route path="/manage" element={<EventConfrom/>} /> */}
                 <Route path="/manage/:id" element={<ManageEvent />} />
               </Routes>
@@ -63,7 +60,6 @@ function App() {
               {!shouldHideNavbar ? <Navbar /> : null}
               <Routes>
                 <Route path="/" element={<Home />} />
-
                 <Route path="/explore" element={<Explore />} />
               </Routes>
             </>
@@ -73,7 +69,10 @@ function App() {
 
         <Toaster position="top-center" />
       </div>
+
+      {!shouldHideFooter ? <Footer /> : null}
       {/* <Footer /> */}
+
     </>
   );
 }

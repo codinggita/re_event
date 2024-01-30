@@ -57,7 +57,13 @@ const EventSchema = new mongoose.Schema({
         required: true
     },
     questions: {
-        type: [String]  
+        type: [
+            {
+                question: String,
+                field: String,
+                required: Boolean,
+            }
+        ]  
     },
     registeredUsers: [{
         name: {
@@ -65,9 +71,6 @@ const EventSchema = new mongoose.Schema({
         },
         email: {
             type: String,
-        },
-        avatarImage: {
-            type: String
         },
         answeredQuestions: {
             type: [String]

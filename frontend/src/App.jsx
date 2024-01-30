@@ -49,6 +49,7 @@ function App() {
                 <Route path="/create/conform" element={<EventConfrom />} />
                 <Route path="/manage/:id" element={<ManageEvent />} />
                 <Route path="/e/:id" element={<EventPage />} />
+                <Route path="/manage/:id/checkin" element={<Checkin />} />
                 {/* <Route path="/manage" element={<EventConfrom/>} /> */}
                 <Route path="/manage/:id" element={<ManageEvent />} />
               </Routes>

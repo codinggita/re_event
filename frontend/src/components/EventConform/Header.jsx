@@ -18,7 +18,7 @@ const Header = () => {
     };
     getEvent();
   }, []);
-  console.log(event);
+  // console.log(event);
   const formatDate = (date) => {
     const d = new Date(date);
     const month = d.toLocaleString("default", { month: "short" });

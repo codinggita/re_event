@@ -107,8 +107,8 @@ const DateTime = () => {
     setSelectedTime(value);
     setNewEvent({ ...newevent, eventtime: value });
   }
-  console.log(selected1);
-  console.log(selectedTime)
+  // console.log(selected1);
+  // console.log(selectedTime)
   return (
     <>
       {/* <style>{css}</style> */}

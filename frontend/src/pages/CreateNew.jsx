@@ -30,7 +30,7 @@ const CreateNew = (props) => {
     transformationPosition: "path",
     authenticationEndpoint: "http://localhost:5000/imagekit",
   });
-  console.log("newevent", newevent);
+  // console.log("newevent", newevent);
 
   const changeBackground = (imageUrl) => {
     const bgElement = document.getElementById('heroSection');

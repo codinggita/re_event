@@ -1,27 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import img from "./question.png";
 import { FaPlus } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 
 const Questions = () => {
   const [questions, setQuestions] = useState([]);
+  const [response, setResponse] = useState(null);
+  const [eventcode, setEventcode] = useState('');
   const [newQuestion, setNewQuestion] = useState({
-    text: "",
-    type: "text",
+    question: "",
+    field: "text",
     required: false,
   });
+  const { id } = useParams();
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e, index) => {
     const { name, value, type, checked } = e.target;
-    setNewQuestion((prevQuestion) => ({
-      ...prevQuestion,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    setQuestions((prevQuestions) => {
+      const updatedQuestions = [...prevQuestions];
+      const currentQuestion = updatedQuestions[index];
+
+      // Update question properties based on the input type
+      if (type === "checkbox") {
+        currentQuestion['required'] = checked;
+      } else if (name === "field") {
+        currentQuestion['field'] = value;
+      } else {
+        currentQuestion['question'] = value;
+      }
+
+      // console.log('Question:', currentQuestion.question, 'Field:', currentQuestion.field, 'Required:', currentQuestion.required, name);
+
+      return updatedQuestions;
+    });
   };
 
   const handleAddQuestion = () => {
     setQuestions((prevQuestions) => [...prevQuestions, newQuestion]);
-    setNewQuestion({ text: "", type: "text", required: false });
+    setNewQuestion({ question: "", field: "text" });
+    console.log('New question added');
   };
 
   const handleDeleteQuestion = (index) => {
@@ -30,6 +50,25 @@ const Questions = () => {
       newQuestions.splice(index, 1);
       return newQuestions;
     });
+    console.log('Deleted question');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `http://localhost:3000/events/addquestionstoevent`,
+        {
+          eventcode: id,
+          questions,
+        }
+      );
+      setResponse(res.data);
+      console.log(res.data);
+      toast.success("Questions added successfully");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -44,16 +83,17 @@ const Questions = () => {
                 className="px-10 justify-center pt-5 flex flex-col gap-4"
               >
                 <input
-                  className="w-full h-full    bg-black/10 outline-none text-white/50 border border-zinc-500/60 rounded-lg px-4 py-2"
-                  type={q.type}
+                  className="w-full h-full bg-black/10 outline-none text-white/50 border border-zinc-500/60 rounded-lg px-4 py-2"
+                  type="text"
                   placeholder={`Question ${index + 1}`}
+                  onChange={(e) => handleInputChange(e, index)}
                 />
                 <div className="flex justify-between gap-10">
                   <div className="flex gap-5">
                     <select
                       className="outline-none h-full select-none bg-[#2c2e30]/30 text-zinc-400 border-2 border-zinc-500/30 rounded-xl px-2 py-1.5"
-                      name="type"
-                      id={`type-${index}`}
+                      name="field"
+                      id={`field-${index}`}
                       onChange={(e) => handleInputChange(e, index)}
                     >
                       <option value="text" className=" bg-[#2c2e30]/90 text-zinc-400">
@@ -81,7 +121,7 @@ const Questions = () => {
                     <div className="flex items-center gap-3">
                       <input
                         type="checkbox"
-                        name={`required-${index}`}
+                        name={`required`}
                         id={`required-${index}`}
                         onChange={(e) => handleInputChange(e, index)}
                         className="w-4 h-4 caret-slate-500"
@@ -118,7 +158,7 @@ const Questions = () => {
               </button>
               <button
                 className="bg-zinc-800 mx-5 mt-4 hover:scale-105 text-white/50 hover:bg-zinc-300 flex items-center gap-2 hover:text-black/80 transition-all rounded-lg px-4 py-2"
-                // onClick={handleAddQuestion}
+                onClick={handleSubmit}
               >
                 <FaPlus className="text-xl" />
                 <h1>Save Changes</h1>

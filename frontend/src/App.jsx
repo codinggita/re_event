@@ -15,8 +15,12 @@ import { useMainDashContext } from "./context/AppContext";
 import Cookies from "js-cookie";
 import LoginNavbar from "./components/LoginNavBar";
 
-import Checkin from "./components/Manage/Checkin/Checkin";
-import axios from "axios";
+import Checkin from './components/Manage/Checkin/Checkin';
+import axios from 'axios';
+import SmallProfile from "./components/Login/SmallProfile";
+
+
+
 
 function App() {
   const location = useLocation();
@@ -37,7 +41,7 @@ function App() {
         {
           cookie ? (
             <>
-              {!shouldHideNavbar ? <LoginNavbar /> : null}
+              {!shouldHideNavbar ? <LoginNavbar /> : <SmallProfile />}
               <Routes>
                 <Route path="/create" element={<CreateNew width={"75%"} saveName={"Create Event"} mt={"15%"} />} />
                 <Route path="/" element={<Home />} />
@@ -47,6 +51,7 @@ function App() {
                 <Route path="/create/conform" element={<EventConfrom />} />
                 <Route path="/manage/:id" element={<ManageEvent />} />
                 <Route path="/e/:id" element={<EventPage />} />
+                <Route path="/manage/:id/checkin" element={<Checkin />} />
                 {/* <Route path="/manage" element={<EventConfrom/>} /> */}
                 <Route path="/manage/:id" element={<ManageEvent />} />
               </Routes>

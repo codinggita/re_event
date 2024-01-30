@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { RiBox3Fill } from "react-icons/ri";
 import { useMainDashContext } from "./../context/AppContext";
 
-
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { openlogin, setOpenlogin } = useMainDashContext();
@@ -17,10 +16,8 @@ const Navbar = () => {
 
   return (
     <>
-
       <div className="w-full z-[1000]  flex fixed bg-zinc-900/80 items-center backdrop-blur-2xl justify-between px-12 py-4 border-b border-gray-600 text-white">
-
-      {/* <div className="w-full z-50 flex fixed bg-zinc-900/80 items-center justify-between px-12 py-4 border-b border-gray-600 text-white"> */}
+        {/* <div className="w-full z-50 flex fixed bg-zinc-900/80 items-center justify-between px-12 py-4 border-b border-gray-600 text-white"> */}
 
         <div className="flex gap-5">
           <Link
@@ -33,7 +30,12 @@ const Navbar = () => {
               Event
             </h1>
           </Link>
-          <Link to="/explore" className="text px-4 py-1 hover:text-black hover:bg-zinc-300 cursor-pointer rounded-xl transition-all">Explore</Link>
+          <Link
+            to="/explore"
+            className="text px-4 py-1 hover:text-black hover:bg-zinc-300 cursor-pointer rounded-xl transition-all"
+          >
+            Explore
+          </Link>
         </div>
         <div className="hidden md:flex gap-4">
           <Link
@@ -45,7 +47,7 @@ const Navbar = () => {
           <button
             className="text-sm bg-black rounded-xl shadow-lg text-white px-4 py-1.5 hover:scale-105 hover:bg-black/80 transition-all cursor-pointer"
             onClick={handleLoginClick}
-         >
+          >
             Login / Register
           </button>
         </div>

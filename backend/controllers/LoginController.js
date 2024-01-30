@@ -21,7 +21,7 @@ async function sendVerificationEmail(email, otp) {
       from: 'top10world1210@gmail.com',
       to: email,
       subject: 'Passwordless Login OTP',
-     html : `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
      <html xmlns="https://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
      
      <head>
@@ -323,7 +323,7 @@ async function sendVerificationEmail(email, otp) {
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" align="center" style="margin-right: auto; margin-left: auto;">
                          <tr>
                           <td valign="top" class="pc-font-alt pc-w620-fontSize-30 pc-w620-lineHeight-40" align="center" style="mso-line-height: exactly;line-height: 128%;letter-spacing: -0.6px;font-family: Fira Sans, Arial, Helvetica, sans-serif;font-size: 38px;font-weight: normal;color: #ffffff;text-align: center;text-align-last: center;">
-                           <div><span style="color: rgb(255, 255, 255);">Hi, Welcome to re:Event</span>
+                           <div><span style="color: rgb(255, 255, 255);">Hi, Welcome ${email} to re:Event</span>
                            </div>
                           </td>
                          </tr>
@@ -369,7 +369,7 @@ async function sendVerificationEmail(email, otp) {
                  </tr>
              </table>
              <![endif]-->
-                                    <!--[if !mso]><!-- --><a style="border-radius: 8px;background-color: #ffffff;padding: 15px 17px 15px 17px;font-family: Open Sans, Arial, Helvetica, sans-serif;font-weight: 600;font-size: 31px;line-height: 150%;letter-spacing: 14.6px;color: #000000;text-align: center;text-align-last: center;text-decoration: none;display: inline-block;vertical-align: top;-webkit-text-size-adjust: none;" target="_blank">${otp }</a>
+                                    <!--[if !mso]><!-- --><a style="border-radius: 8px;background-color: #ffffff;padding: 15px 17px 15px 17px;font-family: Open Sans, Arial, Helvetica, sans-serif;font-weight: 600;font-size: 31px;line-height: 150%;letter-spacing: 14.6px;color: #000000;text-align: center;text-align-last: center;text-decoration: none;display: inline-block;vertical-align: top;-webkit-text-size-adjust: none;" target="_blank">${otp}</a>
                                     <!--<![endif]-->
                                    </th>
                                   </tr>
@@ -496,12 +496,15 @@ export const sendOtp = async (req, res) => {
 
 export const verifyOtp = async (req, res) => {
   const { email, otp } = req.body;
+  console.log(email, otp)
 
   try {
     // Find the user by email
     const existingUser = await UserModel.findOne({ email });
+    console.log(existingUser)
 
     const otpDocument = await OtpModel.findOne({ email, otp });
+    console.log(otpDocument)
 
     if (otpDocument && otpDocument.email === email && otpDocument.otp === otp) {
       // OTP verification successful
@@ -514,6 +517,7 @@ export const verifyOtp = async (req, res) => {
 
       // Retrieve the user (whether existing or newly created)
       const user = await UserModel.findOne({ email });
+      console.log(user)
 
       // Or, generate a JWT
       const token = jwt.sign(

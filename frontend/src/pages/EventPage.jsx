@@ -92,9 +92,7 @@ const EventPage = () => {
       try {
         // console.log(id)
 
-        const response = await axios.get(
-          `http://localhost:3000/events/geteventbyid/${id}`
-        );
+
 
         const response = await axios.get(`http://localhost:3000/events/geteventbyid/${id}`);
  

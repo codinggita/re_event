@@ -6,12 +6,35 @@ import { FaCamera } from "react-icons/fa";
 import { RiBox3Fill } from 'react-icons/ri';
 import GuestListItem from './GuestListItem';
 import GuestDetailsPopup from './GuestDetailsPopup';
+import {QrReader} from "react-qr-reader";
 
 
 
 const Checkin = () => {
     const { id } = useParams();
     const [selectedGuest, setSelectedGuest] = useState(null);
+    const [isScanModalOpen, setScanModalOpen] = useState(false);
+    const [qrResult, setQrResult] = useState('');
+
+    const handleScan = (data) => {
+        if (data) {
+            setQrResult(data);
+            setScanModalOpen(false);
+        }
+    };
+
+    const handleError = (error) => {
+        console.error(error);
+    };
+
+    const openScanModal = () => {
+        setScanModalOpen(true);
+    };
+
+    const closeScanModal = () => {
+        setScanModalOpen(false);
+    };
+
     const guests = [
         {
             name: 'Takeshi Goda',
@@ -92,7 +115,7 @@ const Checkin = () => {
             email: 'nuclear@bomb.com',
             time: '12:00 PM'
         }
-        
+
     ]
 
     const handleGuestItemClick = (guest) => {
@@ -106,7 +129,7 @@ const Checkin = () => {
 
     return (
         <>
-            <div className={`${selectedGuest ? 'fixed': ''} w-full flex p-12 justify-center`}>
+            <div className={`${selectedGuest ? 'fixed' : ''} w-full flex p-12 justify-center`}>
                 <Link
                     to="/"
                     className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"
@@ -125,10 +148,13 @@ const Checkin = () => {
                                 Export
                                 <PiExport className='ml-2 text- xl' />
                             </Link>
-                            <Link to={`/manage/${id}/checkin`} className='px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5'>
+                            <button
+                                onClick={openScanModal}
+                                className="px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5"
+                            >
                                 Scan
-                                <FaCamera  className='ml-2 text-xl' />
-                            </Link>
+                                <FaCamera className="ml-2 text-xl" />
+                            </button>
                         </div>
                     </div>
 
@@ -152,6 +178,18 @@ const Checkin = () => {
                     guest={selectedGuest}
                     onClose={closePopup}
                 />
+            )}
+
+            {isScanModalOpen && (
+                <div className="fixed inset-0 w-full z-10 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black opacity-75" onClick={closeScanModal}></div>
+                    <div className="z-20 w-2/6 flex flex-col bg-white p-4 rounded-lg shadow-md">
+                        <QrReader delay={300} onError={handleError} onScan={handleScan} style={{ width: '100%' }} />
+                        <button className="mt-4 p-2 bg-zinc-700 text-white rounded-md" onClick={closeScanModal}>
+                            Close Scan
+                        </button>
+                    </div>
+                </div>
             )}
         </>
     )

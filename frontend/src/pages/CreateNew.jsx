@@ -15,10 +15,13 @@ import { RiBox3Fill } from "react-icons/ri";
 import ImageKit from 'imagekit';
 import { nanoid } from 'nanoid';
 import { toast } from 'sonner';
+import axios from 'axios';
+
 
 const CreateNew = (props) => {
   const imgID = nanoid(10);
   const { activemenuItem, setActivemenuItem } = useMainDashContext();
+  const { newevent, setNewEvent } = useMainDashContext();
   const { width, saveName, mt } = props;
   const imagekit = new ImageKit({
     publicKey: "public_2rLWcPMCq/TpjA/J9rqwkH8YLNU=",
@@ -27,17 +30,7 @@ const CreateNew = (props) => {
     transformationPosition: "path",
     authenticationEndpoint: "http://localhost:5000/imagekit",
   });
-  const [eventdetails, setEventdetails] = useState({
-    eventName: "",
-    eventDescription: "",
-    eventLocation: "",
-    eventDate: "",
-    eventTime: "",
-    eventDuration: "",
-    eventTimeZone: "",
-    eventAccess: "",
-    eventImage: "",
-  });
+  // console.log("newevent", newevent);
 
   const changeBackground = (imageUrl) => {
     const bgElement = document.getElementById('heroSection');
@@ -59,7 +52,7 @@ const CreateNew = (props) => {
       });
 
       const imageUrl = response.url;
-      setEventdetails({ ...eventdetails, eventImage: imageUrl });
+      setNewEvent({ ...newevent, eventbanner: imageUrl });
       console.log('Image URL:', imageUrl);
       changeBackground(imageUrl);
     } catch (error) {
@@ -68,6 +61,23 @@ const CreateNew = (props) => {
     }
   };
 
+const handleSubmit = async () => {
+  try {
+    const response = await axios.post('http://localhost:3000/events/newevent', newevent);
+    console.log('Event created:', response.data);
+    toast.success('Event created successfully');
+  } catch (error) {
+    console.log('Error creating event:', error);
+    toast.error('Failed to create event');
+  }
+};
+  
+  const handleChange = (field, value) => {
+    setNewEvent({
+      ...newevent,
+      [field]: value,
+    });
+  };
   return (
     <>
       <div className={` z-[100]  flex flex-col  justify-start  w-[100%]  `}>
@@ -81,13 +91,13 @@ const CreateNew = (props) => {
             Event
           </h1>
         </Link>
-        <h1 className="px-10 mx-32    py-10 text-2xl text-zinc-400">
+        <h1 className="px-10 md:mx-32 text-center py-10 text-2xl text-zinc-400">
           {saveName}
         </h1>
-        <div className="   rounded-xl  flex justify-center  text-white ">
-          <div className={`w-3/4  bg-[#212325] w-[${width}]    m-0   rounded-2xl p-3`}>
+        <div className="  w-full rounded-xl  flex justify-center  text-white ">
+          <div className={`w-[95%] md:w-3/4  bg-[#212325] w-[${width}]  m-0   rounded-2xl p-3`}>
             <div id="heroSection" className={`bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl h-[500px] relative bg-cover`}
-              >
+            >
               {/* ... existing code ... */}
               <input
                 type="file"
@@ -110,13 +120,16 @@ const CreateNew = (props) => {
             <div className=" w-[90%] p-5 flex flex-col   gap-5">
               <div>
                 <p className=" p-3">Event Name</p>
-                <h1
+                {/* <h1
                   className=" h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-400    border-b-1 focus:border-gray-500 p-2 outline-none "
                   contentEditable="true"
                   suppressContentEditableWarning={true}
                 >
                   Enter Your Event Name
-                </h1>
+                </h1> */}
+                <input type="text" name="eventname" id="eventname" placeholder="Enter Your Event Name" className="w-full h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-400 bg-transparent border-b-1 focus:border-gray-500 p-2 outline-none "
+                  onChange={(e) => handleChange("eventname", e.target.value)}
+                />
               </div>
               <div>
                 <p className=" p-3">Event Description</p>
@@ -125,8 +138,8 @@ const CreateNew = (props) => {
                   contentEditable="true"
                   suppressContentEditableWarning={true}
                   placeholder="Enter Your Event Description"
-
-                  // Enter Your Event Description
+                  onChange={(e) => handleChange("description", e.target.value)}
+                // Enter Your Event Description
                 />
               </div>
             </div>
@@ -136,7 +149,7 @@ const CreateNew = (props) => {
                 Where is the Event taking place....
               </h1>
               <div className=" ">
-                <div className=" bg-[#323436]   w-3/5  mt-4   rounded-lg">
+                <div className=" bg-[#323436]  w-full md:w-3/5  mt-4   rounded-lg">
                   <div className=" text-[#f7d5d5]    flex w-[100%]  justify-around  gap-2 px-1.5 py-1.5   ">
                     <EventUtil
                       name={"zoom"}
@@ -187,6 +200,7 @@ const CreateNew = (props) => {
                     id="public"
                     value="public"
                     className=" w-5 h-5  caret-slate-500"
+                    onChange={(e) => handleChange("visibility", e.target.value)}
                   />
                   <div className="flex flex-col">
                     <label htmlFor="public" className=" text-lg">
@@ -202,9 +216,10 @@ const CreateNew = (props) => {
                   <input
                     type="checkbox"
                     name="access"
-                    id="public"
-                    value="public"
+                    id="private"
+                    value="private"
                     className=" w-5 h-5 caret-slate-500"
+                    onChange={(e) => handleChange("visibility", e.target.value)}
                   />
                   <div className="flex flex-col">
                     <label htmlFor="public" className=" text-lg">
@@ -220,16 +235,20 @@ const CreateNew = (props) => {
               {/* <label htmlFor="invite">Invite Only</label> */}
             </div>
 
-            <Link to="/manage/fdsfds">
+            {/* <Link to="/manage/fdsfds"> */}
               <div className=" pl-8 pb-4  pt-4">
                 {/* <div className=""> */}
-                <button className=" bg-[#323436] rounded-lg hover:scale-105 flex items-center group gap-2 p-4">
+                <button className=" bg-[#323436] rounded-lg hover:scale-105 flex items-center group gap-2 p-4"
+                  onClick={
+                    handleSubmit
+                  }
+                >
                   <FaAnglesRight className="text-sm " />
                   <h1 className="text-sm ">{saveName}</h1>
                 </button>
                 {/* </div> */}
               </div>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
       </div>

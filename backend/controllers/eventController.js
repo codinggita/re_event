@@ -54,3 +54,21 @@ export const getEventById = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+export const addQuestionsToEvent = async (req, res) => {
+    try {
+        const { eventcode, questions } = req.body;
+        const existingEvent = await EventModel.findOne({ eventcode });
+
+        if (!existingEvent) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        existingEvent.questions = [...existingEvent.questions, ...questions];
+        const updatedEvent = await existingEvent.save();
+        res.status(200).json(updatedEvent);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

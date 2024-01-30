@@ -8,13 +8,13 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import pors from '../../assets/pors.jpg';
 
 const ManageCard = (props) => {
-    const { eventname, time, location, organiser } = props
+    const {image, eventname, time, location, organiser } = props
 
     return (
         <>
             <div className="w-[99%] md:flex-row flex-col transition-all hover:border hover:border-zinc-400/40 border border-zinc-800 shadow-zinc-800 rounded-2xl  m-2 gap-4 bg-zinc-800 p-8 flex">
                 <div className="w-full md:w-1/3">
-                    <img src={"https://media.gq-magazine.co.uk/photos/5d80ad292e812f000817b75c/1:1/w_1600%2Cc_limit/20190917-GT-05.jpg"} alt="" className='rounded-2xl w-full' />
+                    <img src={image} alt="" className='rounded-2xl w-full' />
                 </div>
                 <div className="w-full md:w-2/3 bg-zinc-800 flex flex-col items-start gap-1">
                     <h1 className='text-xl font-bold'>{eventname}</h1>

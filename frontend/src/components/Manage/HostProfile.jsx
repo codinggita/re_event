@@ -5,7 +5,7 @@ import { MdOutlineEdit, MdOutlineAttachEmail } from "react-icons/md";
 export const HostCard = ({ name, email }) => {
     return (
         <>
-            <div className="flex w-[48%] justify-between bg-zinc-600/60 rounded-xl gap-2 border border-zinc-700/60 px-6 py-3 items-center ">
+            <div className="flex w-full md:w-[48%] justify-between bg-zinc-600/60 rounded-xl gap-2 border border-zinc-700/60 px-6 py-3 items-center ">
                 <div className="flex items-center gap-2">
                     <span className='p-4 rounded-full bg-red-200'></span>
                     <div className="flex items-center gap-2">
@@ -33,15 +33,15 @@ const HostProfile = () => {
                     {hosts.map((host, index) => (
                         <HostCard key={index} name={host.name} email={host.email} />
                     ))}
-                    <div className="flex items-center justify-between w-full">
-                        <div className="flex gap-3 items-center">
+                    <div className="flex flex-col md:flex-row gap-2 items-center justify-between w-full">
+                        <div className="flex  gap-3 items-center">
                             <MdOutlineAttachEmail className='text-4xl border p-1.5 rounded-lg border-zinc-600 text-zinc-400' />
                             <div className="flex flex-col">
                                 <p className='text-lg text-start w-full'>Invite Hosts</p>
-                                <p className='text-sm text-start w-full'>Enter email address to add more hosts and managers</p>
+                                <p className='text-xs md:text-sm text-start w-full'>Enter email address to add more hosts and managers</p>
                             </div>
                         </div>
-                        <input type="text" placeholder='Enter email address' className='bg-zinc-700 outline-none border border-zinc-600 rounded-lg p-2 w-1/2' />
+                        <input type="text" placeholder='Enter email address' className='bg-zinc-700 outline-none border border-zinc-600 rounded-lg p-2 w-full md:w-1/2' />
                     </div>
                 </div>
             </div>

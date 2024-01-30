@@ -7,11 +7,9 @@ const EventSchema = new mongoose.Schema({
     },
     eventdate: {
         type: Date,
-        required: true
     },
     eventtime: {
         type: String,
-        required: true
     },
     eventbanner: {
         type: String
@@ -21,7 +19,6 @@ const EventSchema = new mongoose.Schema({
     },
     eventcreatedby: {
         type: String,
-        required: true
     },
     eventcode:{
         type: String
@@ -60,7 +57,13 @@ const EventSchema = new mongoose.Schema({
         required: true
     },
     questions: {
-        type: [String]  
+        type: [
+            {
+                question: String,
+                field: String,
+                required: Boolean,
+            }
+        ]  
     },
     registeredUsers: [{
         name: {
@@ -68,9 +71,6 @@ const EventSchema = new mongoose.Schema({
         },
         email: {
             type: String,
-        },
-        avatarImage: {
-            type: String
         },
         answeredQuestions: {
             type: [String]

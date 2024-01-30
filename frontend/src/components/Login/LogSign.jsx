@@ -47,7 +47,7 @@ const{profile, setProfile} = useMainDashContext();
 
   const handleSubmit = () => {
     console.log(otp);
-    toast.success("Osama bin laden");
+    // toast.success("Osama bin laden");
   };
 
   const handleOtpSubmitForm = async () =>{

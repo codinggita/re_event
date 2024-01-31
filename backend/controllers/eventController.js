@@ -210,23 +210,25 @@ export const neweventAddUser = async (req, res) => {
 };
 
 export const checkuserev = async (req, res) => {
-
     const { eventcode, userId } = req.params;
-    // const { _id  } = req.body;
-    // console.log(eventcode,userId)
+
     try {
         const user = await UserModel.findOne({ _id: userId });
-        // console.log(user)
-        //check for the eventcode in the registeredEvents array
-        if (user.registeredEvents.includes(eventcode)) {
-            return res.status(205).json({ message: 'User is already registered for this event.' });
+
+        if (!user) {
+            return res.status(206).json({ error: 'User not found.' });
         }
-        else {
+
+        // Check if the eventcode is present in any element of the registeredEvents array
+        const isUserRegistered = user.registeredEvents.some(event => event.eventcode === eventcode);
+
+        if (isUserRegistered) {
+            return res.status(205).json({ message: 'User is already registered for this event.' });
+        } else {
             return res.status(200).json({ message: 'User is not registered for this event.' });
         }
 
-    }
-    catch (error) {
+    } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }

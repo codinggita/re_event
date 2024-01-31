@@ -94,7 +94,7 @@ const EventPage = () => {
           });
 
         // axios
-        //   .post(`http://localhost:3000/events/registerUserForEvent/${id}`, {
+        //   .post(http://localhost:3000/events/registerUserForEvent/${id}, {
         //     userid: _id,
         //     email: _umail,
         //   })
@@ -128,92 +128,7 @@ const EventPage = () => {
       console.error("Error:", error);
     }
   };
-
-
-  return (
-    <div className="w-full absolute h-[100vh] z-[1000] bg-[#1e1f20]/90  backdrop-blur-lg">
-      <div className="flex items-center mt-[5%] flex-col justify-center">
-        <div className=" flex flex-col gap-3">
-          <h1 className=" mt-5 text-2xl">Register Your Self</h1>
-          <div className="flex items-center  gap-2">
-            <img
-              src="
-              https://picsum.photos/200"
-              alt="car"
-              className="w-10 h-10 object-cover rounded-full"
-            />
-            <div>
-              <h1 className="text-xl">{modifiedEmail}</h1>
-              <h2 className="text-sm text-white/50">
-                {_umail}
-              </h2>
-            </div>
-          </div>
-          <div className="flex flex-col gap-5 mt-5">
-            {questions.map((question) => {
-              return (
-                <div className=" flex  justify-center gap-1  flex-col">
-                  <h1 className="text-sm ml-2  text-white/80">
-                    {question.question}
-                  </h1>
-                  <input
-                    type={question.field}
-                    placeholder="Enter your answer here"
-                    className="w-[25rem] rounded-lg   select-none border-none active:border-zinc-600 p-3
-               bg-[#161719] text-white/80"
-                    required={question.required}
-                  />
-                </div>
-              );
-            })}
-            <div
-              className=" flex  justify-center gap-1  mt-5  flex-col"
-              onClick={() => {
-                setRegisterClick(!RegisterClick);
-                handleApiEventCall();
-              }}
-            >
-              <button
-                className="w-[25rem] rounded-lg  select-none border-none active:border-zinc-600 p-2
-              bg-white text-black/90 "
-              >
-                Request to register
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <FaXmark
-        className="bg-[#1e1f20] hover:cursor-pointer  text-3xl absolute top-0 right-0  mt-5 mr-5  "
-        onClick={() => setRegisterClick(!RegisterClick)}
-      />
-    </div>
-  );
-};
-
-const EventPage = () => {
-  const { RegisterClick, setRegisterClick } = useMainDashContext();
-  const [event, setEvent] = useState({});
-  const { id } = useParams();
-  const cookie = Cookies.get("user");
-  console.log(cookie);
-  // console.log(id);
-
-  useEffect(() => {
-    const getEvent = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/events/geteventbyid/${id}`);
-         setEvent(response.data);
-      } catch (error) {
-        console.error("Error:", error);
-        toast.error("Failed to fetch event");
-      }
-    };
-
-    getEvent();
-  }, [id]);
-
-
+  // console.log(event);
 
   return (
     <>

@@ -4,19 +4,20 @@ import { FaRegClock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
 import { IoCalendarClearOutline } from "react-icons/io5";
+import { useMainDashContext } from "../../context/AppContext";
 
-import pors from '../../assets/pors.jpg';
 
 const ManageCard = (props) => {
     const {image,id, eventname, time, location, organiser } = props
+    const { setManagetab } = useMainDashContext();
 
     return (
         <>
             <div className="w-[99%] md:flex-row flex-col transition-all hover:border hover:border-zinc-400/40 border border-zinc-800 shadow-zinc-800 rounded-2xl  m-2 gap-4 bg-zinc-800 p-8 flex">
-                <div className="w-full md:w-1/3">
+                <div className="w-full md:w-3/6 items-center flex">
                     <img src={image} alt="" className='rounded-2xl w-full' />
                 </div>
-                <div className="w-full md:w-2/3 bg-zinc-800 flex flex-col items-start gap-1">
+                <div className="w-full md:w-3/5 bg-zinc-800 flex flex-col  items-start gap-1">
                     <h1 className='text-xl font-bold'>{eventname}</h1>
                     <p className='text-md'>Event Description goes here as something that is going another one here it is so amazing</p>
                     <div className="flex flex-col md:flex-col justify-between py-1 w-full gap-1 items-start">
@@ -43,7 +44,7 @@ const ManageCard = (props) => {
                     </div>
 
                     <div className="flex w-full gap-2 items-center">
-                        <p className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1'>Edit Event</p>
+                        <p className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1' onClick={()=>setManagetab('EditEvent')}>Edit Event</p>
                         <Link to={`/manage/${id}/checkin`} className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1'>Check-in</Link>
                     </div>
                 </div>

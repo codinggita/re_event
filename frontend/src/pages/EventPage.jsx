@@ -91,13 +91,8 @@ const EventPage = () => {
   useEffect(() => {
     const getEvent = async () => {
       try {
-        // console.log(id)
-
-
-
         const response = await axios.get(`http://localhost:3000/events/geteventbyid/${id}`);
- 
-        setEvent(response.data);
+         setEvent(response.data);
       } catch (error) {
         console.error("Error:", error);
         toast.error("Failed to fetch event");
@@ -107,7 +102,6 @@ const EventPage = () => {
     getEvent();
   }, [id]);
 
-  // console.log(event);
 
   return (
     <>

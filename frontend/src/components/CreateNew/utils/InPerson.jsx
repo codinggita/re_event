@@ -3,6 +3,7 @@ import { useMainDashContext } from "../../../context/AppContext";
 
 const InPerson = () => {
   const { newevent, setNewEvent } = useMainDashContext();
+  // console.log(location);
   return (
     <>
       <div className="p-4">

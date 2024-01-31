@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { getAllEvents, heyyo, getEvents, getEventById, addQuestionsToEvent, editEvent, deleteEvent, registerUserForEvent, checkregisterevent, neweventAddUser, checkuserev } from '../controllers/eventController.js';
 import { createEvent } from '../controllers/eventController.js';
 const eventRoutes = express.Router();
@@ -14,7 +15,7 @@ eventRoutes.delete('/deleteevent/:id', deleteEvent);
 eventRoutes.post('/registerUserForEvent/:eventcode', registerUserForEvent);
 eventRoutes.get('/checkregisterevent/:eventcode/', checkregisterevent);
 eventRoutes.post('/neweventAddUser/:eventcode',neweventAddUser );
-eventRoutes.get('/checkuserev/:eventcode', checkuserev);
+eventRoutes.get('/checkuserev/:eventcode/:userId', checkuserev);
 
 
 export default eventRoutes;

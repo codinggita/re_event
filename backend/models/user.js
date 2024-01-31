@@ -10,16 +10,19 @@ const userSchema = new Schema({
     },
     registeredEvents: [
         {
-
+            eventcode: {
+                type: String,
+            },
+            qrUniqueCode: {
+                type: String,
+            },
+        },
+    ],
+    createdEvents: [
+        {
             type: String,
         }
     ]
-    ,
-    createdEvents: [
-
-        { type: String, }
-    ]
-
 });
 
 const UserModel = model('user', userSchema);

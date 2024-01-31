@@ -70,6 +70,12 @@ const EventSchema = new mongoose.Schema({
         email: {
             type: String,
         },
+        userid: {
+            type: String,
+        },
+        qrUniqueCode: {
+            type: String,
+        },
         answeredQuestions: {
             type: [String]
         },

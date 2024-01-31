@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MdContentCopy } from "react-icons/md";
 import axios from "axios";
@@ -30,7 +30,6 @@ const Header = () => {
   return (
     <div className="flex w-full bg-[#131517]  justify-between">
       <div className=" flex justify-between w-full md:flex-row flex-col backdrop-blur-md mt-10">
-
         <div className="w-full flex md:flex-col flex-row gap-2 items-center md:items-start">
           <h1 className=" text-3xl">{event.eventname}</h1>
           <p className=" text-sm text-gray-400">
@@ -48,10 +47,14 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <Link to={`/e/${id}`} className='px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1.5'>Visit</Link>
+          <Link
+            to={`/e/${id}`}
+            className="px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1.5"
+          >
+            Visit
+          </Link>
         </div>
       </div>
-
     </div>
   );
 };

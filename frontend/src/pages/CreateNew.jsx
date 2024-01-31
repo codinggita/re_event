@@ -12,13 +12,16 @@ import DateTime from "../components/CreateNew/utils/DateTime";
 import { FaAnglesRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { RiBox3Fill } from "react-icons/ri";
-import ImageKit from 'imagekit';
-import { nanoid } from 'nanoid';
-import { toast } from 'sonner';
-import axios from 'axios';
-
+import ImageKit from "imagekit";
+import { nanoid } from "nanoid";
+import { toast } from "sonner";
+import axios from "axios";
+// import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const CreateNew = (props) => {
+  // const history = useHistory();
+  const navigate = useNavigate();
   const imgID = nanoid(10);
   const { activemenuItem, setActivemenuItem } = useMainDashContext();
   const { newevent, setNewEvent } = useMainDashContext();
@@ -33,7 +36,7 @@ const CreateNew = (props) => {
   // console.log("newevent", newevent);
 
   const changeBackground = (imageUrl) => {
-    const bgElement = document.getElementById('heroSection');
+    const bgElement = document.getElementById("heroSection");
     if (bgElement) {
       bgElement.style.backgroundImage = `url(${imageUrl})`;
     }
@@ -41,7 +44,7 @@ const CreateNew = (props) => {
 
   const handleImage = async (event) => {
     event.preventDefault();
-    console.log("ok")
+    console.log("ok");
     const file = event.target.files[0];
 
     try {
@@ -53,25 +56,48 @@ const CreateNew = (props) => {
 
       const imageUrl = response.url;
       setNewEvent({ ...newevent, eventbanner: imageUrl });
-      console.log('Image URL:', imageUrl);
+      console.log("Image URL:", imageUrl);
       changeBackground(imageUrl);
     } catch (error) {
-      console.error('Error uploading image:', error);
-      toast.error('Failed to upload image');
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image");
+    }
+  };
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/events/newevent",
+        newevent
+      );
+      console.log(response);
+      console.log("Event created:", response.data);
+      toast.success("Event created successfully");
+      console.log(response.data)
+      navigate(`/manage/${response.data.eventcode}`);
+
+      setNewEvent({
+        eventname: "",
+        eventdate: "",
+        eventtime: "",
+        eventbanner: "",
+        description: "",
+        eventlocation: "",
+        eventcreatedby: "",
+        eventtype: "online",
+        registrationstatus: "open",
+        eventstatus: "upcoming",
+        eventurl: "",
+        eventticketprice: "",
+        visibility: "",
+        questions: [],
+        registeredusers: [],
+      });
+    } catch (error) {
+      console.error("Error creating event:", error);
+      toast.error("Failed to create event");
     }
   };
 
-const handleSubmit = async () => {
-  try {
-    const response = await axios.post('http://localhost:3000/events/newevent', newevent);
-    console.log('Event created:', response.data);
-    toast.success('Event created successfully');
-  } catch (error) {
-    console.log('Error creating event:', error);
-    toast.error('Failed to create event');
-  }
-};
-  
   const handleChange = (field, value) => {
     setNewEvent({
       ...newevent,
@@ -95,8 +121,12 @@ const handleSubmit = async () => {
           {saveName}
         </h1>
         <div className="  w-full rounded-xl  flex justify-center  text-white ">
-          <div className={`w-[95%] md:w-3/4  bg-[#212325] w-[${width}]  m-0   rounded-2xl p-3`}>
-            <div id="heroSection" className={`bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl h-[500px] relative bg-cover`}
+          <div
+            className={` w-3/4  bg-[#212325] w-[${width}]  m-0   rounded-2xl p-3`}
+          >
+            <div
+              id="heroSection"
+              className={`bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl h-[500px] relative bg-cover`}
             >
               {/* ... existing code ... */}
               <input
@@ -127,7 +157,12 @@ const handleSubmit = async () => {
                 >
                   Enter Your Event Name
                 </h1> */}
-                <input type="text" name="eventname" id="eventname" placeholder="Enter Your Event Name" className="w-full h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-400 bg-transparent border-b-1 focus:border-gray-500 p-2 outline-none "
+                <input
+                  type="text"
+                  name="eventname"
+                  id="eventname"
+                  placeholder="Enter Your Event Name"
+                  className="w-full h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-400 bg-transparent border-b-1 focus:border-gray-500 p-2 outline-none "
                   onChange={(e) => handleChange("eventname", e.target.value)}
                 />
               </div>
@@ -139,7 +174,7 @@ const handleSubmit = async () => {
                   suppressContentEditableWarning={true}
                   placeholder="Enter Your Event Description"
                   onChange={(e) => handleChange("description", e.target.value)}
-                // Enter Your Event Description
+                  // Enter Your Event Description
                 />
               </div>
             </div>
@@ -236,18 +271,17 @@ const handleSubmit = async () => {
             </div>
 
             {/* <Link to="/manage/fdsfds"> */}
-              <div className=" pl-8 pb-4  pt-4">
-                {/* <div className=""> */}
-                <button className=" bg-[#323436] rounded-lg hover:scale-105 flex items-center group gap-2 p-4"
-                  onClick={
-                    handleSubmit
-                  }
-                >
-                  <FaAnglesRight className="text-sm " />
-                  <h1 className="text-sm ">{saveName}</h1>
-                </button>
-                {/* </div> */}
-              </div>
+            <div className=" pl-8 pb-4  pt-4">
+              {/* <div className=""> */}
+              <button
+                className=" bg-[#323436] rounded-lg hover:scale-105 flex items-center group gap-2 p-4"
+                onClick={handleSubmit}
+              >
+                <FaAnglesRight className="text-sm " />
+                <h1 className="text-sm ">{saveName}</h1>
+              </button>
+              {/* </div> */}
+            </div>
             {/* </Link> */}
           </div>
         </div>

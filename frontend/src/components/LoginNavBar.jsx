@@ -77,6 +77,13 @@ const LoginNavbar = () => {
         <div className="hidden md:flex gap-8  lg:flex lg:items-center ">
           <h1 className=" text-white/60">{finalDate}</h1>
           <Link
+            to="/myEvents"
+            className="text-sm bg-gray-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
+            onClick={handleLoginClick}
+          >
+            My Events
+          </Link>
+          <Link
             to="/create"
             className="text-sm bg-gray-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
           >

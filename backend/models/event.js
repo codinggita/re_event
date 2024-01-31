@@ -66,9 +66,7 @@ const EventSchema = new mongoose.Schema({
         ]  
     },
     registeredUsers: [{
-        name: {
-            type: String,
-        },
+
         email: {
             type: String,
         },

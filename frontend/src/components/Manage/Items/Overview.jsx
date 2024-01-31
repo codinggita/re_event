@@ -48,7 +48,7 @@ const Overview = () => {
   return (
     <>
       <div className="w-full">
-        <ManageCard eventname={event.eventname} location={event.eventlocation} time={event.eventtime} organiser={event.eventcreatedby} image={event.eventbanner}/>
+        <ManageCard eventname={event.eventname} location={event.eventlocation} time={event.eventtime} organiser={event.eventcreatedby} image={event.eventbanner} id={id}/>
 
         <div className="w-full p-4 flex flex-col items-center">
           <div className="flex w-full px-2 py-6 items-center justify-between">

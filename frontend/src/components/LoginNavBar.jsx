@@ -12,8 +12,8 @@ const LoginNavbar = () => {
 
   const { profile, setProfile } = useMainDashContext();
   const cookie = Cookies.get("user");
-  console.log(cookie);
-  //convert to json
+  // console.log(cookie);
+  console.log(profile)
   const user = JSON.parse(cookie);
   const email = user?.decodedjwt?.email;
 

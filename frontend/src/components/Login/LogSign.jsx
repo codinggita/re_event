@@ -12,7 +12,7 @@ import { useMainDashContext } from "../../context/AppContext";
 
 const LogSign = () => {
 
-const{profile, setProfile} = useMainDashContext();
+  const { profile, setProfile } = useMainDashContext();
 
   const [cookies, setCookie] = useCookies(["user"]);
   const [oncontinue, setOncontinue] = useState(false);
@@ -50,8 +50,8 @@ const{profile, setProfile} = useMainDashContext();
     // toast.success("Osama bin laden");
   };
 
-  const handleOtpSubmitForm = async () =>{
-    try{
+  const handleOtpSubmitForm = async () => {
+    try {
       const checker = await axios.post(
         "http://localhost:3000/login/verify-otp",
         { otp, email }
@@ -60,7 +60,6 @@ const{profile, setProfile} = useMainDashContext();
       const token = checker.data.token;
       const user = checker.data.user;
 
-      // Store the token in a cookie with a 1-hour expiry
       Cookies.set("token", [token, user], { expires: 1 / 24 });
 
       toast.success("Login successful");
@@ -78,7 +77,8 @@ const{profile, setProfile} = useMainDashContext();
       console.log(response.data);
       setCookie("user", response.data, { path: "/" });
       setProfile(response.data);
-    }catch (error) {
+      // console.log(profile);
+    } catch (error) {
       setMessage(error.response.data);
     }
   }
@@ -115,9 +115,9 @@ const{profile, setProfile} = useMainDashContext();
                   <button
                     type="submit"
                     className="bg-white rounded-md text-black/90 px-10 py-2"
-                    // onClick={() => {
-                    //   setOncontinue(true);
-                    // }}
+                  // onClick={() => {
+                  //   setOncontinue(true);
+                  // }}
                   >
                     Continue with Email
                   </button>

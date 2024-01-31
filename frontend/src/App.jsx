@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -18,7 +18,10 @@ import LoginNavbar from "./components/LoginNavBar";
 import Checkin from './components/Manage/Checkin/Checkin';
 import axios from 'axios';
 import SmallProfile from "./components/Login/SmallProfile";
+
 import MyEvents from "./pages/MyEvents";
+
+import Profile from './pages/Profile';
 
 
 
@@ -56,6 +59,7 @@ function App() {
                 <Route path="/myEvent" element={<MyEvents />} />
                 {/* <Route path="/manage" element={<EventConfrom/>} /> */}
                 <Route path="/manage/:id" element={<ManageEvent />} />
+                <Route path="/profile" element={<Profile />} />
               </Routes>
             </>
           ) : (

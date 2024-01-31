@@ -10,7 +10,7 @@ export const MainDashProvider = ({ children }) => {
   const [EventHeader, setEventHeader] = useState("Add Guests");
   const [RegisterClick, setRegisterClick] = useState(false);
 
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState({});
 
   const [newevent, setNewEvent] = useState({
     eventname: "",

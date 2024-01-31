@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import Overview from "../components/Manage/Items/Overview";
 import Guests from "../components/Manage/Items/GuestsCard";
 import Analytics from "../components/Manage/Items/Analytics";
-import MoreCard from "../components/Manage/Items/MoreCArd";
+import MoreCard from "../components/Manage/Items/MoreCard";
 import EditEvent from "../components/Manage/Items/EditEvent";
 import Questions from "../components/Manage/Items/Questions";
 import { useMainDashContext } from "../context/AppContext";

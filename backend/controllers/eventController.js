@@ -1,9 +1,9 @@
 import EventModel from '../models/event.js';
-// import UserModel from '../models/user.js';
 import UserModel from '../models/User.js';
 import { nanoid } from 'nanoid';
 import { ObjectId } from 'mongodb';
 import { createHash } from 'crypto';
+
 
 export const heyyo = async (req, res) => {
     res.send('Heyyo wassup!');
@@ -54,6 +54,7 @@ export const getEvents = async (req, res) => {
 export const getEventById = async (req, res) => {
     try {
         const id = req.params.id;
+
         const event = await EventModel.findOne({ eventcode: id });
         res.status(200).json(event);
 
@@ -81,6 +82,27 @@ export const addQuestionsToEvent = async (req, res) => {
     }
 };
 
+export const editEvent = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const updatedEvent = await EventModel.findOneAndUpdate(
+            { eventcode: id },
+            { $set: req.body },
+            { new: true }
+        );
+
+        if (!updatedEvent) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        console.log('Successfully updated event:', updatedEvent);
+        res.status(200).json('Event updated successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
 
 export const registerUserForEvent = async (req, res) => {
@@ -111,6 +133,51 @@ export const registerUserForEvent = async (req, res) => {
     }
 };
 
+
+
+export const deleteEvent = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedEvent = await EventModel.findOneAndRemove({ eventcode: id });
+
+        if (!deletedEvent) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        res.status(200).json({ message: 'Event deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+export const checkregisterevent = async (req, res) => {
+    const { eventcode } = req.params;
+    const { userid, email } = req.body;
+
+    try {
+        // Find the user by ID
+        const user = await UserModel.findOne({ _id: userid });
+
+        // Check if the user is found
+        if (!user) {
+            return res.status(206).json({ error: 'User not found.' });
+        }
+
+        // Check if the event is already registered
+        if (user.registeredEvents.includes(eventcode)) {
+            return res.status(205).json({ message: 'User is already registered for this event.' });
+        }
+
+        // Update the user model to add the registered event
+        await UserModel.updateOne({ _id: userid }, { $push: { registeredEvents: eventcode } });
+
+        res.status(200).json({ message: 'Successfully registered for event!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
 // export const checkregisterevent = async (req, res) => {
 //     const { eventcode } = req.params;
@@ -143,8 +210,10 @@ export const registerUserForEvent = async (req, res) => {
 export const neweventAddUser = async (req, res) => {
     const { eventcode } = req.params;
     const { _uid, email } = req.body;
+
     const qrUniqueCode = nanoid(8);
     console.log(eventcode, _uid, email)
+
 
     try {
         // Find the event by eventcode
@@ -165,6 +234,7 @@ export const neweventAddUser = async (req, res) => {
                 .json({ message: 'User is already registered for this event' });
         }
         // Add the user to the registeredUsers array
+
         const hashedQRCode = createHash('sha256').update(qrUniqueCode).digest('hex');
 
         const updatedEvent = await EventModel.updateOne(
@@ -179,6 +249,7 @@ export const neweventAddUser = async (req, res) => {
                 },
             }
         );
+
         // Check if the user was successfully added to the Event model
         if (updatedEvent.modifiedCount > 0) {
             // Add the hashed QR code to the User model
@@ -210,7 +281,6 @@ export const neweventAddUser = async (req, res) => {
 };
 
 export const checkuserev = async (req, res) => {
-
     const { eventcode, userId } = req.params;
     // const { _id  } = req.body;
     // console.log(eventcode,userId)
@@ -231,4 +301,5 @@ export const checkuserev = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
 

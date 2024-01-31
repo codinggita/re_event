@@ -106,7 +106,7 @@ const CreateNew = (props) => {
   };
   return (
     <>
-      <div className={` z-[100]  flex flex-col  justify-start  w-[100%]  `}>
+      <div className={`z-[100] flex flex-col justify-start  w-[100%]  `}>
         <Link
           to="/"
           className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"

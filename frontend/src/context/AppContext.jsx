@@ -11,6 +11,7 @@ export const MainDashProvider = ({ children }) => {
   const [RegisterClick, setRegisterClick] = useState(false);
 
   const [profile, setProfile] = useState({});
+  const [editedEvent, setEditedEvent] = useState({});
 
   const [newevent, setNewEvent] = useState({
     eventname: "",
@@ -55,6 +56,9 @@ export const MainDashProvider = ({ children }) => {
 
         newevent,
         setNewEvent,
+
+        editedEvent,
+        setEditedEvent
       }}
     >
       {children}

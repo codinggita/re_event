@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 
 const MoreCard = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -12,13 +12,13 @@ const MoreCard = () => {
         <div className="flex flex-col m-2 pt-8 gap-2 items-start">
           <p className='font-semibold'>Delete Event?</p>
           <p className='text-sm'>Click on the below button to delete the event</p>
-          <button className=' px-4 py-2 rounded-xl bg-red-600/80 hover:bg-red-600 transition-all shadow-red-400/20 shadow-lg' onClick={()=>setOpen(true)}>Delete Event</button>
+          <button className=' px-4 py-2 rounded-xl bg-red-600/80 hover:bg-red-600 transition-all shadow-red-400/20 shadow-lg' onClick={() => setOpen(true)}>Delete Event</button>
         </div>
       </div>
 
 
 
-{open && (
+      {open && (
         <div className=" absolute  backdrop-blur-lg  shadow-xl border-white/40  border  px-8 py-12  rounded-3xl  bg-[#212325]/90 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="flex flex-col  items-center justify-between  gap-10 ">
             <div className=" flex flex-col  items-center gap-2">
@@ -48,7 +48,7 @@ const MoreCard = () => {
             </div>
           </div>
         </div>
-      ) }
+      )}
 
     </>
   )

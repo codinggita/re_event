@@ -9,7 +9,7 @@ const RegisterComponent = (props) => {
   const [registerCheck, setRegisterCheck] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const { id } = props;
+  const { id, _id } = props;
   const cookie = Cookies.get("user");
   const user = JSON.parse(cookie);
   const _uid = user?.decodedjwt?.userId;
@@ -21,26 +21,29 @@ const RegisterComponent = (props) => {
     _uid: _uid,
     email: _umail,
   };
-  const fetchData = async () => {
-    try {
-      console.log(userData)
-      const response = await axios.get(
-        `http://localhost:3000/events/checkuserev/${userData._umail}`,
-       
-      );
-
-      if (response.status === 206) {
-        setRegisterCheck(true);
-        console.log("You are already registered for this event");
-      }
-    } catch (error) {
-      console.error("Error checking user registration:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(userData);
+        const response = await axios.get(
+          `http://localhost:3000/events/checkuserev/${id}/${_id}`
+        );
+
+        if (response.status === 205) {
+          setRegisterCheck(true);
+          console.log("You are already registered for this event");
+        }
+        else if (response.status === 200) {
+          setRegisterCheck(false);
+          console.log("You are not registered for this event");
+        }
+      } catch (error) {
+        console.error("Error checking user registration:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchData();
   }, [_umail, _uid]);
 
@@ -74,9 +77,7 @@ const RegisterComponent = (props) => {
           {loading ? (
             <div>Loading...</div>
           ) : registerCheck ? (
-            <button
-              className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
-            >
+            <button className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80">
               Download Your RSVP
             </button>
           ) : (

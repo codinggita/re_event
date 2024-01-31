@@ -1,19 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { IoTicketOutline } from "react-icons/io5";
 import { toast } from "sonner";
+import Cookies from "js-cookie";
 import { useMainDashContext } from "../../context/AppContext";
+import axios from "axios";
 
-const RegisterComponent = () => {
+const RegisterComponent = (props) => {
+  const [registerCheck, setRegisterCheck] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const { id } = props;
+  const cookie = Cookies.get("user");
+  const user = JSON.parse(cookie);
+  const _uid = user?.decodedjwt?.userId;
+  const _umail = user?.decodedjwt?.email;
 
   const { RegisterClick, setRegisterClick } = useMainDashContext();
+
+  const userData = {
+    _uid: _uid,
+    email: _umail,
+  };
+  const fetchData = async () => {
+    try {
+      console.log(userData)
+      const response = await axios.get(
+        `http://localhost:3000/events/checkuserev/${userData._umail}`,
+       
+      );
+
+      if (response.status === 206) {
+        setRegisterCheck(true);
+        console.log("You are already registered for this event");
+      }
+    } catch (error) {
+      console.error("Error checking user registration:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [_umail, _uid]);
+
   const handleSubmit = () => {
-    // toast.success("Registered for the event successfully");
     setRegisterClick(!RegisterClick);
     window.scrollTo({
       top: 0,
-      behavior: "smooth", 
+      behavior: "smooth",
     });
   };
+
   return (
     <>
       <div className="w-full flex flex-col items-center rounded-2xl bg-zinc-800 border border-zinc-700">
@@ -26,24 +64,33 @@ const RegisterComponent = () => {
             <span className="flex flex-col">
               You are signed in as{" "}
               <span className="font-semibold">
-                saiadithyakancharla@gmail.com
+                <span className="text-white/80"> {_umail} </span>
               </span>
             </span>
           </h1>
         </div>
         <hr className="w-[95%] opacity-50 bg-yellow-200" />
         <div className="w-full items-center flex justify-center px-8 py-4">
-          <button
-            className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
-            onClick={handleSubmit}
-          >
-            Click to register
-          </button>
+          {loading ? (
+            <div>Loading...</div>
+          ) : registerCheck ? (
+            <button
+              className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+            >
+              Download Your RSVP
+            </button>
+          ) : (
+            <button
+              className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+              onClick={handleSubmit}
+            >
+              Click to Register
+            </button>
+          )}
         </div>
       </div>
     </>
   );
 };
-
 
 export default RegisterComponent;

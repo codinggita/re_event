@@ -1,42 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PiExport } from "react-icons/pi";
 import { IoIosSearch } from "react-icons/io";
 import GuestListMenuItem from '../GuestListMenuItem';
 import { Link, useParams } from 'react-router-dom';
 import { MdQrCode } from "react-icons/md";
+import axios from 'axios';
+import { format } from "date-fns";
 
 const GuestsCard = () => {
   const { id } = useParams();
-  const guests = [
-    {
-      name: 'Takeshi Goda',
-      email: 'test@mail.com',
-      time: '10:30 AM'
-    },
-    {
-      name: 'Sasuke',
-      email: 'test@mail.com',
-      time: '15:30 PM'
-    },
-    {
-      name: 'Alexandar Christie',
-      email: 'mail@test.com',
-      time: '10:30 AM'
-    },
-    {
-      name: 'Adolf Hitler',
-      email: 'nuclear@bomb.com',
-      time: '12:00 PM'
-    }
-  ]
+  const [event, setEvent] = useState({});
+  const [totalRegistrations, setTotalRegistrations] = useState(0);
+  useEffect(() => {
+    const getEvent = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/geteventbyid/${id}`
+        );
+        setEvent(response.data);
+        setTotalRegistrations(response.data.registeredUsers.length);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    getEvent();
+  }, []);
+  const maximumRegistrations = 100;
+
+  const progressBarWidth = (totalRegistrations / maximumRegistrations) * 100;
+
+  
   return (
     <>
       <div className="w-full flex flex-col">
         <div className="flex w-full p-4 gap-3 flex-col">
           <h1 className="text-start text-xl">Registrations overveiw</h1>
-          <p className="text-start text-zinc-400 text-md">Total registrations: 16</p>
+          <p className="text-start text-zinc-400 text-md">Total registrations: {totalRegistrations}</p>
           <div class="w-full bg-zinc-700 rounded-full h-2.5">
-            <div class="bg-gradient-to-r from-violet-500 to-purple-500 shadow-purple-500/60 shadow-lg h-2.5 rounded-full w-[45%]" ></div>
+          <div className="bg-gradient-to-r from-violet-500 to-purple-500 shadow-purple-500/60 shadow-lg h-2.5 rounded-full" style={{ width: `${progressBarWidth}%` }}></div>
           </div>
         </div>
 
@@ -57,9 +58,19 @@ const GuestsCard = () => {
               <PiExport className='p-1 bg-zinc-800 border border-zinc-200/20 text-4xl rounded-lg cursor-pointer hover:shadow-lg shadow-zinc-100' />
             </div>
 
-            {guests && guests.map((guest, index) => (
-              <GuestListMenuItem key={index} name={guest.name} email={guest.email} time={guest.time} />
-            ))
+            {event.registeredUsers &&
+              event.registeredUsers.map((guest, index) => {
+                const username = guest.email.split('@')[0];
+                const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1);
+                return (
+                  <GuestListMenuItem
+                    key={index}
+                    name={capitalizedUsername}
+                    email={guest.email}
+                    time={format(guest.registeredDate, "PPP")}
+                  />
+                );
+              })
             }
           </div>
         </div>

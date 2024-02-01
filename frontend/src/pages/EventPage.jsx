@@ -211,7 +211,7 @@ const EventPage = () => {
                   </h1>
                   <div className="w-full px-8 py-4">
                     <h1 className="text-gray-200/80 items-center flex flex-row gap-2">
-                      <span className="p-4 bg-red-300 rounded-full"></span>
+                      <img src="https://picsum.photos/200" alt="car" className="w-10 h-10 object-cover rounded-full" />
                       <span className="flex flex-col">
                         You are signed in as{" "}
                         <span className="font-semibold">
@@ -226,7 +226,9 @@ const EventPage = () => {
                       <div>Loading...</div>
                     ) : registerCheck ? (
                       <button className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
-                      onClick={downloadQRCode}
+
+                        onClick={handleDownloadQRCode}
+
                       >
                         Download Your RSVP
                       </button>

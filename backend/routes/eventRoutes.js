@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getAllEvents, heyyo, getEvents, getEventById, addQuestionsToEvent, editEvent, deleteEvent, registerUserForEvent, checkregisterevent, neweventAddUser, checkuserev, editQuestionsForEvent } from '../controllers/eventController.js';
+import { getAllEvents, heyyo, getEvents, getEventById, addQuestionsToEvent, editEvent, deleteEvent, registerUserForEvent, checkregisterevent, neweventAddUser, checkuserev, editQuestionsForEvent, addEventToCreatorUser, fetchCreatedEvents } from '../controllers/eventController.js';
 import { createEvent } from '../controllers/eventController.js';
 const eventRoutes = express.Router();
 
@@ -18,6 +18,7 @@ eventRoutes.post('/neweventAddUser/:eventcode',neweventAddUser );
 eventRoutes.get('/checkuserev/:eventcode/:userId', checkuserev);
 // eventRoutes.get('/trackEventPageView/:id',trackEventPageView)
 eventRoutes.put('/editquestionsforevent/:id', editQuestionsForEvent);
-
+eventRoutes.post('/addeventtocreatoruser',addEventToCreatorUser)
+eventRoutes.get('/geteventsbyuserid/:emailId', fetchCreatedEvents);
 
 export default eventRoutes;

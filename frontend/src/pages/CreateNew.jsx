@@ -16,11 +16,10 @@ import ImageKit from "imagekit";
 import { nanoid } from "nanoid";
 import { toast } from "sonner";
 import axios from "axios";
-// import { useHistory } from 'react-router-dom';
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 const CreateNew = (props) => {
-  // const history = useHistory();
   const navigate = useNavigate();
   const imgID = nanoid(10);
   const { activemenuItem, setActivemenuItem } = useMainDashContext();
@@ -34,6 +33,10 @@ const CreateNew = (props) => {
     authenticationEndpoint: "http://localhost:5000/imagekit",
   });
   // console.log("newevent", newevent);
+  const email = Cookies.get("user");
+  const user = JSON.parse(email);
+  const email1 = user?.decodedjwt?.email;
+  console.log(email1)
 
   const changeBackground = (imageUrl) => {
     const bgElement = document.getElementById("heroSection");
@@ -67,12 +70,16 @@ const CreateNew = (props) => {
     try {
       const response = await axios.post(
         "http://localhost:3000/events/newevent",
-        newevent
+        {
+          ...newevent,
+          eventcreatedby: email1,
+        }
       );
       console.log(response);
       console.log("Event created:", response.data);
       toast.success("Event created successfully");
       console.log(response.data)
+      addEventToCreatorUser(email1, response.data.eventcode);
       navigate(`/manage/${response.data.eventcode}`);
 
       setNewEvent({
@@ -95,6 +102,21 @@ const CreateNew = (props) => {
     } catch (error) {
       console.error("Error creating event:", error);
       toast.error("Failed to create event");
+    }
+  };
+
+  const addEventToCreatorUser = async (creatorId, eventcode) => {
+    try {
+      await axios.post(
+        "http://localhost:3000/events/addeventtocreatoruser",
+        {
+          creatorId,
+          eventcode,
+        }
+      );
+      console.log("Event added to the creator user successfully");
+    } catch (error) {
+      console.error("Error adding event to creator user:", error);
     }
   };
 
@@ -174,7 +196,7 @@ const CreateNew = (props) => {
                   suppressContentEditableWarning={true}
                   placeholder="Enter Your Event Description"
                   onChange={(e) => handleChange("description", e.target.value)}
-                  // Enter Your Event Description
+                // Enter Your Event Description
                 />
               </div>
             </div>

@@ -24,12 +24,7 @@ const AboutComponent = (props) => {
                     <li>🍔 Programme 4 Lorem ipsum dolor sit amet.</li>
                     <li>🎨 Programme 5</li>
                 </ul>
-                <QRCode
-    size={256}
-    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-    value={qrHash}
-    viewBox={`0 0 256 256`}
-    />
+        
             </div>
         </>
     )

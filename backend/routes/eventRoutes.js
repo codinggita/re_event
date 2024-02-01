@@ -13,6 +13,7 @@ eventRoutes.post('/addquestionstoevent', addQuestionsToEvent);
 // eventRoutes.get('/checkregisterevent/:eventcode/', checkregisterevent);
 eventRoutes.post('/neweventAddUser/:eventcode',neweventAddUser );
 eventRoutes.get('/checkuserev/:eventcode/:userId', checkuserev);
+// eventRoutes.get('/trackEventPageView/:id',trackEventPageView)
 
 
 export default eventRoutes;

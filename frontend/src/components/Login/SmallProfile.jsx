@@ -11,17 +11,13 @@ const SmallProfile = () => {
 
   const email = Cookies.get("user");
   console.log(email);
-  //convert to json
   const user = JSON.parse(email);
   const email1 = user?.decodedjwt?.email;
   console.log(email1)
 
-  // Find the index of the last occurrence of '@gmail.com'
   const lastIndex = email1.lastIndexOf("@gmail.com");
   useEffect(() => {
-    // Check if '@gmail.com' was found in the email
     if (lastIndex !== -1) {
-      //   // Remove the last occurrence of '@gmail.com'
       const modifiedEmail = email1.slice(0, lastIndex);
       setModifiedEmail(modifiedEmail);
     }

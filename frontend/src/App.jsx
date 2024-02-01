@@ -14,13 +14,10 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import { useMainDashContext } from "./context/AppContext";
 import Cookies from "js-cookie";
 import LoginNavbar from "./components/LoginNavBar";
-
 import Checkin from './components/Manage/Checkin/Checkin';
 import axios from 'axios';
 import SmallProfile from "./components/Login/SmallProfile";
-
 import MyEvents from "./pages/MyEvents";
-
 import Profile from './pages/Profile';
 
 
@@ -56,7 +53,7 @@ function App() {
                 <Route path="/manage/:id" element={<ManageEvent />} />
                 <Route path="/e/:id" element={<EventPage />} />
                 <Route path="/manage/:id/checkin" element={<Checkin />} />
-                <Route path="/myEvent" element={<MyEvents />} />
+                <Route path="/myEvents" element={<MyEvents />} />
                 {/* <Route path="/manage" element={<EventConfrom/>} /> */}
                 <Route path="/manage/:id" element={<ManageEvent />} />
                 <Route path="/profile" element={<Profile />} />

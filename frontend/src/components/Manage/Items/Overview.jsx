@@ -82,7 +82,7 @@ const Overview = () => {
           </div>
         </div>
 
-        <HostProfile />
+        <HostProfile hosts={event.eventcreatedby}/>
       </div>
     </>
   );

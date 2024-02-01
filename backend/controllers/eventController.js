@@ -333,3 +333,47 @@ export const editQuestionsForEvent = async (req, res) => {
     }
 
 };
+
+export const addEventToCreatorUser = async (req, res) => {
+    try {
+        const { creatorId, eventcode } = req.body;
+
+        const creatorUser = await UserModel.findOne({ email: creatorId });
+
+        if (!creatorUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const isEventAlreadyAdded = creatorUser.createdEvents.includes(eventcode);
+
+        if (isEventAlreadyAdded) {
+            return res.status(205).json({ message: 'Event is already added to the creator user' });
+        }
+
+        await UserModel.updateOne({ email: creatorId }, { $push: { createdEvents: eventcode } });
+
+        res.status(200).json({ message: 'Event added to the creator user successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+export const fetchCreatedEvents = async (req, res) => {
+    try {
+        const { emailId } = req.params;
+
+        const creatorUser = await UserModel.findOne({ email: emailId });
+
+        if (!creatorUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json(creatorUser);
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

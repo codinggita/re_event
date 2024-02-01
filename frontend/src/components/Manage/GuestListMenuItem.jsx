@@ -3,12 +3,15 @@ import { MdDone } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
 const GuestListMenuItem = (props) => {
-    const {name, email, time} = props;
+    const { name, email, time } = props;
     return (
         <>
             <div className="w-full py-2 flex items-center gap-2 px-4 bg-zinc-800/70 hover:bg-zinc-700/50 transition-all cursor-pointer border justify-between border-zinc-700/40 rounded-lg">
                 <div className="flex flex-row gap-2 items-center">
-                    <span className='p-3 rounded-full bg-yellow-600'></span>
+                    <img
+                        src="https://source.unsplash.com/random"
+                        className="w-8 h-8 rounded-full cursor-pointer border-2 "
+                    />
                     <p className='text-lg'>{name}</p>
                     <p className='text-sm text-zinc-400'> - {email}</p>
                 </div>

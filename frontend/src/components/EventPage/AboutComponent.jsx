@@ -1,8 +1,9 @@
 import React from 'react';
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import QRCode from "react-qr-code";
 
 const AboutComponent = (props) => {
-    const {description} = props
+    const {description,qrHash} = props
     return (
         <>
             <div className="w-full flex flex-col items-center rounded-2xl bg-zinc-800 border border-zinc-700">
@@ -23,6 +24,12 @@ const AboutComponent = (props) => {
                     <li>🍔 Programme 4 Lorem ipsum dolor sit amet.</li>
                     <li>🎨 Programme 5</li>
                 </ul>
+                <QRCode
+    size={256}
+    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+    value={qrHash}
+    viewBox={`0 0 256 256`}
+    />
             </div>
         </>
     )

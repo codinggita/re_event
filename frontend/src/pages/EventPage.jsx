@@ -4,43 +4,27 @@ import Banner from "../components/EventPage/Banner";
 import Location from "../components/EventPage/Location";
 import HostDetails from "../components/EventPage/HostDetails";
 import AboutComponent from "../components/EventPage/AboutComponent";
-import RegisterComponent from "../components/EventPage/RegisterComponent";
+// import RegisterComponent from "../components/EventPage/RegisterComponent";
 import { useMainDashContext } from "../context/AppContext";
 import { FaXmark } from "react-icons/fa6";
 import { toast, Toaster } from "sonner";
 import axios from "axios";
 import Cookies from "js-cookie";
-
-// export const RegisterQuestionComponent = (props) => {
-//   const { id } = props;
-//   const { questions } = props;
-//   const cookie = Cookies.get("user");
-//   const user = JSON.parse(cookie);
-//   const _uid = user.decodedjwt.userId;
-//   const _umail = user.decodedjwt.email;
-//   const modifiedEmail = _umail.split("@")[0];
-
-//   // console.log(questions);
-//   const { RegisterClick, setRegisterClick } = useMainDashContext();
-
-//   const { newevent, setNewEvent } = useMainDashContext();
-//   const eventcode = id;
-
-//   return (
-
-//   );
-// };
+import QRCode from "react-qr-code";
+import { IoTicketOutline } from "react-icons/io5";
 
 const EventPage = () => {
   const { RegisterClick, setRegisterClick } = useMainDashContext();
   const [event, setEvent] = useState({});
   const [questions, setQuestions] = useState([]);
+  const [registerCheck, setRegisterCheck] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [qrHash, setQrHash] = useState("");
   const { id } = useParams();
   const cookie = Cookies.get("user");
-  console.log(cookie);
+  // console.log(cookie);
   const user = JSON.parse(cookie);
-  console.log(user.decodedjwt.userId);
+  // console.log(user.decodedjwt.userId);
   const _id = user.decodedjwt.userId;
   const _umail = user.decodedjwt.email;
   const modifiedEmail = _umail.split("@")[0];
@@ -87,7 +71,8 @@ const EventPage = () => {
             } else if (response.status === 205) {
               reject(new Error("You are already registered for this event"));
             }
-            console.log(response,"checking qr hash")
+            console.log(response, "checking qr hash");
+            setQrHash(response.data.hashedQRCode);
           })
           .catch((error) => {
             reject(error);
@@ -128,7 +113,79 @@ const EventPage = () => {
       console.error("Error:", error);
     }
   };
-  // console.log(event);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/checkuserev/${id}/${_id}`
+        );
+
+        console.log(response)
+        if (response.status === 205) {
+          setRegisterCheck(true);
+          console.log("You are already registered for this event");
+        } else if (response.status === 200) {
+          setRegisterCheck(false);
+          console.log("You are not registered for this event");
+        }
+      } catch (error) {
+        console.error("Error checking user registration:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [qrHash]);
+
+  const handleSubmit = () => {
+    setRegisterClick(!RegisterClick);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+
+  const handleDownloadQRCode = () => {
+    // Create a temporary HTML element to hold the QR code
+    const qrCodeContainer = document.createElement("div");
+
+    // Generate the QR code
+    const qrCode = <QRCode value={qrHash} />;
+
+    // Append the QR code to the container
+    qrCodeContainer.appendChild(qrCode);
+
+    // Create a temporary link to trigger the download
+    const downloadLink = document.createElement("a");
+
+    // Convert the container content to an image
+    domtoimage
+      .toBlob(qrCodeContainer)
+      .then(function (blob) {
+        // Create a URL for the blob
+        const url = URL.createObjectURL(blob);
+
+        // Set download link attributes
+        downloadLink.href = url;
+        downloadLink.download = "RSVP_QR_Code.png";
+
+        // Append the link to the document
+        document.body.appendChild(downloadLink);
+
+        // Trigger the click event on the link
+        downloadLink.click();
+
+        // Remove the temporary link and container
+        document.body.removeChild(downloadLink);
+        qrCodeContainer.remove();
+      })
+      .catch(function (error) {
+        console.error("Error creating QR code image:", error);
+      });
+  };
+
 
   return (
     <>
@@ -155,8 +212,45 @@ const EventPage = () => {
               <HostDetails host={event.eventcreatedby} />
             </div>
             <div className="w-full md:w-2/3 flex flex-col gap-4">
-              <RegisterComponent id={id} _id={_id} />
-              <AboutComponent description={event.description} />
+              <>
+                <div className="w-full flex flex-col items-center rounded-2xl bg-zinc-800 border border-zinc-700">
+                  <h1 className="text-lg font-medium flex items-center gap-2 bg-zinc-700 py-2 w-full rounded-t-2xl px-4">
+                    <IoTicketOutline /> Register for the event
+                  </h1>
+                  <div className="w-full px-8 py-4">
+                    <h1 className="text-gray-200/80 items-center flex flex-row gap-2">
+                      <span className="p-4 bg-red-300 rounded-full"></span>
+                      <span className="flex flex-col">
+                        You are signed in as{" "}
+                        <span className="font-semibold">
+                          <span className="text-white/80"> {_umail} </span>
+                        </span>
+                      </span>
+                    </h1>
+                  </div>
+                  <hr className="w-[95%] opacity-50 bg-yellow-200" />
+                  <div className="w-full items-center flex justify-center px-8 py-4">
+                    {loading ? (
+                      <div>Loading...</div>
+                    ) : registerCheck ? (
+                      <button className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+                      onClick={handleDownloadQRCode}
+                      >
+                        Download Your RSVP
+                      </button>
+                    ) : (
+                      <button
+                        className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+                        onClick={handleSubmit}
+                      >
+                        Click to Register
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </>
+
+              <AboutComponent description={event.description} qrHash={qrHash} />
             </div>
           </div>
           {/* <RegisterQuestionComponent /> */}

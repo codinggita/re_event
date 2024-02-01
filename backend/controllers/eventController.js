@@ -3,7 +3,7 @@ import EventModel from '../models/event.js';
 import UserModel from '../models/User.js';
 import { nanoid } from 'nanoid';
 import { ObjectId } from 'mongodb';
-import { createHash } from 'crypto';
+import bcrypt from 'bcrypt';
 
 export const heyyo = async (req, res) => {
     res.send('Heyyo wassup!');
@@ -165,7 +165,8 @@ export const neweventAddUser = async (req, res) => {
                 .json({ message: 'User is already registered for this event' });
         }
         // Add the user to the registeredUsers array
-        const hashedQRCode = createHash('sha256').update(qrUniqueCode).digest('hex');
+        const saltRounds = 10;
+        const hashedQRCode = await bcrypt.hash(qrUniqueCode, saltRounds);   
 
         const updatedEvent = await EventModel.updateOne(
             { eventcode },
@@ -220,10 +221,10 @@ export const checkuserev = async (req, res) => {
         }
 
         // Check if the eventcode is present in any element of the registeredEvents array
-        const isUserRegistered = user.registeredEvents.some(event => event.eventcode === eventcode);
+        const registeredEvent = user.registeredEvents.find(event => event.eventcode === eventcode);
 
-        if (isUserRegistered) {
-            return res.status(205).json({ message: 'User is already registered for this event.' });
+        if (registeredEvent) {
+            return res.status(205).json({ message: 'User is already registered for this event.', qrUniqueCode: registeredEvent.qrUniqueCode });
         } else {
             return res.status(200).json({ message: 'User is not registered for this event.' });
         }
@@ -232,5 +233,4 @@ export const checkuserev = async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-}
-
+};

@@ -79,7 +79,7 @@ const EventPage = () => {
           });
 
         // axios
-        //   .post(`http://localhost:3000/events/registerUserForEvent/${id}`, {
+        //   .post(http://localhost:3000/events/registerUserForEvent/${id}, {
         //     userid: _id,
         //     email: _umail,
         //   })

@@ -29,6 +29,23 @@ const EventPage = () => {
   const _umail = user.decodedjwt.email;
   const modifiedEmail = _umail.split("@")[0];
   // console.log(id);
+  let qrCodeRef = React.createRef();
+
+
+  // useEffect(() => {
+  //   const trackEventView = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:3000/events/trackEventPageView/`
+  //       );
+  //     } catch (error) {
+  //       console.error('Error tracking event view:', error);
+  //     }
+  //   };
+  
+  //   trackEventView();
+  // }, [id]);
+  
 
   useEffect(() => {
     const getEvent = async () => {
@@ -38,6 +55,7 @@ const EventPage = () => {
         const response = await axios.get(
           `http://localhost:3000/events/geteventbyid/${id}`
         );
+        
         const eventData = response.data;
 
         setEvent(eventData);
@@ -121,11 +139,12 @@ const EventPage = () => {
           `http://localhost:3000/events/checkuserev/${id}/${_id}`
         );
 
-        console.log(response)
-        if (response.status === 205) {
+        if (response.status === 200) {
+          console.log(response.data.qrUniqueCode)
+          setQrHash(response.data.qrUniqueCode);
           setRegisterCheck(true);
           console.log("You are already registered for this event");
-        } else if (response.status === 200) {
+        } else if (response.status === 205) {
           setRegisterCheck(false);
           console.log("You are not registered for this event");
         }
@@ -146,46 +165,19 @@ const EventPage = () => {
     });
   };
 
-
-  const handleDownloadQRCode = () => {
-    // Create a temporary HTML element to hold the QR code
-    const qrCodeContainer = document.createElement("div");
-
-    // Generate the QR code
-    const qrCode = <QRCode value={qrHash} />;
-
-    // Append the QR code to the container
-    qrCodeContainer.appendChild(qrCode);
-
-    // Create a temporary link to trigger the download
-    const downloadLink = document.createElement("a");
-
-    // Convert the container content to an image
-    domtoimage
-      .toBlob(qrCodeContainer)
-      .then(function (blob) {
-        // Create a URL for the blob
-        const url = URL.createObjectURL(blob);
-
-        // Set download link attributes
-        downloadLink.href = url;
-        downloadLink.download = "RSVP_QR_Code.png";
-
-        // Append the link to the document
-        document.body.appendChild(downloadLink);
-
-        // Trigger the click event on the link
-        downloadLink.click();
-
-        // Remove the temporary link and container
-        document.body.removeChild(downloadLink);
-        qrCodeContainer.remove();
-      })
-      .catch(function (error) {
-        console.error("Error creating QR code image:", error);
-      });
+  const downloadQRCode = () => {
+    // const canvas = qrCodeRef.current.querySelector('canvas');
+    // const pngUrl = canvas
+    //   .toDataURL("image/png")
+    //   .replace("image/png", "image/octet-stream");
+    // let downloadLink = document.createElement("a");
+    // downloadLink.href = pngUrl;
+    // downloadLink.download = "QRCode.png";
+    // document.body.appendChild(downloadLink);
+    // downloadLink.click();
+    // document.body.removeChild(downloadLink);
   };
-
+  
 
   return (
     <>
@@ -234,7 +226,9 @@ const EventPage = () => {
                       <div>Loading...</div>
                     ) : registerCheck ? (
                       <button className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+
                         onClick={handleDownloadQRCode}
+
                       >
                         Download Your RSVP
                       </button>
@@ -250,7 +244,14 @@ const EventPage = () => {
                 </div>
               </>
 
-              <AboutComponent description={event.description} qrHash={qrHash} />
+              <AboutComponent description={event.description}  />
+              <QRCode
+    size={256}
+    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+    value={qrHash}
+    viewBox={`0 0 256 256`}
+    
+    />
             </div>
           </div>
           {/* <RegisterQuestionComponent /> */}

@@ -56,13 +56,23 @@ export const getEventById = async (req, res) => {
         const id = req.params.id;
 
         const event = await EventModel.findOne({ eventcode: id });
-        res.status(200).json(event);
+        const currentViews = event.views || 0;
+        console.log(currentViews)
 
+        const updatedEvent = await EventModel.findOneAndUpdate(
+            { eventcode: id },
+            { $set: { views: currentViews + 1 } },
+            { new: true } // Return the updated document
+        );
+
+        await updatedEvent.save();
+        res.status(200).json(updatedEvent);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
 
 export const addQuestionsToEvent = async (req, res) => {
     try {
@@ -297,9 +307,9 @@ export const checkuserev = async (req, res) => {
         const registeredEvent = user.registeredEvents.find(event => event.eventcode === eventcode);
 
         if (registeredEvent) {
-            return res.status(205).json({ message: 'User is already registered for this event.', qrUniqueCode: registeredEvent.qrUniqueCode });
+            return res.status(200).json({ message: 'User is already registered for this event.', qrUniqueCode: registeredEvent.qrUniqueCode });
         } else {
-            return res.status(200).json({ message: 'User is not registered for this event.' });
+            return res.status(205).json({ message: 'User is not registered for this event.' });
         }
 
     } catch (error) {
@@ -333,6 +343,7 @@ export const editQuestionsForEvent = async (req, res) => {
     }
 
 };
+
 
 export const addEventToCreatorUser = async (req, res) => {
     try {
@@ -377,3 +388,4 @@ export const fetchCreatedEvents = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+

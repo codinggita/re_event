@@ -16,6 +16,7 @@ eventRoutes.post('/registerUserForEvent/:eventcode', registerUserForEvent);
 eventRoutes.get('/checkregisterevent/:eventcode/', checkregisterevent);
 eventRoutes.post('/neweventAddUser/:eventcode',neweventAddUser );
 eventRoutes.get('/checkuserev/:eventcode/:userId', checkuserev);
+// eventRoutes.get('/trackEventPageView/:id',trackEventPageView)
 eventRoutes.put('/editquestionsforevent/:id', editQuestionsForEvent);
 eventRoutes.post('/addeventtocreatoruser',addEventToCreatorUser)
 eventRoutes.get('/geteventsbyuserid/:emailId', fetchCreatedEvents);

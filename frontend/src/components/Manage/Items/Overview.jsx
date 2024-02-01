@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ManageCard from '../ManageCard';
 import GuestListMenuItem from '../GuestListMenuItem';
 import { useMainDashContext } from '../../../context/AppContext';
 import HostProfile from '../HostProfile';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { format } from "date-fns";
 
 const Overview = () => {
   const { setManagetab } = useMainDashContext();
@@ -23,6 +24,7 @@ const Overview = () => {
     };
     getEvent();
   }, []);
+  console.log(event)
   const guests = [
     {
       name: "Takeshi Goda",
@@ -48,12 +50,12 @@ const Overview = () => {
   return (
     <>
       <div className="w-full">
-        <ManageCard eventname={event.eventname} location={event.eventlocation} time={event.eventtime} organiser={event.eventcreatedby} image={event.eventbanner} id={id}/>
+        <ManageCard eventname={event.eventname} location={event.eventlocation} time={event.eventtime} organiser={event.eventcreatedby} image={event.eventbanner} id={id} />
 
         <div className="w-full p-4 flex flex-col items-center">
           <div className="flex w-full px-2 py-6 items-center justify-between">
             <h1 className="text-lg">
-              Recent Registrations - ({guests.length})
+              Recent Registrations - ({event.registeredUsers && event.registeredUsers.length})
             </h1>
             <button
               className="bg-zinc-800 hover:bg-zinc-200 transition-all px-4 py-1 rounded-lg text-white hover:text-black"
@@ -63,15 +65,20 @@ const Overview = () => {
             </button>
           </div>
           <div className="w-full flex gap-2 flex-col">
-            {guests &&
-              guests.map((guest, index) => (
-                <GuestListMenuItem
-                  key={index}
-                  name={guest.name}
-                  email={guest.email}
-                  time={guest.time}
-                />
-              ))}
+            {event.registeredUsers &&
+              event.registeredUsers.map((guest, index) => {
+                const username = guest.email.split('@')[0];
+                const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1);
+                return (
+                  <GuestListMenuItem
+                    key={index}
+                    name={capitalizedUsername}
+                    email={guest.email}
+                    time={format(guest.registeredDate, "PPP")}
+                  />
+                );
+              })
+            }
           </div>
         </div>
 

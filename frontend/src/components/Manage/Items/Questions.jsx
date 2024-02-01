@@ -6,10 +6,12 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
+
 const Questions = () => {
   const [questions, setQuestions] = useState([]);
   const [response, setResponse] = useState(null);
-  const [eventcode, setEventcode] = useState('');
+  const [existingQuestions, setExistingQuestions] = useState([]);
+  const [event, setEvent] = useState({});
   const [newQuestion, setNewQuestion] = useState({
     question: "",
     field: "text",
@@ -17,13 +19,27 @@ const Questions = () => {
   });
   const { id } = useParams();
 
+  useEffect(() => {
+    const getEvent = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/geteventbyid/${id}`
+        );
+        setEvent(response.data);
+        setQuestions(response.data.questions || []);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    getEvent();
+  }, []);
+
   const handleInputChange = (e, index) => {
     const { name, value, type, checked } = e.target;
     setQuestions((prevQuestions) => {
       const updatedQuestions = [...prevQuestions];
       const currentQuestion = updatedQuestions[index];
 
-      // Update question properties based on the input type
       if (type === "checkbox") {
         currentQuestion['required'] = checked;
       } else if (name === "field") {
@@ -31,8 +47,6 @@ const Questions = () => {
       } else {
         currentQuestion['question'] = value;
       }
-
-      // console.log('Question:', currentQuestion.question, 'Field:', currentQuestion.field, 'Required:', currentQuestion.required, name);
 
       return updatedQuestions;
     });
@@ -57,15 +71,14 @@ const Questions = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:3000/events/addquestionstoevent`,
+        `http://localhost:3000/events/${existingQuestions.length > 0 ? 'editquestionsforevent' : 'addquestionstoevent'}/${id}`,
         {
-          eventcode: id,
           questions,
         }
       );
       setResponse(res.data);
       console.log(res.data);
-      toast.success("Questions added successfully");
+      toast.success("Questions saved successfully");
     } catch (err) {
       console.log(err);
     }
@@ -78,14 +91,12 @@ const Questions = () => {
         {questions.length > 0 ? (
           <div className="bg-[rgb(30,31,33)] h-full py-3 w-[90%] gap-5 rounded-xl">
             {questions.map((q, index) => (
-              <div
-                key={index}
-                className="px-10 justify-center pt-5 flex flex-col gap-4"
-              >
+              <div key={index} className="px-10 justify-center pt-5 flex flex-col gap-4">
                 <input
                   className="w-full h-full bg-black/10 outline-none text-white/50 border border-zinc-500/60 rounded-lg px-4 py-2"
                   type="text"
                   placeholder={`Question ${index + 1}`}
+                  value={q.question}
                   onChange={(e) => handleInputChange(e, index)}
                 />
                 <div className="flex justify-between gap-10">
@@ -123,6 +134,7 @@ const Questions = () => {
                         type="checkbox"
                         name={`required`}
                         id={`required-${index}`}
+                        checked={q.required}
                         onChange={(e) => handleInputChange(e, index)}
                         className="w-4 h-4 caret-slate-500"
                       />

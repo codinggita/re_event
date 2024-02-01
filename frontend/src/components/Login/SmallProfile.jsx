@@ -10,10 +10,10 @@ const SmallProfile = () => {
   const [openProfile, setOpenProfile] = useState(false);
 
   const email = Cookies.get("user");
-  console.log(email);
+  // console.log(email);
   const user = JSON.parse(email);
   const email1 = user?.decodedjwt?.email;
-  console.log(email1)
+  // console.log(email1)
 
   const lastIndex = email1.lastIndexOf("@gmail.com");
   useEffect(() => {

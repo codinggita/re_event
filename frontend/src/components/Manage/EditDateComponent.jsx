@@ -12,7 +12,6 @@ const EditDateComponent = () => {
   const [dateVisisble2, setDateVisisble2] = React.useState(false);
   const [selected1, setSelected1] = React.useState();
   const [selected2, setSelected2] = React.useState();
-  const { newevent, setNewEvent } = useMainDashContext();
 
   const timehours = [
     "12:00 AM",
@@ -170,8 +169,8 @@ const EditDateComponent = () => {
               mode="single"
               selected={selected1}
               onSelect={handleDateSelect1}
-              defaultMonth={new Date(2023, 0)}
-              fromYear={2023}
+              defaultMonth={new Date(2024, 0)}
+              fromYear={2024}
               required
             />
           </div>
@@ -183,8 +182,8 @@ const EditDateComponent = () => {
               selected={selected2}
               onSelect={handleDateSelect2}
               // footer={footer}
-              defaultMonth={new Date(2023, 0)}
-              fromYear={2023}
+              defaultMonth={new Date(2024, 0)}
+              fromYear={2024}
               required
 
             />

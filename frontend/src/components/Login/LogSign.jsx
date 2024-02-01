@@ -144,7 +144,7 @@ const LogSign = () => {
                   <h2 className="text-sm text-white/80">
                     Please enter the 5 digit code sent to{" "}
                   </h2>
-                  <h3 className="text-sm">shivatadigadapa@gmail.com</h3>
+                  <h3 className="text-sm">{email}</h3>
                 </div>
               </div>
               <div className="flex flex-col items-center justify-center gap-10">

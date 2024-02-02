@@ -10,7 +10,7 @@ const Home = () => {
   const { openlogin, setOpenlogin } = useMainDashContext();
   return (
     <>
-      <div className="w-full flex items-center  max-w-[1500px] justify-center">
+      <div className="w-full flex items-center  justify-center">
         {cookie ? (
           <></>
         ) : (

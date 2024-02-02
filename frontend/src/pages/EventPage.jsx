@@ -7,11 +7,12 @@ import AboutComponent from "../components/EventPage/AboutComponent";
 // import RegisterComponent from "../components/EventPage/RegisterComponent";
 import { useMainDashContext } from "../context/AppContext";
 import { FaXmark } from "react-icons/fa6";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import axios from "axios";
 import Cookies from "js-cookie";
 import QRCode from "react-qr-code";
 import { IoTicketOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const EventPage = () => {
   const { RegisterClick, setRegisterClick } = useMainDashContext();
@@ -28,7 +29,9 @@ const EventPage = () => {
   const _id = user.decodedjwt.userId;
   const _umail = user.decodedjwt.email;
   const modifiedEmail = _umail.split("@")[0];
+  const [isUserEvent, setIsUserEvent] = useState(false);
   // console.log(id);
+
   let qrCodeRef = React.createRef();
 
 
@@ -42,20 +45,32 @@ const EventPage = () => {
   //       console.error('Error tracking event view:', error);
   //     }
   //   };
-  
+
   //   trackEventView();
   // }, [id]);
-  
+  useEffect(() => {
+    const getuserEvents = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/geteventsbyuserid/${_umail}`
+        );
+        const userEvents = response.data.createdEvents;
+        const isthis = userEvents.some((event) => event === id);
+        setIsUserEvent(isthis);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    getuserEvents();
+  }, []);
 
   useEffect(() => {
     const getEvent = async () => {
       try {
-        // console.log(id)
-
         const response = await axios.get(
           `http://localhost:3000/events/geteventbyid/${id}`
         );
-        
+
         const eventData = response.data;
 
         setEvent(eventData);
@@ -70,12 +85,12 @@ const EventPage = () => {
   }, [id]);
 
   const handleApiEventCall = async () => {
-    // Show loading toast
+
     const loadingPromise = toast.promise(
       new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve();
-        }, 500); // Adjust the duration as needed
+        }, 500); 
 
         // setNewEvent({...newevent, registeredusers: [...newevent.registeredusers, _uid]})
         axios
@@ -120,12 +135,12 @@ const EventPage = () => {
         error: (error) => {
           return error.message || "Error";
         },
-        duration: 5000, // Adjust the duration as needed
+        duration: 5000, 
       }
     );
 
     try {
-      await loadingPromise; // Wait for the promise to resolve or reject
+      await loadingPromise; 
     } catch (error) {
       // Handle error if needed
       console.error("Error:", error);
@@ -144,12 +159,15 @@ const EventPage = () => {
           setQrHash(response.data.qrUniqueCode);
           setRegisterCheck(true);
           console.log("You are already registered for this event");
+          // toast.success("You are already registered for this event");
         } else if (response.status === 205) {
           setRegisterCheck(false);
           console.log("You are not registered for this event");
+          // toast.error("You are not registered for this event");
         }
       } catch (error) {
         console.error("Error checking user registration:", error);
+        // toast.error("Failed to check user registration");
       } finally {
         setLoading(false);
       }
@@ -177,7 +195,7 @@ const EventPage = () => {
     // downloadLink.click();
     // document.body.removeChild(downloadLink);
   };
-  
+
 
   return (
     <>
@@ -200,7 +218,7 @@ const EventPage = () => {
           />
           <div className="w-full flex flex-col md:flex-row gap-4 py-5">
             <div className="md:w-1/3 w-full flex flex-col gap-4">
-              <Location location={event.eventlocation}/>
+              <Location location={event.eventlocation} />
               <HostDetails host={event.eventcreatedby} />
             </div>
             <div className="w-full md:w-2/3 flex flex-col gap-4">
@@ -215,7 +233,7 @@ const EventPage = () => {
                       <span className="flex flex-col">
                         You are signed in as{" "}
                         <span className="font-semibold">
-                          <span className="text-white/80"> {_umail} </span>
+                          <span className="text-sm md:text-lg text-white/80"> {_umail} </span>
                         </span>
                       </span>
                     </h1>
@@ -225,13 +243,15 @@ const EventPage = () => {
                     {loading ? (
                       <div>Loading...</div>
                     ) : registerCheck ? (
-                      <button className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
-
-                        onClick={handleDownloadQRCode}
-
-                      >
-                        Download Your RSVP
-                      </button>
+                      isUserEvent ? (
+                        <Link to={`/manage/${id}`} className="bg-zinc-100 rounded-lg text-center text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80">
+                          Manage Your Event
+                        </Link>
+                      ) : (
+                        <button className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80">
+                          Download Your RSVP
+                        </button>
+                      )
                     ) : (
                       <button
                         className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
@@ -244,14 +264,14 @@ const EventPage = () => {
                 </div>
               </>
 
-              <AboutComponent description={event.description}  />
+              <AboutComponent description={event.description} />
               <QRCode
-    size={256}
-    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-    value={qrHash}
-    viewBox={`0 0 256 256`}
-    
-    />
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={qrHash}
+                viewBox={`0 0 256 256`}
+
+              />
             </div>
           </div>
           {/* <RegisterQuestionComponent /> */}

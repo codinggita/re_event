@@ -50,7 +50,7 @@ const Overview = () => {
   return (
     <>
       <div className="w-full">
-        <ManageCard eventname={event.eventname} location={event.eventlocation} time={event.eventtime} organiser={event.eventcreatedby} image={event.eventbanner} id={id} />
+        <ManageCard eventname={event.eventname} location={event.eventlocation} time={event.eventtime} organiser={event.eventcreatedby} image={event.eventbanner} description={event.description} id={id} />
 
         <div className="w-full p-4 flex flex-col items-center">
           <div className="flex w-full px-2 py-6 items-center justify-between">
@@ -59,7 +59,7 @@ const Overview = () => {
             </h1>
             <button
               className="bg-zinc-800 hover:bg-zinc-200 transition-all px-4 py-1 rounded-lg text-white hover:text-black"
-              onClick={() => setManagetab("guests")}
+              onClick={() => setManagetab("Guests")}
             >
               View all
             </button>

@@ -65,6 +65,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/explore" element={<Explore />} />
+                <Route path="*" element={<Home />} />
               </Routes>
             </>
           )

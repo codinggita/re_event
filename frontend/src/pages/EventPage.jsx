@@ -165,7 +165,7 @@ const EventPage = () => {
     });
   };
 
-  const downloadQRCode = () => {
+  const handleDownloadQRCode = () => {
     // const canvas = qrCodeRef.current.querySelector('canvas');
     // const pngUrl = canvas
     //   .toDataURL("image/png")

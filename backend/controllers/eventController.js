@@ -247,7 +247,7 @@ export const neweventAddUser = async (req, res) => {
         // Add the user to the registeredUsers array
 
         const saltRounds = 10;
-        const hashedQRCode = await bcrypt.hash(qrUniqueCode, saltRounds);   
+        const hashedQRCode = await bcrypt.hash(qrUniqueCode, saltRounds);
 
 
         const updatedEvent = await EventModel.updateOne(
@@ -327,7 +327,7 @@ export const editQuestionsForEvent = async (req, res) => {
 
         const updatedEvent = await EventModel.findOneAndUpdate(
             { eventcode: id },
-            { $set: { questions: req.body.questions } }, 
+            { $set: { questions: req.body.questions } },
             { new: true }
         );
 
@@ -382,10 +382,46 @@ export const fetchCreatedEvents = async (req, res) => {
         }
 
         res.status(200).json(creatorUser);
-        
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
+
+export const qrscancall = async (req, res) => {
+    const { id } = req.params;
+    const { scannedData } = req.body;
+    console.log(id,scannedData)
+
+
+    
+    try {
+
+        const event = await EventModel.findOne({ eventcode: id });
+
+        if (!event) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        const matchedUser = event.registeredUsers.find((user) => user.qrUniqueCode === scannedData);
+
+        if (!matchedUser) {
+            return res.status(404).json({ error: 'No matching user found' });
+        }
+
+        if (matchedUser.approveStatus) {
+            return res.status(200).json({ message: 'User is already approved', matchedUser });
+        }
+
+        matchedUser.approveStatus = true;
+
+        await event.save();
+
+        return res.status(200).json({ message: 'Scanned data processed successfully', matchedUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

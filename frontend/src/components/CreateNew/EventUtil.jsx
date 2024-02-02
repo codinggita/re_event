@@ -22,7 +22,7 @@ const EventUtil = (props) => {
             ? "bg-[#68696b] text-white"
             : "text-gray-400 hover:text-white"
           }
-      } flex  hover:bg-[#68696b] w-[10rem] p-3 rounded-md items-center justify-center gap-3`}
+      } flex  hover:bg-[#68696b] w-full md:w-[10rem] p-3 rounded-md items-center justify-center gap-3`}
         onClick={handleClick}
       >
         {icon}

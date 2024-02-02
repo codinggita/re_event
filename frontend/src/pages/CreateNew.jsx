@@ -36,7 +36,7 @@ const CreateNew = (props) => {
   const email = Cookies.get("user");
   const user = JSON.parse(email);
   const email1 = user?.decodedjwt?.email;
-  console.log(email1)
+  // console.log(email1)
 
   const changeBackground = (imageUrl) => {
     const bgElement = document.getElementById("heroSection");
@@ -144,11 +144,11 @@ const CreateNew = (props) => {
         </h1>
         <div className="  w-full rounded-xl  flex justify-center  text-white ">
           <div
-            className={` w-3/4  bg-[#212325] w-[${width}]  m-0   rounded-2xl p-3`}
+            className={`w-[90%] md:w-3/4  bg-[#212325] m-0   rounded-2xl p-3`}
           >
             <div
               id="heroSection"
-              className={`bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl h-[500px] relative bg-cover`}
+              className={`bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl h-[200px] md:h-[500px] relative bg-cover`}
             >
               {/* ... existing code ... */}
               <input
@@ -169,7 +169,7 @@ const CreateNew = (props) => {
               </label>
             </div>
 
-            <div className=" w-[90%] p-5 flex flex-col   gap-5">
+            <div className=" w-full md:w-[90%] p-5 flex flex-col   gap-5">
               <div>
                 <p className=" p-3">Event Name</p>
                 {/* <h1
@@ -207,7 +207,7 @@ const CreateNew = (props) => {
               </h1>
               <div className=" ">
                 <div className=" bg-[#323436]  w-full md:w-3/5  mt-4   rounded-lg">
-                  <div className=" text-[#f7d5d5]    flex w-[100%]  justify-around  gap-2 px-1.5 py-1.5   ">
+                  <div className=" text-[#f7d5d5] flex-col md:flex-row  flex w-[100%]  justify-around  gap-2 px-1.5 py-1.5   ">
                     <EventUtil
                       name={"zoom"}
                       icon={<FaGlobeAmericas className=" text-lg" />}

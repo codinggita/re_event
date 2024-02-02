@@ -118,7 +118,7 @@ const DateTime = () => {
           <div className=" flex flex-col rounded-xl mt-4 bg-[#323436] ">
             <div className="p-3">
               <div className=" items-center flex gap-5 ">
-                <h1>starts</h1>
+                <h1>Starts</h1>
                 <h1
                   // type="text"
                   // placeholder={format(new Date(), "PPpp")}
@@ -133,7 +133,7 @@ const DateTime = () => {
                 <div>
                   {
                     <select
-                      className=" z-[100]  h-[2.5rem]  cursor-pointer items-center   border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
+                      className=" z-[100]  h-[2.5rem]  cursor-pointer items-center   border-none outline-none  bg-[#424446] border-gray-500 rounded-md px-3 mt-2"
                       onChange={(e) => handleTimeChange(e.target.value)}
                     >
                       {timehours.map((time) => (
@@ -163,7 +163,7 @@ const DateTime = () => {
                 <div>
                   {
                     <select
-                      className=" z-[100]   h-[2.5rem] cursor-pointer items-center flex border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
+                      className=" z-[100] h-[2.5rem] cursor-pointer items-center flex border-none outline-none justify-center bg-[#424446] border-gray-500 rounded-md px-3 mt-2"
                       // onChange={(e) => handleTimeChange(e.target.value)}
                     >
                       {timehours.map((time) => (
@@ -187,8 +187,8 @@ const DateTime = () => {
               onSelect={handleDateSelect1}
               // onSelect={handleDateSelectRemove1}
               // footer={footer}
-              defaultMonth={new Date(2023, 0)}
-              fromYear={2023}
+              defaultMonth={new Date(2024, 0)}
+              fromYear={2024}
               required
             // modifiersClassNames={{
             //   selected: "my-selected",
@@ -209,8 +209,8 @@ const DateTime = () => {
               selected={selected2}
               onSelect={handleDateSelect2}
               // footer={footer}
-              defaultMonth={new Date(2023, 0)}
-              fromYear={2023}
+              defaultMonth={new Date(2024, 0)}
+              fromYear={2024}
               required
             // modifiersClassNames={{
             //   selected: "my-selected",

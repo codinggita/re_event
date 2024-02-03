@@ -7,10 +7,12 @@ import axios from "axios";
 import { CookiesProvider, useCookies } from "react-cookie";
 import Cookies from "js-cookie";
 import { useMainDashContext } from "../../context/AppContext";
+import {useNavigate} from 'react-router-dom';
 // import { set } from "mongoose";
 // import { set } from "mongoose";
 
 const LogSign = () => {
+  const navigate = useNavigate();
 
   const { profile, setProfile } = useMainDashContext();
 
@@ -63,6 +65,7 @@ const LogSign = () => {
       Cookies.set("token", [token, user], { expires: 1 / 24 });
 
       toast.success("Login successful");
+      navigate('/dashboard');
 
       const config = {
         headers: {

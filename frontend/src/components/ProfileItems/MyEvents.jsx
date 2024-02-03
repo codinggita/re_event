@@ -40,12 +40,11 @@ const MyEvents = () => {
 
   return (
     <>
-      <div className="w-full p-72 flex items-center justify-center">
-
+      <div className="w-full flex items-center justify-center">
         <div className="w-1/2">
           {createdEvents.length > 0 ? (
             <div className="flex flex-col items-center justify-center">
-              <h1 className="text-3xl font-bold text-white">Registered Events</h1>
+              <h1 className="text-xl text-white">Created Events</h1>
               <div className="flex flex-col items-center justify-center">
                 {createdEvents.map((event) => (
                   <div className="flex flex-col items-center justify-center">
@@ -65,7 +64,7 @@ const MyEvents = () => {
         <div className="w-1/2">
           {registeredEvents.length > 0 ? (
             <div className="flex flex-col items-center justify-center">
-              <h1 className="text-3xl font-bold text-white">Registered Events</h1>
+              <h1 className="text-xl text-white">Registered Events</h1>
               <div className="flex flex-col items-center justify-center">
                 {registeredEvents.map((event) => (
                   <div className="flex flex-col items-center justify-center">

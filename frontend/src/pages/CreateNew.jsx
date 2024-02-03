@@ -130,7 +130,7 @@ const CreateNew = (props) => {
     <>
       <div className={`z-[100] flex flex-col justify-start  w-[100%]  `}>
         <Link
-          to="/"
+          to="/dashboard"
           className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"
         >
           <RiBox3Fill className="text-2xl transform mr-2 group-hover:rotate-180 transition-all " />

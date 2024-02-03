@@ -13,6 +13,8 @@ export const MainDashProvider = ({ children }) => {
   const [profile, setProfile] = useState({});
   const [editedEvent, setEditedEvent] = useState({});
 
+  const [userProfileMenu, setUserprofilemenu] = useState("Myevents");
+
   const [newevent, setNewEvent] = useState({
     eventname: "",
     eventdate: "",
@@ -58,7 +60,10 @@ export const MainDashProvider = ({ children }) => {
         setNewEvent,
 
         editedEvent,
-        setEditedEvent
+        setEditedEvent,
+
+        userProfileMenu,
+        setUserprofilemenu
       }}
     >
       {children}

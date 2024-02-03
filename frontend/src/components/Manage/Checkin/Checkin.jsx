@@ -14,6 +14,7 @@ const Checkin = () => {
   const [selectedGuest, setSelectedGuest] = useState(null);
   const [isScanModalOpen, setScanModalOpen] = useState(false);
   const [data, setData] = useState(null);
+  const [guestsData, setGuestsData] = useState([]);
 
   useEffect(() => {
     if (data === null) return;
@@ -25,7 +26,7 @@ const Checkin = () => {
           { scannedData: data }
         );
         //   console.log(response.data.matchedUser.approveStatus)
-        if (response.data && response.data.matchedUser.approveStatus) {
+        if (response.data) {
           setSelectedGuest(response.data);
           setScanModalOpen(false);
           setData(null);
@@ -40,6 +41,23 @@ const Checkin = () => {
       makeScanCall();
     }
   }, [data]);
+
+
+  useEffect(() => {
+    const fetchGuests = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/getcheckinusers/${id}`
+        );
+        console.log(response.data);
+        setGuestsData(response.data);
+      } catch (error) {
+        console.error("Error fetching guests:", error);
+      }
+    };
+    fetchGuests();
+  }, [selectedGuest]);
+
 
   const openScanModal = () => {
     setScanModalOpen(true);
@@ -195,8 +213,8 @@ const Checkin = () => {
               />
             </div>
 
-            {/* {guests &&
-              guests.map((guest, index) => (
+            {guestsData &&
+              guestsData.map((guest, index) => (
                 <div key={index} onClick={() => handleGuestItemClick(guest)}>
                   <GuestListItem
                     name={guest.name}
@@ -204,7 +222,7 @@ const Checkin = () => {
                     time={guest.time}
                   />
                 </div>
-              ))} */}
+              ))}
           </div>
         </div>
       </div>

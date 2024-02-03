@@ -82,6 +82,7 @@ const EventSchema = new mongoose.Schema({
         },
         answeredQuestions: {
             type: [String]
+            
         },
         approveStatus: {
             type: Boolean,

@@ -24,7 +24,7 @@ const Overview = () => {
     };
     getEvent();
   }, []);
-  console.log(event)
+  // console.log(event) 
   const guests = [
     {
       name: "Takeshi Goda",

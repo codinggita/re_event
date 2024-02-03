@@ -92,7 +92,7 @@ const GuestsCard = () => {
                 className="w-full px-4 py-1.5 my-3 text-zinc-200 rounded-lg outline-none focus:border border-[1px] border-zinc-200/20 bg-zinc-800"
                 placeholder='Search in guests ...'
               />
-              <PiExport className='p-1 bg-zinc-800 border border-zinc-200/20 text-4xl rounded-lg cursor-pointer hover:shadow-lg shadow-zinc-100' />
+              {/* <PiExport className='p-1 bg-zinc-800 border border-zinc-200/20 text-4xl rounded-lg cursor-pointer hover:shadow-lg shadow-zinc-100' /> */}
             </div>
 
             {totalRegistrations === 0 ? (

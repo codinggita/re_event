@@ -77,13 +77,6 @@ const LoginNavbar = () => {
         <div className="hidden md:flex gap-8  lg:flex lg:items-center ">
           <h1 className=" text-white/60">{finalDate}</h1>
           <Link
-            to="/myEvents"
-            className="text-sm bg-gray-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
-            onClick={handleLoginClick}
-          >
-            My Events
-          </Link>
-          <Link
             to="/create"
             className="text-sm bg-gray-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
           >
@@ -102,21 +95,21 @@ const LoginNavbar = () => {
                     src="https://picsum.photos/200"
                     className="w-9 h-9 rounded-full border-2"
                   />
-                  <div className=" flex   flex-col  items-start ">
+                  <div className=" flex  py-1 flex-col  items-start ">
                     <h1 className="text-white text-lg "> {modifiedEmail1} </h1>
                     <h2 className="text-white/60 text-sm">{email}</h2>
                   </div>
                 </div>
                 <hr className="   text-white/30 border-white/20  w-full" />
-                <div className=" text-zinc-400  text-base    flex gap-2 mt-2 flex-col ">
-                  <h1 className=" cursor-pointer hover:text-zinc-100">
+                <div className=" text-zinc-400  text-base    w-full flex gap-2 mt-2 flex-col ">
+                  <Link to="/profile" className="hover:bg-zinc-700/70 w-full cursor-pointer py-1 px-2 rounded-lg hover:text-zinc-300">
                     View Profile
-                  </h1>
-                  <h1 className=" cursor-pointer hover:text-zinc-100">
+                  </Link>
+                  <h1 className="hover:bg-zinc-700/70 w-full cursor-pointer py-1 px-2 rounded-lg hover:text-zinc-300">
                     Settings
                   </h1>
                   <h1
-                    className=" cursor-pointer hover:text-zinc-100"
+                    className="hover:bg-zinc-700/70 w-full cursor-pointer py-1 px-2 rounded-lg hover:text-zinc-300"
                     onClick={() => {
                       Cookies.remove("user");
                       Cookies.remove("token");

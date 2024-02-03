@@ -429,3 +429,28 @@ export const qrscancall = async (req, res) => {
     }
 };
 
+export const getcheckinusers = async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+  
+    try 
+    {
+        const event = await EventModel.findOne({ eventcode: id });
+        console.log(event)
+  
+      if (!event) {
+        return res.status(404).json({ error: 'Event not found' });
+      }
+  
+      // Filter registeredUsers with approveStatus as true
+      const approvedUsers = event.registeredUsers.filter(
+        (user) => user.approveStatus === true
+      );
+        
+      
+      res.status(200).json(approvedUsers);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };

@@ -10,7 +10,7 @@ const formatDate = (dateString) => {
   return formattedDate;
 };
 
-const PastEvents = () => {
+const PastEvents = ({pastEvents}) => {
   // const events = [
   // {
   //   id: 1,
@@ -28,36 +28,36 @@ const PastEvents = () => {
   // },
   // ];
 
-  const [events, setEvents] = useState([]);
-  const [upcomingEvents, setUpcomingEvents] = useState([]);
-  const [pastEvents, setPastEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
+  // const [upcomingEvents, setUpcomingEvents] = useState([]);
+  // const [pastEvents, setPastEvents] = useState([]);
 
-  useEffect(() => {
-    const getAllEvents = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/events/getevents');
-        setEvents(response.data);
-        separateEvents(response.data);
-      } catch (error) {
-        console.error('Error:', error);
-        toast.error('Failed to fetch events');
-      }
-    };
+  // useEffect(() => {
+  //   const getAllEvents = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:3000/events/getevents');
+  //       setEvents(response.data);
+  //       separateEvents(response.data);
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  //       toast.error('Failed to fetch events');
+  //     }
+  //   };
 
-    getAllEvents();
-  }, []);
+  //   getAllEvents();
+  // }, []);
 
-  const separateEvents = (events) => {
-    const today = new Date();
+  // const separateEvents = (events) => {
+  //   const today = new Date();
 
-    const upcoming = events.filter(event => new Date(event.eventdate) > today);
-    const past = events.filter(event => new Date(event.eventdate) <= today);
+  //   const upcoming = events.filter(event => new Date(event.eventdate) > today);
+  //   const past = events.filter(event => new Date(event.eventdate) <= today);
 
-    setUpcomingEvents(upcoming);
-    setPastEvents(past);
-  };
-  console.log('past', pastEvents);
-  console.log('upcoming', upcomingEvents)
+  //   setUpcomingEvents(upcoming);
+  //   setPastEvents(past);
+  // };
+  // console.log('past', pastEvents);
+  // console.log('upcoming', upcomingEvents)
   const groupEventsByDate = (events) => {
     const groupedEvents = {};
 
@@ -89,7 +89,8 @@ const PastEvents = () => {
   };
 
   const groupedPastEvents = groupEventsByDate(pastEvents);
-  const sortedPastEvents = sortEventsByDate(groupedPastEvents);
+  const sortedPastEvents = sortEventsByDate(groupedPastEvents);  
+
 
   return (
     <>

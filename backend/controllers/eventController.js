@@ -491,6 +491,61 @@ export const getcheckinusers = async (req, res) => {
 
 
         res.status(200).json(approvedUsers);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+
+export const addneweventtohost = async (req, res) => {
+    const { userEmail, eventcode } = req.body;
+
+    try {
+        const user = await UserModel.findOne({ email: userEmail });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        if (user.createdEvents.includes(eventcode)) {
+            return res.status(400).json({ error: 'Event code is already added to the user profile' });
+        }
+
+        user.createdEvents.push(eventcode);
+        await user.save();
+
+        res.status(200).json({ message: 'Event added to user successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+export const addnewhostotevent = async (req, res) => {
+    const { eventcode, hostEmail } = req.body;
+
+    try {
+        const event = await EventModel.findOne({ eventcode });
+        const email = await UserModel.findOne({ email: hostEmail })
+
+        if (!event) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        if (event.eventcreatedby.includes(hostEmail)) {
+            return res.status(400).json({ error: 'Host email is already added to the event' });
+        }
+        if(!email){
+            return res.status(404).json({ error: 'Host not found' });
+        }
+        event.eventcreatedby.push(hostEmail);
+        await event.save();
+
+        res.status(200).json({ message: 'Host added to event successfully' });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

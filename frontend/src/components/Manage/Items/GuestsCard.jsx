@@ -70,7 +70,9 @@ const GuestsCard = () => {
           <div className="flex w-full items-center justify-between">
             <h1 className="text-start text-xl">Guest List</h1>
             <div className="flex gap-2 items-center">
-              <Link to="checkin" className='px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5'>
+
+              <Link to={`/manage/${id}/checkin`} className='px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5'>
+
                 Scan
                 <PiExport className='ml-2 text-2xl' />
               </Link>

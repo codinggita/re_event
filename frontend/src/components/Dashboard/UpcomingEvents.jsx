@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EventCard from './EventCard';
 import NoEvents from './NoEvents';
-import axios from 'axios';
-import { toast } from 'sonner';
 
 const formatDate = (dateString) => {
   const options = { day: 'numeric', month: 'short', year: 'numeric' };
@@ -10,35 +8,7 @@ const formatDate = (dateString) => {
   return formattedDate;
 };
 
-const UpcomingEvents = () => {
-  const [events, setEvents] = useState([]);
-  const [upcomingEvents, setUpcomingEvents] = useState([]);
-  const [pastEvents, setPastEvents] = useState([]);
-
-  useEffect(() => {
-    const getAllEvents = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/events/getevents');
-        setEvents(response.data);
-        separateEvents(response.data);
-      } catch (error) {
-        console.error('Error:', error);
-        toast.error('Failed to fetch events');
-      }
-    };
-
-    getAllEvents();
-  }, []);
-
-  const separateEvents = (events) => {
-    const today = new Date();
-
-    const upcoming = events.filter(event => new Date(event.eventdate) > today);
-    const past = events.filter(event => new Date(event.eventdate) <= today);
-
-    setUpcomingEvents(upcoming);
-    setPastEvents(past);
-  };
+const UpcomingEvents = ({ upcomingEvents }) => {
 
   const groupEventsByDate = (events) => {
     const groupedEvents = {};
@@ -72,7 +42,8 @@ const UpcomingEvents = () => {
 
   const groupedUpcomingEvents = groupEventsByDate(upcomingEvents);
   const sortedUpcomingEvents = sortEventsByDate(groupedUpcomingEvents);
-
+  // console.log('sortedUpcomingEvents', sortedUpcomingEvents);
+  // console.log(sortedUpcomingEvents.length)
   return (
     <>
       <div className="w-full flex flex-col items-center justify-center">

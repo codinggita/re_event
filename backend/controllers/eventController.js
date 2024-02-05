@@ -152,7 +152,6 @@ export const registerUserForEvent = async (req, res) => {
 export const deleteEvent = async (req, res) => {
     try {
         const { id } = req.params;
-
         const deletedEvent = await EventModel.findOneAndDelete({ eventcode: id });
 
         if (!deletedEvent) {

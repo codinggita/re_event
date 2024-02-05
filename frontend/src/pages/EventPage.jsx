@@ -74,6 +74,7 @@ const EventPage = () => {
         const eventData = response.data;
 
         setEvent(eventData);
+        console.log(eventData);
         setQuestions(eventData.questions);
       } catch (error) {
         console.error("Error:", error);

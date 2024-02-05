@@ -18,7 +18,7 @@ const EventSchema = new mongoose.Schema({
         type: String
     },
     eventcreatedby: {
-        type: String,
+        type: [String],
     },
     eventcode:{
         type: String

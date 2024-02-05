@@ -20,6 +20,7 @@
     "js-cookie": "^3.0.5",
     "modern-react-qr-reader": "^1.0.12",
     "nanoid": "^5.0.4",
+    "qrcode": "^1.5.3",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-cookie": "^7.0.2",

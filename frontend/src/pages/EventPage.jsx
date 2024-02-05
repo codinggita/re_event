@@ -10,9 +10,10 @@ import { FaXmark } from "react-icons/fa6";
 import { toast } from "sonner";
 import axios from "axios";
 import Cookies from "js-cookie";
-import QRCode from "react-qr-code";
+// import QRCode from "react-qr-code";
 import { IoTicketOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import QRCode from "qrcode";
 
 const EventPage = () => {
   const { RegisterClick, setRegisterClick } = useMainDashContext();
@@ -33,7 +34,6 @@ const EventPage = () => {
   // console.log(id);
 
   let qrCodeRef = React.createRef();
-
 
   // useEffect(() => {
   //   const trackEventView = async () => {
@@ -86,7 +86,6 @@ const EventPage = () => {
   }, [id]);
 
   const handleApiEventCall = async () => {
-
     const loadingPromise = toast.promise(
       new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -111,22 +110,6 @@ const EventPage = () => {
           .catch((error) => {
             reject(error);
           });
-
-        // axios
-        //   .post(http://localhost:3000/events/registerUserForEvent/${id}, {
-        //     userid: _id,
-        //     email: _umail,
-        //   })
-        // .then((response) => {
-        //   if (response.status === 200) {
-        //     resolve("Registered for the event successfully");
-        //   } else if (response.status === 205) {
-        //     reject(new Error("You are already registered for this event"));
-        //   }
-        // })
-        // .catch((error) => {
-        //   reject(error);
-        // });
       }),
       {
         loading: "Loading...",
@@ -156,7 +139,7 @@ const EventPage = () => {
         );
 
         if (response.status === 200) {
-          console.log(response.data.qrUniqueCode)
+          console.log(response.data.qrUniqueCode);
           setQrHash(response.data.qrUniqueCode);
           setRegisterCheck(true);
           console.log("You are already registered for this event");
@@ -197,11 +180,9 @@ const EventPage = () => {
     // document.body.removeChild(downloadLink);
   };
 
-
   return (
     <>
       <div className="w-full flex justify-center">
-
         <div
           className={
             RegisterClick
@@ -232,11 +213,18 @@ const EventPage = () => {
                     </h1>
                     <div className="w-full px-8 py-4">
                       <h1 className="text-gray-200/80 items-center flex flex-row gap-2">
-                        <img src="https://picsum.photos/200" alt="car" className="w-10 h-10 object-cover rounded-full" />
+                        <img
+                          src="https://picsum.photos/200"
+                          alt="car"
+                          className="w-10 h-10 object-cover rounded-full"
+                        />
                         <span className="flex flex-col">
                           You are signed in as{" "}
                           <span className="font-semibold">
-                            <span className="text-sm md:text-lg text-white/80"> {_umail} </span>
+                            <span className="text-sm md:text-lg text-white/80">
+                              {" "}
+                              {_umail}{" "}
+                            </span>
                           </span>
                         </span>
                       </h1>
@@ -247,7 +235,10 @@ const EventPage = () => {
                         <div>Loading...</div>
                       ) : registerCheck ? (
                         isUserEvent ? (
-                          <Link to={`/manage/${id}`} className="bg-zinc-100 rounded-lg text-center text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80">
+                          <Link
+                            to={`/manage/${id}`}
+                            className="bg-zinc-100 rounded-lg text-center text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+                          >
                             Manage Your Event
                           </Link>
                         ) : (
@@ -255,32 +246,45 @@ const EventPage = () => {
                             Download Your RSVP
                           </button>
                         )
+                      ) : isUserEvent ? (
+                        <Link
+                          to={`/manage/${id}`}
+                          className="bg-zinc-100 rounded-lg text-center text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+                        >
+                          Manage Your Event
+                        </Link>
                       ) : (
-                        isUserEvent ? (
-                          <Link to={`/manage/${id}`} className="bg-zinc-100 rounded-lg text-center text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80">
-                            Manage Your Event
-                          </Link>
-                        ) : (
-                          < button
-                            className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
-                            onClick={handleSubmit}
-                          >
-                            Click to Register
-                          </button>
-                        )
+                        <button
+                          className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+                          onClick={handleSubmit}
+                        >
+                          Click to Register
+                        </button>
                       )}
                     </div>
                   </div>
                 </>
 
                 <AboutComponent description={event.description} />
-                <QRCode
+                {/* <QRCode
                   size={256}
                   style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                   value={qrHash}
                   viewBox={`0 0 256 256`}
 
-                />
+                /> */}
+                <button
+                  className="bg-white text-black"
+                  onClick={async () => {
+                    const response = await QRCode.toDataURL(qrHash);
+                    const a = document.createElement("a");
+                    a.href = response;
+                    a.download = `${event.eventname}_EventPass.png`;
+                    a.click();
+                  }}
+                >
+                  Download QR Code
+                </button>
               </div>
             </div>
             {/* <RegisterQuestionComponent /> */}
@@ -343,7 +347,7 @@ const EventPage = () => {
             />
           </div>
         )}
-      </div >
+      </div>
     </>
   );
 };

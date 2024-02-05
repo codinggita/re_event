@@ -27,6 +27,7 @@
         "nodemailer-express-handlebars": "^6.1.0",
         "nodemon": "^3.0.3",
         "otp-generator": "^4.0.1",
+        "qrcode": "^1.5.3",
         "react-html-email": "^3.0.0"
     }
 }

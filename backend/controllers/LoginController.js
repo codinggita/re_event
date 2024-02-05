@@ -5,6 +5,7 @@ import UserModel from '../models/User.js';
 
 
 
+
 import jwt from 'jsonwebtoken';
 // export { jwt };
 async function sendVerificationEmail(email, otp) {

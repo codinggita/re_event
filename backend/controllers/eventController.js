@@ -3,7 +3,10 @@ import UserModel from '../models/User.js';
 import { nanoid } from 'nanoid';
 import { ObjectId } from 'mongodb';
 import bcrypt from 'bcrypt';
-
+import QRCode from 'qrcode';
+import nodemailer from 'nodemailer';
+import fs from 'fs';
+import path from 'path';
 
 export const heyyo = async (req, res) => {
     res.send('Heyyo wassup!');
@@ -190,33 +193,7 @@ export const checkregisterevent = async (req, res) => {
     }
 };
 
-// export const checkregisterevent = async (req, res) => {
-//     const { eventcode } = req.params;
-//     const { userid, email } = req.body;
 
-//     try {
-//         // Find the user by ID
-//         const user = await UserModel.findOne({ _id: userid });
-
-//         // Check if the user is found
-//         if (!user) {
-//             return res.status(206).json({ error: 'User not found.' });
-//         }
-
-//         // Check if the event is already registered
-//         if (user.registeredEvents.some(event => event.eventcode === eventcode)) {
-//             return res.status(205).json({ message: 'User is already registered for this event.' });
-//         }
-
-//         // Update the user model to add the registered event
-//         // await UserModel.updateOne({ _id: userid }, { $push: { registeredEvents: { eventcode } } });
-
-//         res.status(200).json({ message: 'Successfully registered for event!' });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// };
 
 export const neweventAddUser = async (req, res) => {
     const { eventcode } = req.params;
@@ -279,6 +256,8 @@ export const neweventAddUser = async (req, res) => {
             );
 
             if (updatedUser.modifiedCount > 0) {
+                const qrCodeDataUrl = await QRCode.toDataURL(hashedQRCode);
+                sendRSVPEmail(email, event, qrCodeDataUrl);
                 res.status(200).json({ message: 'User registered for the event successfully', hashedQRCode });
             } else {
                 // Handle the case where the User model update failed
@@ -292,6 +271,70 @@ export const neweventAddUser = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+const sendRSVPEmail = async (userEmail, eventDetails, qrCodeDataUrl) => {
+    const currentModuleURL = new URL(import.meta.url);
+    const currentDirPath = path.dirname(currentModuleURL.pathname);
+
+    // Construct the path to the HTML template
+    const templatePath = path.join(currentDirPath, 'eventTemplate', 'index.html');
+
+    const htmlContent = fs.readFileSync(templatePath, 'utf-8');
+
+    // ... Existing email setup code
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'top10world1210@gmail.com',
+          pass: 'izgm dfzw vxri uajf',
+        },
+      });
+    const mailOptions = {
+        from: 'your-email@gmail.com',
+        to: userEmail,
+        subject: 'RSVP Pass and Event Details',
+        html: `
+            <p>Congratulations! You have successfully registered for the event.</p>
+            <p>Event Name: ${eventDetails.eventname}</p>
+            <p>Event Date: ${eventDetails.eventdate}</p>
+            <p>Event Time: ${eventDetails.eventtime}</p>
+            <!-- Add more event details as needed -->
+        `,
+        attachments: [
+            {
+                filename: 'code.png', // Change the filename if needed
+                content: htmlContent,
+                encoding: 'utf-8',
+            },
+            {
+                filename: 'QR_Code.png',
+                content: qrCodeDataUrl.split('base64,')[1],
+                encoding: 'base64',
+            },
+        ],
+    };
+
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Email sent:', info.response);
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const checkuserev = async (req, res) => {
     const { eventcode, userId } = req.params;
@@ -448,6 +491,7 @@ export const getcheckinusers = async (req, res) => {
 
 
         res.status(200).json(approvedUsers);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -501,6 +545,7 @@ export const addnewhostotevent = async (req, res) => {
         await event.save();
 
         res.status(200).json({ message: 'Host added to event successfully' });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

@@ -8,6 +8,7 @@ import GuestListItem from "./GuestListItem";
 import GuestDetailsPopup from "./GuestDetailsPopup";
 import QrReader from "modern-react-qr-reader";
 import axios from "axios";
+import { CSVLink } from "react-csv";
 
 const Checkin = () => {
   const { id } = useParams();
@@ -15,6 +16,7 @@ const Checkin = () => {
   const [isScanModalOpen, setScanModalOpen] = useState(false);
   const [data, setData] = useState(null);
   const [guestsData, setGuestsData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (data === null) return;
@@ -67,88 +69,25 @@ const Checkin = () => {
     setScanModalOpen(false);
   };
 
-  const guests = [
-    {
-      name: "Takeshi Goda",
-      email: "test@mail.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Sasuke",
-      email: "test@mail.com",
-      time: "15:30 PM",
-    },
-    {
-      name: "Alexandar Christie",
-      email: "mail@test.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Adolf Hitler",
-      email: "nuclear@bomb.com",
-      time: "12:00 PM",
-    },
-    {
-      name: "Takeshi Goda",
-      email: "test@mail.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Sasuke",
-      email: "test@mail.com",
-      time: "15:30 PM",
-    },
-    {
-      name: "Alexandar Christie",
-      email: "mail@test.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Adolf Hitler",
-      email: "nuclear@bomb.com",
-      time: "12:00 PM",
-    },
-    {
-      name: "Takeshi Goda",
-      email: "test@mail.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Sasuke",
-      email: "test@mail.com",
-      time: "15:30 PM",
-    },
-    {
-      name: "Alexandar Christie",
-      email: "mail@test.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Adolf Hitler",
-      email: "nuclear@bomb.com",
-      time: "12:00 PM",
-    },
-    {
-      name: "Takeshi Goda",
-      email: "test@mail.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Sasuke",
-      email: "test@mail.com",
-      time: "15:30 PM",
-    },
-    {
-      name: "Alexandar Christie",
-      email: "mail@test.com",
-      time: "10:30 AM",
-    },
-    {
-      name: "Adolf Hitler",
-      email: "nuclear@bomb.com",
-      time: "12:00 PM",
-    },
-  ];
+
+  const filteredGuests = guestsData && guestsData.filter((guest) => {
+    return (
+      guest.email && guest.email.toLowerCase().includes(searchQuery.toLowerCase())
+    )}
+  );
+  console.log(filteredGuests);
+  const exportData = {
+    filename: "guests.csv",
+    data: guestsData.map((guest) => ({
+      Name: guest.name,
+      Email: guest.email,
+      Time: guest.registeredDate,
+      userid: guest.userid,
+      approveStatus: guest.approveStatus,
+      checkinStatus: guest.checkinStatus,
+    })),
+  };
+
 
   const handleScan = async (data) => {
     if (data) {
@@ -168,12 +107,11 @@ const Checkin = () => {
   return (
     <>
       <div
-        className={`${
-          selectedGuest ? "fixed" : ""
-        } w-full flex p-12 justify-center`}
+        className={`${selectedGuest ? "fixed" : ""
+          } w-full flex p-12 justify-center`}
       >
         <Link
-          to="/"
+          to={`/manage/${id}`}
           className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"
         >
           <RiBox3Fill className="text-2xl transform mr-2 group-hover:rotate-180 transition-all " />
@@ -186,13 +124,10 @@ const Checkin = () => {
           <div className="flex items-center justify-between w-full">
             <p>Check in Guests - {id} </p>
             <div className="flex gap-2">
-              <Link
-                to={`/manage/${id}`}
-                className="px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5"
-              >
+              <CSVLink {...exportData} className="px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5">
                 Export
-                <PiExport className="ml-2 text- xl" />
-              </Link>
+                <PiExport className="ml-2 text-xl" />
+              </CSVLink>
               <button
                 onClick={openScanModal}
                 className="px-6 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black flex items-center transition-all text-center py-1.5"
@@ -210,19 +145,21 @@ const Checkin = () => {
                 type="text"
                 className="w-full px-4 py-1.5 my-3 text-zinc-200 rounded-lg outline-none focus:border border-[1px] border-zinc-200/20 bg-zinc-800"
                 placeholder="Search in guests ..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
 
-            {guestsData &&
-              guestsData.map((guest, index) => (
-                <div key={index} onClick={() => handleGuestItemClick(guest)}>
-                  <GuestListItem
-                    name={guest.name}
-                    email={guest.email}
-                    time={guest.time}
-                  />
-                </div>
-              ))}
+            {filteredGuests.map((guest, index) => (
+              <div key={index} onClick={() => handleGuestItemClick(guest)}>
+                <GuestListItem
+                  name={guest.name}
+                  email={guest.email}
+                  time={guest.time}
+                  status={guest.approveStatus}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -8,8 +8,8 @@ const HostDetails = (props) => {
         return null;
     }
 
-    const username = host.split('@')[0];
-    const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1);
+    // const username = host.split('@')[0];
+    // const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1);
 
     return (
         <>
@@ -18,7 +18,7 @@ const HostDetails = (props) => {
                 <hr className='w-[95%] opacity-50 bg-zinc-200' />
                 <h1 className="text-gray-200/80 items-center mt-2 p-2 w-full flex flex-row gap-2">
                     <img src="https://source.unsplash.com/random" className="w-8 h-8 rounded-full cursor-pointer border-2" />
-                    {capitalizedUsername}
+                    {host}
                 </h1>
                 {/* <h1 className="text-gray-200/80 items-center p-2 w-full flex flex-row gap-2">
                     <span className='p-4 bg-purple-300 rounded-full'></span>

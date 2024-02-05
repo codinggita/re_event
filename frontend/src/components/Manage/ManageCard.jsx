@@ -1,5 +1,5 @@
 import React from 'react'
-import { IoPeople, IoLocationOutline,IoPersonSharp  } from "react-icons/io5";
+import { IoPeople, IoLocationOutline, IoPersonSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
@@ -8,9 +8,9 @@ import { useMainDashContext } from "../../context/AppContext";
 
 
 const ManageCard = (props) => {
-    const {image,id, eventname, time, location, organiser, description } = props
+    const { image, id, eventname, time, location, organiser, description } = props
     const { setManagetab } = useMainDashContext();
-
+    console.log(organiser)
     return (
         <>
             <div className="w-[99%] md:flex-row flex-col transition-all hover:border hover:border-zinc-400/40 border border-zinc-800 shadow-zinc-800 rounded-2xl  m-2 gap-4 bg-zinc-800 p-8 flex">
@@ -36,15 +36,19 @@ const ManageCard = (props) => {
                             </div>
                         </div>
                         <div className="flex w-full  items-center shadow-gray-200/20 gap-3 justify-start p-2 rounded-lg">
-                            <IoPersonSharp  className='border border-gray-200/40 p-2 rounded-xl text-4xl' />
+                            <IoPersonSharp className='border border-gray-200/40 p-2 rounded-xl text-4xl' />
                             <div className="flex flex-col">
-                                <h1 className='text-md font-semibold'>by {organiser}</h1>
+                                <h1 className='text-md flex flex-col'>by
+                                    {organiser.map((organizer, index) => (
+                                        <span className='text-md' key={index}>{index + 1} : {organizer}</span>
+                                    ))}
+                                    </h1>
                             </div>
                         </div>
                     </div>
 
                     <div className="flex w-full gap-2 items-center">
-                        <p className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1' onClick={()=>setManagetab('EditEvent')}>Edit Event</p>
+                        <p className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1' onClick={() => setManagetab('EditEvent')}>Edit Event</p>
                         <Link to={`/manage/${id}/checkin`} className='w-1/2 bg-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-100/80 hover:text-black transition-all text-center py-1'>Check-in</Link>
                     </div>
                 </div>

@@ -39,7 +39,7 @@ const ManageCard = (props) => {
                             <IoPersonSharp className='border border-gray-200/40 p-2 rounded-xl text-4xl' />
                             <div className="flex flex-col">
                                 <h1 className='text-md flex flex-col'>by
-                                    {organiser.map((organizer, index) => (
+                                    {organiser && organiser.map((organizer, index) => (
                                         <span className='text-md' key={index}>{index + 1} : {organizer}</span>
                                     ))}
                                     </h1>

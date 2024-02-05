@@ -79,7 +79,6 @@ const Checkin = () => {
   const exportData = {
     filename: "guests.csv",
     data: guestsData.map((guest) => ({
-      Name: guest.name,
       Email: guest.email,
       Time: guest.registeredDate,
       userid: guest.userid,

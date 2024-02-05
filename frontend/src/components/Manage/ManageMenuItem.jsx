@@ -11,7 +11,9 @@ const ManageMenuItem = (props) => {
     <>
       <div
         className={`${
-          managetab === tab ? " border-b-2 border-white text-white flex items-center" : "text-white/50 flex items-center"
+          managetab === tab
+            ? " border-b-2 border-white text-white flex items-center"
+            : "text-white/50 flex items-center"
         }flex items-center cursor-pointer  hover:border-b-2 hover:border-white hover:text-white  transition-all py-1 px-2     gap-2 `}
         onClick={() => handleTabClick(tab)}
       >

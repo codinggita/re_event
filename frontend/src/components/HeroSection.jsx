@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import arrow from '../assets/arrow.png'
+import arrow from '../assets/arrow.png';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   const token = Cookies.get("user");
@@ -37,7 +38,11 @@ const HeroSection = () => {
               )}
             </div>
           </div>
-          <div className="flex w-full lg:w-1/2 flex-col gap-4 lg:p-2">
+          <motion.div className="flex w-full lg:w-1/2 flex-col gap-4 lg:p-2"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
             <div className="flex gap-3 w-full">
               <div className="w-1/3 rounded-2xl bg-pink-200 hover:bg-pink-600 transition-all cursor-pointer hover:scale-95 p-20"></div>
               <div className="w-2/3 rounded-2xl bg-yellow-200 hover:bg-yellow-600 transition-all cursor-pointer hover:scale-95 p-10"></div>
@@ -50,7 +55,7 @@ const HeroSection = () => {
               <div className="w-1/4 rounded-2xl bg-purple-200 hover:bg-purple-600 transition-all cursor-pointer hover:scale-95 p-10"></div>
               <div className="w-3/4 rounded-2xl bg-red-200 hover:bg-red-600 transition-all cursor-pointer hover:scale-95 p-20"></div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

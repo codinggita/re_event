@@ -1,0 +1,11 @@
+.background-blur {
+    position: absolute;
+    top: 10;
+    left: 50px;
+    z-index: 0;
+    background: linear-gradient(to bottom right, rgba(254, 33, 33, 0.199), rgba(255, 102, 102, 0.173));
+    backdrop-filter: blur(40px);
+    /* -webkit-blur(40px); */
+    border-radius: 20px; /* Adjust the radius as needed */
+  }
+  

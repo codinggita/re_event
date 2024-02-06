@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import Cookies from 'js-cookie';
 
 const MoreCard = () => {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ const MoreCard = () => {
   const [open, setOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const email = Cookies.get('user');
+  const user = JSON.parse(email);
+  const email1 = user?.decodedjwt?.email;
 
   const handleDeleteEvent = async () => {
     try {

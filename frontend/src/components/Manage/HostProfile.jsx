@@ -38,14 +38,10 @@ const HostProfile = (props) => {
     const handleInviteHost = async () => {
         try {
             const response = await axios.post('http://localhost:3000/events/addneweventtohost', { userEmail: email, eventcode: id });
-            
+
             if (response.data.message) {
                 toast.success(response.data.message);
-                
-                // Fetch updated hosts after successful invite
-                // You can replace the following line with the logic to fetch hosts and update the state
-                // const updatedHosts = fetchUpdatedHosts(); 
-                // setHosts(updatedHosts);
+                setEmail('');
             }
         } catch (error) {
             console.error(error);
@@ -54,14 +50,10 @@ const HostProfile = (props) => {
 
         try {
             const response = await axios.post('http://localhost:3000/events/addnewhostotevent', { eventcode: id, hostEmail: email });
-            
+
             if (response.data.message) {
                 toast.success(response.data.message);
                 
-                // Fetch updated hosts after successful invite
-                // You can replace the following line with the logic to fetch hosts and update the state
-                // const updatedHosts = fetchUpdatedHosts(); 
-                // setHosts(updatedHosts);
             }
         } catch (error) {
             console.error(error);
@@ -74,7 +66,7 @@ const HostProfile = (props) => {
             <p className='text-lg text-start mb-4 w-full'>Host:</p>
             <div className="w-full bg-zinc-800 rounded-xl items-start flex flex-wrap gap-5 p-6">
                 {hosts.map((host, index) => (
-                    <HostCard key={index} email={host   } />
+                    <HostCard key={index} email={host} />
                 ))}
                 <div className="flex flex-col md:flex-row gap-2 items-center justify-between w-full">
                     <div className="flex gap-3 items-center">
@@ -84,14 +76,16 @@ const HostProfile = (props) => {
                             <p className='text-xs md:text-sm text-start w-full'>Enter email address to add more hosts and managers</p>
                         </div>
                     </div>
-                    <input
-                        type="text"
-                        placeholder='Enter email address'
-                        className='bg-zinc-700 outline-none border border-zinc-600 rounded-lg p-2 w-full md:w-1/2'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <button onClick={handleInviteHost}>Invite Host</button>
+                    <div className="w-full md:w-1/2 flex items-center gap-2">
+                        <input
+                            type="text"
+                            placeholder='Enter email address'
+                            className='bg-zinc-700 outline-none border border-zinc-600 rounded-lg p-2 w-4/5'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <button onClick={handleInviteHost} className='bg-zinc-200 text-black px-2 py-2 w-1/5 rounded-xl'>Invite Host</button>
+                    </div>
                 </div>
             </div>
         </div>

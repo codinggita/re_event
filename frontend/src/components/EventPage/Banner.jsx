@@ -19,7 +19,9 @@ const Banner = (props) => {
             <h1 className="text-2xl md:text-3xl md:py-0 py-3 font-semibold">{eventname}</h1>
             <h1 className="text-sm md:text-lg font-light flex items-center gap-2">
               <span className="p-3 bg-pink-200 rounded-full"></span>by{" "}
-              {organiser}
+              {organiser && organiser.map((organizer, index) => (
+                <span className='text-xs' key={index}> {organizer}</span>
+              ))}
             </h1>
           </div>
           <h1 className="text-xl md:flex hidden font-medium p-3">{time}</h1>

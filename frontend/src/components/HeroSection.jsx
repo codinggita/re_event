@@ -17,7 +17,7 @@ const HeroSection = () => {
                 Plan your events.
               </span>
             </h1>
-            <div className="flex flex-row  items-center gap-4">
+            <div className="flex flex-row  items-start gap-4">
               <div className="flex gap-4 items-start">
                 <img src={arrow} className="w-24 " />
                 <Link
@@ -59,3 +59,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

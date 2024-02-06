@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import classnames from "classnames";
 
 const CreateNew = (props) => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ const CreateNew = (props) => {
       console.log(response);
       console.log("Event created:", response.data);
       toast.success("Event created successfully");
-      console.log(response.data)
+      console.log(response.data);
       addEventToCreatorUser(email1, response.data.eventcode);
       navigate(`/manage/${response.data.eventcode}`);
 
@@ -107,13 +108,10 @@ const CreateNew = (props) => {
 
   const addEventToCreatorUser = async (creatorId, eventcode) => {
     try {
-      await axios.post(
-        "http://localhost:3000/events/addeventtocreatoruser",
-        {
-          creatorId,
-          eventcode,
-        }
-      );
+      await axios.post("http://localhost:3000/events/addeventtocreatoruser", {
+        creatorId,
+        eventcode,
+      });
       console.log("Event added to the creator user successfully");
     } catch (error) {
       console.error("Error adding event to creator user:", error);
@@ -126,9 +124,22 @@ const CreateNew = (props) => {
       [field]: value,
     });
   };
+
+  const [currentTheme, setCurrentTheme] = useState({
+    fromColor: "white/50",
+    toColor: "pink-500",
+  });
+
+  const changeTheme = (fromColor, toColor) => {
+    setCurrentTheme({ fromColor, toColor });
+  };
+
   return (
     <>
-      <div className={`z-[100] flex flex-col justify-start  w-[100%]  `}>
+      <div
+        className={`z-[100] flex flex-col justify-start w-full 
+        `}
+      >
         <Link
           to="/dashboard"
           className="text-xl items-center  group font-semibold hidden fixed top-[5rem]  -left-6 md:flex -rotate-90"
@@ -148,7 +159,7 @@ const CreateNew = (props) => {
           >
             <div
               id="heroSection"
-              className={`bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl h-[200px] md:h-[500px] relative bg-cover`}
+              className={`bg-gradient-to-r from-${currentTheme.fromColor} to-${currentTheme.toColor} rounded-xl h-[200px] md:h-[500px] relative bg-cover`}
             >
               {/* ... existing code ... */}
               <input
@@ -167,6 +178,26 @@ const CreateNew = (props) => {
                   Change Cover Photo
                 </h1>
               </label>
+
+              <div className="absolute bottom-10  right-10 flex  items-center gap-2 ">
+                <div
+                  className="w-8 h-8 rounded-full border-2 border-gray-700 cursor-pointer bg-gradient-to-r from-amber-500 to-pink-500"
+                  onClick={() => {
+                    changeTheme("amber-500", "pink-500");}}
+                ></div>
+                <div
+                  className="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-700 bg-gradient-to-r from-blue-500 to-green-500"
+                  onClick={() => changeTheme("blue-500", "green-500")}
+                ></div>
+                <div
+                  className="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-700 bg-gradient-to-r from-purple-500 to-indigo-500"
+                  onClick={() => changeTheme("purple-500", "indigo-500")}
+                ></div>
+                <div
+                  className="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-700 bg-gradient-to-r from-red-500 to-yellow-500"
+                  onClick={() => changeTheme("red-500", "yellow-500")}
+                ></div>
+              </div>
             </div>
 
             <div className=" w-full md:w-[90%] p-5 flex flex-col   gap-5">
@@ -196,7 +227,7 @@ const CreateNew = (props) => {
                   suppressContentEditableWarning={true}
                   placeholder="Enter Your Event Description"
                   onChange={(e) => handleChange("description", e.target.value)}
-                // Enter Your Event Description
+                  // Enter Your Event Description
                 />
               </div>
             </div>

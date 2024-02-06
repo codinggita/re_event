@@ -261,6 +261,12 @@ const EventPage = () => {
                           Click to Register
                         </button>
                       )}
+                       <button
+                          className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
+                          onClick={handleSubmit}
+                        >
+                          Click to Register
+                        </button>
                     </div>
                   </div>
                 </>

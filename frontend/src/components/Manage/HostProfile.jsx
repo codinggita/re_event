@@ -42,10 +42,6 @@ const HostProfile = (props) => {
             if (response.data.message) {
                 toast.success(response.data.message);
                 setEmail('');
-                // Fetch updated hosts after successful invite
-                // You can replace the following line with the logic to fetch hosts and update the state
-                // const updatedHosts = fetchUpdatedHosts(); 
-                // setHosts(updatedHosts);
             }
         } catch (error) {
             console.error(error);
@@ -57,11 +53,7 @@ const HostProfile = (props) => {
 
             if (response.data.message) {
                 toast.success(response.data.message);
-
-                // Fetch updated hosts after successful invite
-                // You can replace the following line with the logic to fetch hosts and update the state
-                // const updatedHosts = fetchUpdatedHosts(); 
-                // setHosts(updatedHosts);
+                
             }
         } catch (error) {
             console.error(error);

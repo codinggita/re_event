@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { FaImages } from "react-icons/fa6";
+// const {FaImages} = lazy(() => import("react-icons/fa6"));
 import { FaGlobeAmericas } from "react-icons/fa";
 import { MdOutlineComputer } from "react-icons/md";
 import { IoIosVideocam } from "react-icons/io";
@@ -169,21 +170,24 @@ const CreateNew = (props) => {
                 className="hidden"
                 onChange={handleImage}
               />
-              <label
-                htmlFor="coverPhotoInput"
-                className="bg-[#212325]/80 bottom-10 left-10 cursor-pointer group gap-5 p-5 h-[2.5rem] backdrop-blur-xl rounded-md border border-gray-500 flex items-center pl-3 absolute"
-              >
-                <FaImages className="text-white/80 text-xl group-hover:text-white" />
-                <h1 className="font-bold text-white/80 group-hover:text-white">
-                  Change Cover Photo
-                </h1>
-              </label>
+              <Suspense>
+                <label
+                  htmlFor="coverPhotoInput"
+                  className="bg-[#212325]/80 bottom-10 left-10 cursor-pointer group gap-5 p-5 h-[2.5rem] backdrop-blur-xl rounded-md border border-gray-500 flex items-center pl-3 absolute"
+                >
+                  <FaImages className="text-white/80 text-xl group-hover:text-white" />
+                  <h1 className="font-bold text-white/80 group-hover:text-white">
+                    Change Cover Photo
+                  </h1>
+                </label>
+              </Suspense>
 
               <div className="absolute bottom-10  right-10 flex  items-center gap-2 ">
                 <div
                   className="w-8 h-8 rounded-full border-2 border-gray-700 cursor-pointer bg-gradient-to-r from-amber-500 to-pink-500"
                   onClick={() => {
-                    changeTheme("amber-500", "pink-500");}}
+                    changeTheme("amber-500", "pink-500");
+                  }}
                 ></div>
                 <div
                   className="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-700 bg-gradient-to-r from-blue-500 to-green-500"
@@ -227,7 +231,7 @@ const CreateNew = (props) => {
                   suppressContentEditableWarning={true}
                   placeholder="Enter Your Event Description"
                   onChange={(e) => handleChange("description", e.target.value)}
-                  // Enter Your Event Description
+                // Enter Your Event Description
                 />
               </div>
             </div>

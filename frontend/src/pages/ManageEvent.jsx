@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa6";
-import Overview from "../components/Manage/Items/Overview";
-import Guests from "../components/Manage/Items/GuestsCard";
-import Analytics from "../components/Manage/Items/Analytics";
-import MoreCard from "../components/Manage/Items/MoreCard";
-import EditEvent from "../components/Manage/Items/EditEvent";
-import Questions from "../components/Manage/Items/Questions";
+const Overview = lazy(() => import("../components/Manage/Items/Overview"));
+const Guests = lazy(() => import("../components/Manage/Items/GuestsCard"));
+const Analytics = lazy(() => import("../components/Manage/Items/Analytics"));
+const MoreCard = lazy(() => import("../components/Manage/Items/MoreCard"));
+const EditEvent = lazy(() => import("../components/Manage/Items/EditEvent"));
+const Questions = lazy(() => import("../components/Manage/Items/Questions"));
 import { useMainDashContext } from "../context/AppContext";
 import ManageMenuItem from "../components/Manage/ManageMenuItem";
 import Header from "../components/EventConform/Header";
@@ -41,25 +40,25 @@ const ManageEvent = () => {
   console.log(_umail);
   const [isUserEvent, setIsUserEvent] = useState(false);
   const { id } = useParams();
-    useEffect(() => {
-      const getuserEvents = async () => {
-        try {
-          const response = await axios.get(
-            `http://localhost:3000/events/geteventsbyuserid/${_umail}`
-          );
-          const userEvents = response.data.createdEvents;
-          const isthis = userEvents.some((event) => event === id);
-          setIsUserEvent(isthis);
-          console.log(isthis);
-          if (!isthis) {
-            navigate("/dashboard");
-          }
-        } catch (error) {
-          console.error("Error:", error);
+  useEffect(() => {
+    const getuserEvents = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/geteventsbyuserid/${_umail}`
+        );
+        const userEvents = response.data.createdEvents;
+        const isthis = userEvents.some((event) => event === id);
+        setIsUserEvent(isthis);
+        console.log(isthis);
+        if (!isthis) {
+          navigate("/dashboard");
         }
-      };
-      getuserEvents();
-    }, []);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    getuserEvents();
+  }, []);
   return (
     <>
       {isUserEvent && (
@@ -108,7 +107,9 @@ const ManageEvent = () => {
               </Sticky>
             </div>
             <div className="w-full md:w-3/4 px-8  md:px-0 flex flex-col">
-              {ActiveComponent && <ActiveComponent />}
+              <Suspense fallback={<div className="w-full h-full flex items-center justify-center">Loading...</div>}>
+                {ActiveComponent && <ActiveComponent />}
+              </Suspense>
             </div>
           </div>
         // </div>

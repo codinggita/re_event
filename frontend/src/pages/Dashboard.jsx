@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useMainDashContext } from '../context/AppContext';
-import PastEvents from '../components/Dashboard/PastEvents';
-import UpcomingEvents from '../components/Dashboard/UpcomingEvents';
+const UpcomingEvents = lazy(() => import('../components/Dashboard/UpcomingEvents'));
+const PastEvents = lazy(() => import('../components/Dashboard/PastEvents'));
 import axios from 'axios';
 import { toast } from 'sonner';
 
@@ -118,11 +118,13 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <Suspense fallback={<div className='w-full flex items-center justify-center h-full'>Loading...</div>}>
 
-      {ActiveComponent && <ActiveComponent 
-        upcomingEvents={upcomingEvents} 
-        pastEvents={pastEvents} 
-      />}
+        {ActiveComponent && <ActiveComponent
+          upcomingEvents={upcomingEvents}
+          pastEvents={pastEvents}
+        />}
+      </Suspense>
 
     </>
   );

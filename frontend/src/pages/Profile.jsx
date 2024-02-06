@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useMainDashContext } from '../context/AppContext';
-import MyEvents from '../components/ProfileItems/MyEvents';
-import Settings from '../components/ProfileItems/SettingsItem';
-
+const MyEvents = lazy(() => import('../components/ProfileItems/MyEvents'));
+const Settings = lazy(() => import('../components/ProfileItems/SettingsItem'));
 const components = {
   MyEvents: MyEvents,
   Settings: Settings
@@ -51,26 +50,28 @@ const Profile = () => {
                 onClick={() => setUserprofilemenu('MyEvents')}
                 className={` ${userProfileMenu === 'MyEvents' ? 'border-b-2 border-zinc-100 font-semibold' : ''}  px-4 text-lg py-1 text-center focus:outline-none`}
               >
-              My Events
-            </button>
-            <button
-              onClick={() => setUserprofilemenu('MyTickets')}
-              className={` ${userProfileMenu === 'MyTickes' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-lg py-1 text-center focus:outline-none `}
-            >
-              My Tickets
-            </button>
-            <button
-              onClick={() => setUserprofilemenu('Settings')}
-              className={` ${userProfileMenu === 'Settings' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-lg py-1 text-center focus:outline-none `}
-            >
-              Settings
-            </button>
+                My Events
+              </button>
+              <button
+                onClick={() => setUserprofilemenu('MyTickets')}
+                className={` ${userProfileMenu === 'MyTickes' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-lg py-1 text-center focus:outline-none `}
+              >
+                My Tickets
+              </button>
+              <button
+                onClick={() => setUserprofilemenu('Settings')}
+                className={` ${userProfileMenu === 'Settings' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-lg py-1 text-center focus:outline-none `}
+              >
+                Settings
+              </button>
+            </div>
           </div>
+          <div className="w-full border border-zinc-100/20 mb-4"></div>
+          <Suspense fallback={<div className='w-full flex h-full items-center justify-center'>Loading...</div>}>
+            {ActiveComponent && <ActiveComponent />}
+          </Suspense>
         </div>
-        <div className="w-full border border-zinc-100/20 mb-4"></div>
-        {ActiveComponent && <ActiveComponent />}
-      </div>
-    </div >
+      </div >
     </>
   )
 }

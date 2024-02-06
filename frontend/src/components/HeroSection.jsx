@@ -21,7 +21,7 @@ const HeroSection = () => {
               <div className="flex gap-4 items-start">
                 <img src={arrow} className="w-24 " />
                 <Link
-                  to="/create" o
+                  to={token ? "/create-event" : "/"}
                   className="bg-white px-4 py-2  rounded-2xl text-black shadow-lg hover:scale-105 transition-all"
                 >
                   Create Event
@@ -39,16 +39,16 @@ const HeroSection = () => {
           </div>
           <div className="flex w-full lg:w-1/2 flex-col gap-4 lg:p-2">
             <div className="flex gap-3 w-full">
-              <div className="w-1/3 rounded-2xl bg-pink-200 p-20"></div>
-              <div className="w-2/3 rounded-2xl bg-yellow-200 p-10"></div>
+              <div className="w-1/3 rounded-2xl bg-pink-200 hover:bg-pink-600 transition-all cursor-pointer hover:scale-95 p-20"></div>
+              <div className="w-2/3 rounded-2xl bg-yellow-200 hover:bg-yellow-600 transition-all cursor-pointer hover:scale-95 p-10"></div>
             </div>
             <div className="flex gap-3 w-full">
-              <div className="w-2/3 rounded-2xl bg-blue-200 p-10"></div>
-              <div className="w-1/3 rounded-2xl bg-emerald-200 p-20"></div>
+              <div className="w-2/3 rounded-2xl bg-blue-200 hover:bg-blue-600 transition-all cursor-pointer hover:scale-95 p-10"></div>
+              <div className="w-1/3 rounded-2xl bg-emerald-200 hover:bg-emerald-600 transition-all cursor-pointer hover:scale-95 p-20"></div>
             </div>
             <div className="flex gap-3 w-full">
-              <div className="w-1/4 rounded-2xl bg-purple-200 p-10"></div>
-              <div className="w-3/4 rounded-2xl bg-red-200 p-20"></div>
+              <div className="w-1/4 rounded-2xl bg-purple-200 hover:bg-purple-600 transition-all cursor-pointer hover:scale-95 p-10"></div>
+              <div className="w-3/4 rounded-2xl bg-red-200 hover:bg-red-600 transition-all cursor-pointer hover:scale-95 p-20"></div>
             </div>
           </div>
         </div>

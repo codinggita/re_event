@@ -8,8 +8,6 @@ import Cookies from 'js-cookie';
 
 const SettingsItem = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const [open, setOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const email = Cookies.get('user');
@@ -18,15 +16,8 @@ const SettingsItem = () => {
 
   const handleDeleteEvent = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3000/events/deleteevent/${id}`);
-      if (response.status === 200) {
-        // console.log('Event deleted successfully');
-        toast.success('Event deleted successfully');
-        navigate('/dashboard');
-      } else {
-        console.error('Failed to delete event');
-        toast.error('Failed to delete event');
-      }
+      toast.success("Account deleted successfully!");
+      navigate("/dashboard");
     } catch (error) {
       console.error('Error deleting event:', error.message);
       toast.error('Error deleting event');
@@ -35,11 +26,10 @@ const SettingsItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue === id) {
+    if (inputValue === email1) {
       handleDeleteEvent();
     } else {
-      // console.error('Entered input does not match eventcode');
-      toast.error('Entered input does not match eventcode');
+      toast.error('Entered email does not match email');
     }
   };
 

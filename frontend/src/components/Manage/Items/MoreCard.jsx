@@ -56,7 +56,7 @@ const MoreCard = () => {
       {confirmDelete && (
         <div className="w-full h-screen bg-black/40 backdrop-blur-sm absolute top-0 left-0 z-[100]">
 
-          <div className="absolute backdrop-blur-lg shadow-xl z-[100] border-white/40 border px-8 py-12 rounded-3xl bg-[#212325]/90 text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="d backdrop-blur-lg shadow-xl z-[100] border-white/40 border px-8 py-12 rounded-3xl bg-[#212325]/90 text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="flex flex-col items-center justify-between gap-10">
               <div className="flex flex-col items-center gap-2">
                 <h1 className="text-xl font-semibold tracking-wide">Are you sure you want to cancel?</h1>

@@ -15,20 +15,21 @@ const LoginNavbar = () => {
   // console.log(cookie);
   console.log(profile)
   const user = JSON.parse(cookie);
+  console.log(user)
   const email = user?.decodedjwt?.email;
 
   // Find the index of the last occurrence of '@gmail.com'
-  const lastIndex = email.lastIndexOf("@gmail.com");
+  // const lastIndex = email.lastIndexOf("@gmail.com");
 
   useEffect(() => {
     // Check if '@gmail.com' was found in the email
-    if (lastIndex !== -1) {
+    // if (lastIndex !== -1) {
       //   // Remove the last occurrence of '@gmail.com'
-      const modifiedEmail = email.slice(0, lastIndex);
-      setModifiedEmail(modifiedEmail);
-    }
-  }, [email]);
-
+      // const modifiedEmail = email.slice(0, lastIndex);
+  setModifiedEmail("shivqa");
+    // }
+  }, []);
+  
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };

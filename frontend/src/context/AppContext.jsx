@@ -15,6 +15,8 @@ export const MainDashProvider = ({ children }) => {
 
   const [userProfileMenu, setUserprofilemenu] = useState("Myevents");
 
+  const [askuserName, setAskuserName] = useState(false);
+
   const [newevent, setNewEvent] = useState({
     eventname: "",
     eventdate: "",
@@ -63,7 +65,11 @@ export const MainDashProvider = ({ children }) => {
         setEditedEvent,
 
         userProfileMenu,
-        setUserprofilemenu
+        setUserprofilemenu,
+
+        askuserName,
+        setAskuserName
+        
       }}
     >
       {children}

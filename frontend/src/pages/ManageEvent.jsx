@@ -79,7 +79,7 @@ const ManageEvent = () => {
               <Sticky enabled={true}>
                 <div className="   ">
                   <Header />
-                  <div className="flex items-center h-20   bg-[#131517]  gap-8 w-[100%]">
+                  <div className="flex items-center h-20 overflow-x-auto no-scrollbar bg-[#131517]  gap-8 w-[100%]">
                     <ManageMenuItem
                       tab="Overview"
                       icon={<IoPeopleSharp className=" " />}

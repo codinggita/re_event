@@ -95,7 +95,7 @@ const Dashboard = () => {
         <div className="max-w-[1600px] flex flex-col items-center justify-center"> */}
       <div className="w-full mt-20 px-10 text-white flex items-center justify-center">
         <div className="w-full md:w-2/3 flex justify-between">
-          <h1 className="text-3xl font-bold">Events</h1>
+          <h1 className="text-3xl herofont font-bold">Events</h1>
           <div className="flex gap-4 bg-zinc-100 p-1 rounded-lg border items-center">
             <button
               className={`${activeTab === 'upcoming'

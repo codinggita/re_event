@@ -42,7 +42,7 @@ const EventCard = (props) => {
             <p className='text-md font-light text-zinc-200/70 flex items-center gap-2'><FaRegClock />  {time}</p>
             <span className='px-3 rounded-md text-xs py-0.5 bg-green-700 text-white text-start'>Going</span>
           </div>
-          <h1 className='text-xl font-bold'>{eventname}</h1>
+          <h1 className='text-xl herofont capitalize tracking-wide font-bold'>{eventname}</h1>
           <p className='text-md'>{description}</p>
           <p className='text-md text-zinc-200/70'> <IoPeople className='inline' /> by  
           {organiser && organiser.map((organizer, index) => (

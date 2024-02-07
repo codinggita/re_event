@@ -54,7 +54,7 @@ const Overview = () => {
 
         <div className="w-full p-4 flex flex-col items-center">
           <div className="flex w-full px-2 py-6 items-center justify-between">
-            <h1 className="text-lg">
+            <h1 className="text-md lg:text-lg">
               Recent Registrations - ({event.registeredUsers && event.registeredUsers.length})
             </h1>
             <button

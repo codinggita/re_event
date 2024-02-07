@@ -151,7 +151,7 @@ const CreateNew = (props) => {
             Event
           </h1>
         </Link>
-        <h1 className="px-10 md:mx-32 text-center py-10 text-2xl text-zinc-400">
+        <h1 className="px-10 md:mx-32 text-center py-10 text-2xl text-zinc-100 herofont">
           {saveName}
         </h1>
         <div className="  w-full rounded-xl  flex justify-center  text-white ">
@@ -219,14 +219,14 @@ const CreateNew = (props) => {
                   name="eventname"
                   id="eventname"
                   placeholder="Enter Your Event Name"
-                  className="w-full h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-400 bg-transparent border-b-1 focus:border-gray-500 p-2 outline-none "
+                  className="w-full h-[3rem] focus:border-b-2  border-b-2 font-bold tracking-wide text-xl  text-gray-100 bg-transparent border-b-1 focus:border-gray-500 p-2 outline-none "
                   onChange={(e) => handleChange("eventname", e.target.value)}
                 />
               </div>
               <div>
                 <p className=" p-3">Event Description</p>
                 <textarea
-                  className=" h-[8rem] focus:border-b-2 w-full  rounded-lg bg-[#323436]  font-bold tracking-wide text-md  text-gray-400     focus:border-gray-500 p-2 outline-none "
+                  className=" h-[8rem] focus:border-b-2 w-full rounded-lg bg-[#323436]  font-bold tracking-wide text-md  text-gray-100     focus:border-gray-500 p-2 outline-none "
                   contentEditable="true"
                   suppressContentEditableWarning={true}
                   placeholder="Enter Your Event Description"

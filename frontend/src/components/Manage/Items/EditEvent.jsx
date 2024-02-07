@@ -151,7 +151,7 @@ const EditEvent = () => {
               </h1>
               <div className="">
                 <div className="bg-[#323436] w-full md:w-3/5 mt-4 rounded-lg">
-                  <div className="text-[#f7d5d5] flex w-[100%] justify-around gap-2 px-1.5 py-1.5">
+                  <div className="text-[#f7d5d5] flex flex-col md:flex-row w-[100%] justify-around gap-2 px-1.5 py-1.5">
                     <EventUtil
                       name={"zoom"}
                       icon={<FaGlobeAmericas className="text-lg" />}
@@ -235,7 +235,7 @@ const EditEvent = () => {
               </div>
             </div>
 
-            <div className="p-5">
+            <div className="p-2 md:p-5">
               <EditDateComponent />
             </div>
 

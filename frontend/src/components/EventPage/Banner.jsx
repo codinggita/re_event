@@ -16,7 +16,7 @@ const Banner = (props) => {
         <img src={img} alt="" className="rounded-xl " />
         <div className="flex items-center justify-between">
           <div className="flex flex-col items-start p-3 gap-2 justify-center">
-            <h1 className="text-2xl md:text-3xl md:py-0 py-3 font-semibold">{eventname}</h1>
+            <h1 className="text-2xl md:text-3xl md:py-0 py-3 herofont capitalize font-semibold">{eventname}</h1>
             <h1 className="text-sm md:text-lg font-light flex items-center gap-2">
               <span className="p-3 bg-pink-200 rounded-full"></span>by{" "}
               {organiser && organiser.map((organizer, index) => (

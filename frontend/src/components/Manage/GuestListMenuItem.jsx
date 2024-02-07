@@ -12,10 +12,12 @@ const GuestListMenuItem = (props) => {
                         src="https://source.unsplash.com/random"
                         className="w-8 h-8 rounded-full cursor-pointer border-2 "
                     />
-                    <p className='text-lg'>{name}</p>
-                    <p className='text-sm text-zinc-400'> - {email}</p>
+                    <div className="flex flex-col lg:gap-2 md:flex-row">
+                        <p className='text-lg'>{name}</p>
+                        <p className='text-sm flex text-zinc-400'> {email}</p>
+                    </div>
                 </div>
-                <div className="flex flex-row gap-2">
+                <div className="md:flex hidden flex-row gap-2">
                     <p className='text-green-400/90 text-md p-2 rounded-lg hover:bg-green-600 transition-all cursor-pointer hover:text-white'><MdDone /></p>
                     <p className='text-red-400/90 text-md p-2 hover:bg-red-600 transition-all cursor-pointer rounded-lg hover:text-white'><RxCross2 /></p>
                     <p className=' text-xs p-2'>{time}</p>

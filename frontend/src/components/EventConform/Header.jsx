@@ -30,14 +30,14 @@ const Header = () => {
   return (
     <div className="flex w-full bg-[#131517]  justify-between">
       <div className=" flex justify-between w-full md:flex-row flex-col backdrop-blur-md mt-10">
-        <div className="w-full flex md:flex-col flex-row gap-2 items-center md:items-start">
-          <h1 className=" text-3xl">{event.eventname}</h1>
+        <div className="w-full flex md:flex-col flex-col gap-2 items-start md:items-start">
+          <h1 className="herofont tracking-wide capitalize text-3xl">{event.eventname}</h1>
           <p className=" text-sm text-gray-400">
             {eventdate}, {event.eventtime} - OCT 15 (FRI), 10:30 AM
           </p>
         </div>
-        <div className="flex gap-2  items-end">
-          <div className="flex gap-2 flex-col">
+        <div className="flex gap-2 items-end">
+          <div className="flex gap-2  md:pt-0 pt-4 flex-col">
             <p className=" text-sm">Shareable Event Link</p>
             <div className="flex items-center gap-2  h-9  border border-gray-600 px-2  bg-[#323436]/80 backdrop-blur-lg rounded-md">
               <MdContentCopy className=" text-white cursor-pointer" />

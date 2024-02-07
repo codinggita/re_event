@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import EventCard from './EventCard';
-import NoEvents from './NoEvents';
+const NoEvents = lazy(() => import('./NoEvents'));
 
 const formatDate = (dateString) => {
   const options = { day: 'numeric', month: 'short', year: 'numeric' };
@@ -51,7 +51,9 @@ const UpcomingEvents = ({ upcomingEvents }) => {
           <div className="w-full md:w-2/3 flex flex-col">
             <h1 className='text-lg text-start'>Upcoming Events</h1>
             {upcomingEvents.length === 0 ? (
-              <NoEvents type="upcoming" />
+              <Suspense fallback={<div>Loading...</div>}>
+                <NoEvents type="upcoming" />
+              </Suspense>
             ) : (
               <>
                 {Object.entries(sortedUpcomingEvents).map(([date, eventsOnDate]) => (

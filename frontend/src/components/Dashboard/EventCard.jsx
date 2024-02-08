@@ -12,7 +12,8 @@ const EventCard = (props) => {
   const [isUserEvent, setIsUserEvent] = useState(false);
   const cookie = Cookies.get("user");
   const user = JSON.parse(cookie);
-  const _umail = user.decodedjwt.email;
+  const _umail = user.decodedjwt.decode.email;
+  // console.log(_umail)
 
   useEffect(() => {
     const getuserEvents = async () => {

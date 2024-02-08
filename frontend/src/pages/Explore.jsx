@@ -276,15 +276,7 @@ const Explore = () => {
               </div>
             </div>
             <div className="w-full md:w-3/4 flex flex-col gap-4">
-              {events.map((event) => (
-                <EventCard
-                  key={event.id}
-                  eventname={event.eventname}
-                  location={event.eventlocation}
-                  time={event.eventtime}
-                  organiser={event.eventcreatedby}
-                />
-              ))}
+            
             </div>
           </div>
         )}

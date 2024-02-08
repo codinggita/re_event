@@ -47,23 +47,15 @@ const EventCard = (props) => {
               Going
             </span>
           </div>
-          <h1 className="text-xl font-bold">{eventname}</h1>
-          <p className="text-md">{description}</p>
-          <p className="text-md text-zinc-200/70">
-            {" "}
-            <IoPeople className="inline" /> by
-            {organiser &&
-              organiser.map((organizer, index) => (
-                <span className="text-md" key={index}>
-                  {" "}
-                  {organizer}
-                </span>
-              ))}
-          </p>
-          <p className="text-md text-zinc-200/70">
-            {" "}
-            <IoLocationOutline className="inline" /> {location}
-          </p>
+
+          <h1 className='text-xl herofont capitalize tracking-wide font-bold'>{eventname}</h1>
+          <p className='text-md'>{description}</p>
+          <p className='text-md text-zinc-200/70'> <IoPeople className='inline' /> by  
+          {organiser && organiser.map((organizer, index) => (
+            <span className='text-md' key={index}> {organizer}</span>
+          ))}</p>
+          <p className='text-md text-zinc-200/70'> <IoLocationOutline className='inline' /> {location}</p>
+
           <div className="flex gap-2 items-center">
             {isUserEvent && (
               <Link

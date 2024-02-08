@@ -36,11 +36,11 @@ const ManageCard = (props) => {
                             </div>
                         </div>
                         <div className="flex w-full  items-center shadow-gray-200/20 gap-3 justify-start p-2 rounded-lg">
-                            <IoPersonSharp className='border border-gray-200/40 p-2 rounded-xl text-4xl' />
+                            <IoPersonSharp className='border  border-gray-200/40 p-2 rounded-xl text-4xl' />
                             <div className="flex flex-col">
                                 <h1 className='text-md flex flex-col'>by
                                     {organiser && organiser.map((organizer, index) => (
-                                        <span className='text-md' key={index}>{index + 1} : {organizer}</span>
+                                        <span className='text-xs md:text-md' key={index}>{index + 1} : {organizer}</span>
                                     ))}
                                     </h1>
                             </div>

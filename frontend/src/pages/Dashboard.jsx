@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useMainDashContext } from "../context/AppContext";
-import PastEvents from "../components/Dashboard/PastEvents";
-import UpcomingEvents from "../components/Dashboard/UpcomingEvents";
-import axios from "axios";
-import { toast } from "sonner";
+
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { useMainDashContext } from '../context/AppContext';
+const UpcomingEvents = lazy(() => import('../components/Dashboard/UpcomingEvents'));
+const PastEvents = lazy(() => import('../components/Dashboard/PastEvents'));
+import axios from 'axios';
+import { toast } from 'sonner';
 import Cookies from "js-cookie";
+
 
 // import { set } from "mongoose";
 
@@ -151,7 +153,7 @@ const Dashboard = () => {
         <div className="max-w-[1600px] flex flex-col items-center justify-center"> */}
       <div className="w-full mt-20 px-10 text-white flex items-center justify-center">
         <div className="w-full md:w-2/3 flex justify-between">
-          <h1 className="text-3xl font-bold">Events</h1>
+          <h1 className="text-3xl herofont font-bold">Events</h1>
           <div className="flex gap-4 bg-zinc-100 p-1 rounded-lg border items-center">
             <button
               className={`${
@@ -176,6 +178,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <Suspense fallback={<div className='w-full flex items-center justify-center h-full'>Loading...</div>}>
+
 
       {ActiveComponent && (
         <ActiveComponent
@@ -226,6 +230,13 @@ const Dashboard = () => {
         </div>
       </>
       }
+
+        {ActiveComponent && <ActiveComponent
+          upcomingEvents={upcomingEvents}
+          pastEvents={pastEvents}
+        />}
+      </Suspense>
+
     </>
   );
 };

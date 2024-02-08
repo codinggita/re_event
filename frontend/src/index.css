@@ -9,6 +9,13 @@ body{
     color: white;
 }
 
+@font-face {
+    font-family: 'herofont';
+    src: url('./assets/CabinetGrotesk.otf');
+}
+.herofont{
+    font-family: 'herofont';
+}
 ::-webkit-scrollbar {
     width: 10px;
     cursor: pointer;
@@ -32,4 +39,9 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background: #141414;
     cursor: pointer;
+}
+
+.no-scrollbar{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }

@@ -76,15 +76,15 @@ const HostProfile = (props) => {
                             <p className='text-xs md:text-sm text-start w-full'>Enter email address to add more hosts and managers</p>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 flex items-center gap-2">
+                    <div className="w-full md:w-1/2 flex flex-col md:flex-row py-2 md:py-0 items-center gap-2">
                         <input
                             type="text"
                             placeholder='Enter email address'
-                            className='bg-zinc-700 outline-none border border-zinc-600 rounded-lg p-2 w-4/5'
+                            className='bg-zinc-700 outline-none border border-zinc-600 rounded-lg p-2 w-full md:w-4/5'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button onClick={handleInviteHost} className='bg-zinc-200 text-black px-2 py-2 w-1/5 rounded-xl'>Invite Host</button>
+                        <button onClick={handleInviteHost} className='bg-zinc-200 text-black px-2 py-2 w-full md:w-1/5 rounded-xl'>Invite Host</button>
                     </div>
                 </div>
             </div>

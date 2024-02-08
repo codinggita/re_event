@@ -94,17 +94,17 @@ const EditDateComponent = () => {
   return (
     <>
       {/* <style>{css}</style> */}
-      <div className="w-full pl-3">
+      <div className="w-full md:pl-3">
         <h1 className=" text-xl"> When will it happen?</h1>
-        <div className="flex  items-center p-3 ">
+        <div className="flex items-center md:p-3 ">
           <div className=" flex flex-col rounded-xl mt-4 bg-[#323436] ">
             <div className="p-3">
               <div className=" items-center flex gap-5 ">
-                <h1>starts</h1>
+                <h1>Starts</h1>
                 <h1
                   // type="text"
                   // placeholder={format(new Date(), "PPpp")}
-                  className=" bg-[#424446]  w-[100%] justify-center h-[5rem] md:h-[2.5rem] cursor-pointer items-center flex border-none outline-none border-gray-500 rounded-md p-3 mt-2"
+                  className=" bg-[#424446]  w-[100%] justify-center h-[4rem] md:h-[2.5rem] text-sm md:text-md cursor-pointer items-center flex border-none outline-none border-gray-500 rounded-md p-3 mt-2"
                   onClick={handleDateClick}
                 >
                   {selected1
@@ -116,7 +116,7 @@ const EditDateComponent = () => {
                 <div>
                   {
                     <select
-                      className=" z-[100]  h-[2.5rem]  cursor-pointer items-center   border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
+                      className=" z-[100]  h-[2.5rem] text-sm md:text-md cursor-pointer items-center   border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
                       onChange={(e) => handleTimeChange(e.target.value)}
                     value={editedEvent.eventtime || ""}
                     >
@@ -132,11 +132,11 @@ const EditDateComponent = () => {
             </div>
             <div className="p-3 -mt-5">
               <div className=" items-center flex gap-5 ">
-                <h1>Starts</h1>
+                <h1>Ends</h1>
                 <h1
                   // type="text"
                   // placeholder={format(new Date(), "PPpp")}
-                  className="  w-[100%] justify-center bg-[#424446] h-[5rem] md:h-[2.5rem] cursor-pointer items-center flex border-none outline-none  border-gray-500 rounded-md p-3 mt-2"
+                  className="  w-[100%] justify-center bg-[#424446] h-[4rem] md:h-[2.5rem] text-sm md:text-md cursor-pointer items-center flex border-none outline-none  border-gray-500 rounded-md p-3 mt-2"
                   onClick={handleDateClick2}
                 >
                   {selected2
@@ -147,7 +147,7 @@ const EditDateComponent = () => {
                 <div>
                   {
                     <select
-                      className=" z-[100]   h-[2.5rem] cursor-pointer items-center flex border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
+                      className=" z-[100] h-[2.5rem] text-sm md:text-md cursor-pointer items-center flex border-none outline-none  bg-[#424446] border-gray-500 rounded-md p-3 mt-2"
                     // onChange={(e) => handleTimeChange(e.target.value)}
                     >
                       {timehours.map((time) => (

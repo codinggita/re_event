@@ -27,7 +27,7 @@ const EventPage = () => {
   // console.log(cookie);
   const user = JSON.parse(cookie);
   // console.log(user.decodedjwt.userId);
-  const _id = user.decodedjwt.userId;
+  const _id = user.decodedjwt.decode.userId;
   const _umail = user.decodedjwt.decode.email;
   const modifiedEmail = _umail.split("@")[0];
   const [isUserEvent, setIsUserEvent] = useState(false);

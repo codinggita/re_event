@@ -37,7 +37,7 @@ const CreateNew = (props) => {
   // console.log("newevent", newevent);
   const email = Cookies.get("user");
   const user = JSON.parse(email);
-  const email1 = user?.decodedjwt?.email;
+  const email1 = user?.decodedjwt?.decode?.email;
   // console.log(email1)
 
   const changeBackground = (imageUrl) => {

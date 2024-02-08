@@ -26,9 +26,9 @@ const EventPage = () => {
   const cookie = Cookies.get("user");
   // console.log(cookie);
   const user = JSON.parse(cookie);
-  // console.log(user.decodedjwt.userId);
-  const _id = user.decodedjwt.userId;
-  const _umail = user.decodedjwt.email;
+  // console.log(user.decodedjwt.decode.userId);
+  const _id = user.decodedjwt.decode.userId;
+  const _umail = user.decodedjwt.decode.email;
   const modifiedEmail = _umail.split("@")[0];
   const [isUserEvent, setIsUserEvent] = useState(false);
   // console.log(id);
@@ -261,12 +261,7 @@ const EventPage = () => {
                           Click to Register
                         </button>
                       )}
-                       <button
-                          className="bg-zinc-100 rounded-lg text-lg py-2 font-semibold tracking-wide hover:scale-105 transition-all shadow-lg shadow-zinc-100/10 w-[100%] text-black/80"
-                          onClick={handleSubmit}
-                        >
-                          Click to Register
-                        </button>
+                    
                     </div>
                   </div>
                 </>

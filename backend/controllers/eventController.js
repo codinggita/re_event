@@ -60,7 +60,7 @@ export const getEventById = async (req, res) => {
 
         const event = await EventModel.findOne({ eventcode: id });
         const currentViews = event.views || 0;
-        console.log(currentViews)
+        // console.log(currentViews)
 
         const updatedEvent = await EventModel.findOneAndUpdate(
             { eventcode: id },
@@ -110,7 +110,7 @@ export const editEvent = async (req, res) => {
             return res.status(404).json({ error: 'Event not found' });
         }
 
-        console.log('Successfully updated event:', updatedEvent);
+        // console.log('Successfully updated event:', updatedEvent);
         res.status(200).json('Event updated successfully');
     } catch (error) {
         console.error(error);
@@ -199,7 +199,7 @@ export const neweventAddUser = async (req, res) => {
     const { _uid, email } = req.body;
 
     const qrUniqueCode = nanoid(8);
-    console.log(eventcode, _uid, email)
+    // console.log(eventcode, _uid, email)
 
 
     try {
@@ -813,7 +813,7 @@ export const getcheckinusers = async (req, res) => {
 
     try {
         const event = await EventModel.findOne({ eventcode: id });
-        console.log(event)
+        // console.log(event)
 
         if (!event) {
             return res.status(404).json({ error: 'Event not found' });

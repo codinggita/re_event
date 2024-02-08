@@ -46,7 +46,7 @@ const Dashboard = () => {
         );
         setEvents(response.data);
         separateEvents(response.data);
-        setAskuserName(true);
+        // setAskuserName(true);
       } catch (error) {
         console.error("Error:", error);
         toast.error("Failed to fetch events");
@@ -181,12 +181,7 @@ const Dashboard = () => {
       <Suspense fallback={<div className='w-full flex items-center justify-center h-full'>Loading...</div>}>
 
 
-      {ActiveComponent && (
-        <ActiveComponent
-          upcomingEvents={upcomingEvents}
-          pastEvents={pastEvents}
-        />
-      )}
+    
       {askuserName &&
       <>
         <div className="flex w-full h-full items-center absolute bg-black/50 backdrop-blur-md  justify-center">

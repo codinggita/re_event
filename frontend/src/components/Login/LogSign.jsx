@@ -81,7 +81,7 @@ const LogSign = () => {
       setProfile(response.data);
       // console.log(response.data.decodedjwt.user);
       if (response.data.decodedjwt.user === null) {
-        toast.success("Please set your username");
+        toast.info("Please set your username");
         setAskuserName(true);
       }
 
@@ -95,9 +95,9 @@ const LogSign = () => {
 
   return (
     <>
-      <div className="flex w-full h-full items-center absolute bg-black/50 backdrop-blur-md  justify-center">
+      <div className="flex fixed top-0 left-0 z-10 w-full h-full items-center  bg-black/50 backdrop-blur-md  justify-center">
         <motion.div
-          className=" absolute    backdrop-blur-2xl  shadow-xl border-white/40  border  px-8 py-12  rounded-3xl  bg-[#212325]/80 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className=" absolute    backdrop-blur-2xl  shadow-xl border-white/40  border  px-8 py-12  rounded-2xl  bg-[#212325]/80 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}

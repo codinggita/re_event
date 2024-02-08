@@ -16,7 +16,7 @@ const Profile = () => {
   const cookie = Cookies.get('user');
   console.log(cookie);
   const user = JSON.parse(cookie);
-  const email = user.decodedjwt.email;
+  const email = user.decodedjwt.decode.email;
   const username = user.decodedjwt.user;
 
   const [userdata, setUserdata] = useState({});

@@ -30,7 +30,7 @@ const userSchema = new Schema({
         }
     ]
 });
-
+userSchema.path('username').default(null); 
 const UserModel = model('user', userSchema);
 
 export default UserModel;

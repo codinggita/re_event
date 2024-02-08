@@ -18,8 +18,7 @@ const Profile = () => {
   console.log(cookie);
   const user = JSON.parse(cookie);
   const email = user.decodedjwt.email;
-  const username = email.split('@')[0];
-  console.log(email);
+  const username = user.decodedjwt.user;
 
   const [userdata, setUserdata] = useState({});
   useEffect(() => {

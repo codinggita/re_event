@@ -8,28 +8,18 @@ const LoginNavbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { openlogin, setOpenlogin } = useMainDashContext();
   const [openProfile, setOpenProfile] = useState(false);
-  const [modifiedEmail1, setModifiedEmail] = useState("");
+  // const [modifiedEmail1, setModifiedEmail] = useState("");
 
-  const { profile, setProfile } = useMainDashContext();
+  // const { profile, setProfile } = useMainDashContext();
   const cookie = Cookies.get("user");
-  // console.log(cookie);
-  console.log(profile)
   const user = JSON.parse(cookie);
-  console.log(user)
-  const email = user?.decodedjwt?.email;
+  const email = user.decodedjwt?.decode?.email;
+  const username = user.decodedjwt.user;
 
-  // Find the index of the last occurrence of '@gmail.com'
-  // const lastIndex = email.lastIndexOf("@gmail.com");
 
-  useEffect(() => {
-    // Check if '@gmail.com' was found in the email
-    // if (lastIndex !== -1) {
-      //   // Remove the last occurrence of '@gmail.com'
-      // const modifiedEmail = email.slice(0, lastIndex);
-  setModifiedEmail("shivqa");
-    // }
-  }, []);
-  
+
+
+ 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
@@ -97,7 +87,7 @@ const LoginNavbar = () => {
                     className="w-9 h-9 rounded-full border-2"
                   />
                   <div className=" flex  py-1 flex-col  items-start ">
-                    <h1 className="text-white text-lg "> {modifiedEmail1} </h1>
+                    <h1 className="text-white text-lg "> {username} </h1>
                     <h2 className="text-white/60 text-sm">{email}</h2>
                   </div>
                 </div>

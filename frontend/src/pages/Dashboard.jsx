@@ -5,6 +5,7 @@ import UpcomingEvents from "../components/Dashboard/UpcomingEvents";
 import axios from "axios";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
+
 // import { set } from "mongoose";
 
 const components = {
@@ -104,12 +105,14 @@ const Dashboard = () => {
     try {
       const userRaw = Cookies.get("user");
       const user = JSON.parse(userRaw);
-      const uid = user?.decodedjwt?.userId;
+      const uid = user?.decodedjwt?.decode?.userId;
+      console.log(uid, username,"holaa")
       const token = Cookies.get("token");
 
       // Make sure username is not empty before sending the request
       if (!username) {
         console.error("Username cannot be empty");
+        toast.error("Username cannot be empty");
         return;
       }
 
@@ -124,16 +127,18 @@ const Dashboard = () => {
         });
 
         console.log(updatedResponse.data);
-
-        // Optionally update the UI with the updated user data
-        // setCookie("user2", updatedResponse.data.decodedjwt, { path: "/" });
-        Cookies.set("user3", updatedResponse, { expires: 1 / 24 });
+        const decodedJwtString = JSON.stringify(updatedResponse.data);
+        Cookies.set("user", decodedJwtString, { expires: 1 / 24 });
+        toast.success("Username set successfully");
+        setAskuserName(false);
         // setProfile(updatedResponse.data);
       } else {
-        console.error("Failed to set username");
+        toast.error("Failed to set username");
+        // console.error("Failed to set username");
       }
     } catch (error) {
-      console.error("Error while setting username:", error.message);
+      toast.error(error.response.data.message || "Failed to set username");
+      // console.error("Error while setting username:", error.message);
     }
   };
   const groupedUpcomingEvents = groupEventsByDate(upcomingEvents);
@@ -201,7 +206,7 @@ const Dashboard = () => {
                   <input
                     className="focus:border-1 outline-none bg-transparent border-gray-500 rounded-md pl-4 w-[300px] py-2 border-[1px]"
                     type="text"
-                    placeholder="email"
+                    placeholder="Username"
                     onChange={(e) => handleEmail(e.target.value)}
                     required
                   />

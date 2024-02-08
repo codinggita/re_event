@@ -13,14 +13,15 @@ import { motion } from "framer-motion";
 const LogSign = () => {
   const navigate = useNavigate();
 
-  const { profile, setProfile ,askuserName,setAskuserName } = useMainDashContext();
-  
+  const { profile, setProfile, askuserName, setAskuserName } =
+    useMainDashContext();
 
   const [cookies, setCookie] = useCookies(["user"]);
   const [oncontinue, setOncontinue] = useState(false);
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [message, setMessage] = useState("");
+  const [mailloading, setMailloading] = useState(false);
   // const [askuserName, setAskuserName] = useState(false);
 
   const handleSubmitForm = async (e) => {
@@ -28,23 +29,19 @@ const LogSign = () => {
     setOncontinue(true);
 
     const promise = () =>
-      new Promise((resolve) =>
-        setTimeout(() => resolve({ name: "Sonner" }), 3000)
-      );
+    new Promise((resolve) => setTimeout(() => resolve({ name: "Sonner" }), 2000));
 
-    // Add your logic here, e.g., send OTP
     try {
-      toast.promise(promise, {
-        loading: `Sending OTP to ${email}...`,
-
-        error: "Error",
-      });
+   toast.promise(promise, {
+      loading: `Sending OTP to ${email}...`,
+      error: "Error",
+      success: "OTP sent successfully",
+    });
       const response = await axios.post(
         "http://localhost:3000/login/send-otp",
         { email }
-      );
-      // if (response.status === 200) {
-      toast.success(response.data);
+      )
+    
       setMessage(response.data);
     } catch (error) {
       toast.error(error.response.data);
@@ -69,23 +66,27 @@ const LogSign = () => {
       Cookies.set("token", token, { expires: 1 / 24 });
 
       toast.success(checker.data.message); // Update this line to use the correct property
-      
-      // navigate("/dashboard");
-      
+
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-      
+
       const response = await axios.get(
-        "http://localhost:3000/login/me",
+        "http://localhost:3000/login/me2",
         config
-        );
-        // console.log(response.data);
-        setCookie("user", response.data, { path: "/" });
-        setProfile(response.data);
+      );
+      setCookie("user", response.data, { path: "/" });
+      setProfile(response.data);
+      // console.log(response.data.decodedjwt.user);
+      if (response.data.decodedjwt.user === null) {
+        toast.success("Please set your username");
         setAskuserName(true);
+      }
+
+      // navigate("/askusername");
+      navigate("/dashboard");
     } catch (error) {
       toast.error(error.response.data.message); // Update this line to use the correct property
       setMessage(error.response.data.message);

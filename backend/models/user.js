@@ -8,6 +8,12 @@ const userSchema = new Schema({
         trim: true,
         unique: true
     },
+    username: {
+        type: String,
+        // required: true,
+        trim: true,
+        unique: true
+    },
     registeredEvents: [
         {
             eventcode: {
@@ -24,7 +30,7 @@ const userSchema = new Schema({
         }
     ]
 });
-
+userSchema.path('username').default(null); 
 const UserModel = model('user', userSchema);
 
 export default UserModel;

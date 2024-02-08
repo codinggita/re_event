@@ -125,13 +125,37 @@ const LoginNavbar = () => {
       </div>
 
       {showMobileMenu && (
-        <div className="md:hidden flex flex-col items-center bg-gray-100 absolute px-20 top-10 border rounded-xl right-20 py-4">
-          <Link to="/create" className="text-sm my-2 border-b">
-            Create Event
-          </Link>
-          <Link to="/login" className="text-sm my-2">
-            Login / Register
-          </Link>
+        <div className="md:hidden flex flex-col items-center bg-gray-900/60 backdrop-blur-lg absolute px-4 top-20 w-3/4 border rounded-xl left-10 py-4">
+           {cookie && (
+            <div className="flex flex-col w-full gap-4">
+
+              <Link
+                to="/create"
+                className="text-sm w-full text-center bg-zinc-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
+              >
+                Create Event
+              </Link>
+              <Link
+                to="/dashboard"
+                className="text-sm w-full text-center bg-zinc-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
+              >
+                Dashboard
+              </Link>
+              <Link
+                to="/profile"
+                className="text-sm w-full text-center bg-zinc-100 rounded-xl shadow text-black px-4 py-1.5 hover:scale-105 hover:bg-black/80 hover:text-white border transition-all cursor-pointer"
+              >
+                Profile
+              </Link>
+            </div>
+          ) || (
+              <button
+                className="text-sm w-full text-center bg-zinc-100 rounded-xl shadow-lg text-white px-4 py-1.5 hover:scale-105 hover:bg-black/80 transition-all cursor-pointer"
+                onClick={handleLoginClick}
+              >
+                Login / Register
+              </button>
+            )}
         </div>
       )}
     </>

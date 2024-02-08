@@ -37,36 +37,49 @@ const SettingsItem = () => {
     <>
       <div className="w-full flex flex-col gap-2 px-12 py-4">
         <h1 className='text-lg'>Settings</h1>
+        <div className="flex w-full items-center gap-4 py-4">
+          <p className='text-center w-full'>Logout your account : </p>
+          <h1
+            className="bg-zinc-700/70 w-full text-center cursor-pointer py-1 px-2 rounded-lg hover:text-zinc-300"
+            onClick={() => {
+              Cookies.remove("user");
+              Cookies.remove("token");
+              window.location.reload();
+            }}
+          >
+            Logout
+          </h1>
+        </div>
         <div className="flex flex-col m-2 pt-3 gap-2 items-start">
           <p className='font-semibold'>Edit Account?</p>
           <p className='pt-3'>Edit Email?</p>
           <form className="flex flex-col w-full items-center gap-2" onSubmit={handleSubmit}>
-            <div className="flex w-full items-center gap-2">
+            <div className="flex flex-col md:flex-row w-full items-center gap-2">
               <input
-                className="focus:border-1 w-full outline-none bg-zinc-700/80 border-gray-500/70 rounded-lg pl-4 py-2 border"
+                className="focus:border-1 w-full outline-none bg-zinc-700/80 border-gray-500/70 rounded-lg md:pl-4 py-2 border"
                 type="text"
                 placeholder="Enter here"
                 value={email1}
                 onChange={(e) => setInputValue(e.target.value)}
               />
               <button
-                className="bg-zinc-100 rounded-lg w-1/5 text-zinc-900 font-semibold px-0 py-2"
+                className="bg-zinc-100 w-full rounded-lg md:w-1/5 text-zinc-900 font-semibold px-0 py-2"
                 type="submit"
               >
                 Change Email
               </button>
             </div>
             <p className='pt-3 text-start w-full'>Edit Username?</p>
-            <div className="flex w-full items-center gap-2">
+            <div className="flex flex-col md:flex-row w-full items-center gap-2">
               <input
-                className="focus:border-1 w-full outline-none bg-zinc-700/80 border-gray-500/70 rounded-lg pl-4 py-2 border"
+                className="focus:border-1 w-full outline-none bg-zinc-700/80 border-gray-500/70 rounded-lg md:pl-4 py-2 border"
                 type="text"
                 placeholder="Enter here"
                 value={email1}
                 onChange={(e) => setInputValue(e.target.value)}
               />
               <button
-                className="bg-zinc-100 rounded-lg w-1/5 text-zinc-900 font-semibold px-0 py-2"
+                className="bg-zinc-100 rounded-lg w-full md:w-1/5 text-zinc-900 font-semibold px-0 py-2"
                 type="submit"
               >
                 Change Username

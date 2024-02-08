@@ -7,7 +7,7 @@ const NoEvents = (props) => {
     const { type } = props;
     return (
         <>
-            <div className="w-full flex flex-col gap-10 items-center justify-center p-36">
+            <div className="w-full flex flex-col gap-10 items-center justify-center my-20 md:p-36">
                 <div className="flex flex-col w-full items-center justify-center gap-2">
                     <IoCalendar className="text-6xl text-zinc-400" />
                     <p className="text-lg font-light">

@@ -34,33 +34,33 @@ const Profile = () => {
   }, []);
   return (
     <>
-      <div className="w-full flex p-32 flex-col items-center justify-center">
+      <div className="w-full flex py-20 px-8 md:p-32 flex-col items-center justify-center">
         <div className="flex w-full flex-col max-w-[1600px] items-center justify-center">
-          <div className="flex flex-col gap-4 items-center">
-            <div className="flex gap-4 px-12 py-4 bg-zinc-800/40 border border-zinc-700/40 rounded-2xl items-center">
-              <img src="https://picsum.photos/200" alt="profile" className="rounded-full h-32 w-32" />
+          <div className="flex w-full flex-col gap-4 items-center">
+            <div className="flex gap-4 px-4 md:px-12 py-4 bg-zinc-800/40 border border-zinc-700/40 rounded-2xl items-center">
+              <img src="https://picsum.photos/200" alt="profile" className="rounded-full w=20 h-20 md:h-32 md:w-32" />
               <div className="flex flex-col gap-4">
-                <p className='text-xl font-semibold'>{email}</p>
-                <p>{username}</p>
+                <p className='text-sm md:text-xl font-semibold'>{email}</p>
+                <p className='text-sm md:text-md'>{username}</p>
               </div>
             </div>
 
             <div className="flex w-full items-center justify-around border-zinc-100/40">
               <button
                 onClick={() => setUserprofilemenu('MyEvents')}
-                className={` ${userProfileMenu === 'MyEvents' ? 'border-b-2 border-zinc-100 font-semibold' : ''}  px-4 text-lg py-1 text-center focus:outline-none`}
+                className={` ${userProfileMenu === 'MyEvents' ? 'border-b-2 border-zinc-100 font-semibold' : ''}  px-4 text-sm md:text-lg py-1 text-center focus:outline-none`}
               >
                 My Events
               </button>
               <button
                 onClick={() => setUserprofilemenu('MyTickets')}
-                className={` ${userProfileMenu === 'MyTickes' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-lg py-1 text-center focus:outline-none `}
+                className={` ${userProfileMenu === 'MyTickes' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-sm md:text-lg py-1 text-center focus:outline-none `}
               >
                 My Tickets
               </button>
               <button
                 onClick={() => setUserprofilemenu('Settings')}
-                className={` ${userProfileMenu === 'Settings' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-lg py-1 text-center focus:outline-none `}
+                className={` ${userProfileMenu === 'Settings' ? 'border-b-2 border-zinc-100 font-semibold' : ''} px-4 text-sm md:text-lg py-1 text-center focus:outline-none `}
               >
                 Settings
               </button>

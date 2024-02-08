@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";
 const Home = () => {
   const cookie = Cookies.get("user");
-  console.log(cookie);
+  // console.log(cookie);
   const { openlogin, setOpenlogin } = useMainDashContext();
   return (
     <>

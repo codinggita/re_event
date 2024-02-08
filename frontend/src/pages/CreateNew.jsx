@@ -173,7 +173,7 @@ const CreateNew = (props) => {
               <Suspense>
                 <label
                   htmlFor="coverPhotoInput"
-                  className="bg-[#212325]/80 bottom-10 left-10 cursor-pointer group gap-5 p-5 h-[2.5rem] backdrop-blur-xl rounded-md border border-gray-500 flex items-center pl-3 absolute"
+                  className="bg-[#212325]/80 bottom-2 md:bottom-10 left-2 md:left-10 cursor-pointer group gap-5 p-5 h-[2.5rem] backdrop-blur-xl rounded-md border border-gray-500 flex items-center pl-3 absolute"
                 >
                   <FaImages className="text-white/80 text-xl group-hover:text-white" />
                   <h1 className="font-bold text-white/80 group-hover:text-white">
@@ -182,7 +182,7 @@ const CreateNew = (props) => {
                 </label>
               </Suspense>
 
-              <div className="absolute bottom-10  right-10 flex  items-center gap-2 ">
+              <div className="absolute top-2 md:bottom-10  right-2 md:right-10 flex  items-center gap-2 ">
                 <div
                   className="w-8 h-8 rounded-full border-2 border-gray-700 cursor-pointer bg-gradient-to-r from-amber-500 to-pink-500"
                   onClick={() => {

@@ -88,7 +88,7 @@ const LogSign = () => {
 
   return (
     <>
-      <div className="flex w-full h-full items-center absolute bg-black/50 backdrop-blur-md  justify-center">
+      <div className="fixed flex top-0 left-0 w-full z-10 h-full items-center  bg-black/50 backdrop-blur-md  justify-center">
         <div className=" absolute    backdrop-blur-2xl  shadow-xl border-white/40  border  px-8 py-12  rounded-3xl  bg-[#212325]/80 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           {!oncontinue ? (
             <div className="flex flex-col  items-center justify-between  gap-10 ">

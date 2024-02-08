@@ -66,7 +66,7 @@ const HeroSection = () => {
 
 
           <div className="w-full flex flex-col md:flex-row rounded-[3rem] gap-5 my-12">
-            <motion.div className="w-full bg-zinc-800 border flex border-zinc-400/40 relative rounded-3xl group shadow-xl shadow-zinc-600/20 text-white"
+            <motion.div className="w-full z-0 bg-zinc-800 border flex border-zinc-400/40 relative rounded-3xl group shadow-xl shadow-zinc-600/20 text-white"
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}

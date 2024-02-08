@@ -3,6 +3,7 @@ import { PiMicrophoneStageFill } from "react-icons/pi";
 
 const HostDetails = (props) => {
     const { host } = props
+    console.log(host)
 
     if (!host) {
         return null;

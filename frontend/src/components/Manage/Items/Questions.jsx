@@ -94,7 +94,7 @@ const Questions = () => {
             {questions.map((q, index) => (
               <div key={index} className="px-10 justify-center pt-5 flex flex-col gap-4">
                 <input
-                  className="w-full h-full bg-black/10 outline-none text-white/50 border border-zinc-500/60 rounded-lg px-4 py-2"
+                  className="w-full h-full bg-black/10 outline-none text-white border border-zinc-500/60 rounded-lg px-4 py-2"
                   type="text"
                   placeholder={`Question ${index + 1}`}
                   value={q.question}

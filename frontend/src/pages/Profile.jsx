@@ -16,7 +16,8 @@ const Profile = () => {
   const cookie = Cookies.get('user');
   console.log(cookie);
   const user = JSON.parse(cookie);
-  const email = user.decodedjwt.email;
+  console.log(user);
+  const email = user.decodedjwt.decode.email;
   const username = user.decodedjwt.user;
 
   const [userdata, setUserdata] = useState({});
@@ -39,8 +40,8 @@ const Profile = () => {
             <div className="flex gap-4 px-4 md:px-12 py-4 bg-zinc-800/40 border border-zinc-700/40 rounded-2xl items-center">
               <img src="https://picsum.photos/200" alt="profile" className="rounded-full w=20 h-20 md:h-32 md:w-32" />
               <div className="flex flex-col gap-4">
-                <p className='text-sm md:text-xl font-semibold'>{email}</p>
-                <p className='text-sm md:text-md'>{username}</p>
+                <p className='text-sm md:text-xl font-semibold'>{username}</p>
+                <p className='text-sm md:text-md'>{email}</p>
               </div>
             </div>
 

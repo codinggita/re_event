@@ -182,7 +182,7 @@ const CreateNew = (props) => {
                 </label>
               </Suspense>
 
-              <div className="absolute top-2 md:bottom-10  right-2 md:right-10 flex  items-center gap-2 ">
+              <div className="absolute p-2 md:bottom-10  right-2 md:right-10 flex  items-center gap-2 ">
                 <div
                   className="w-8 h-8 rounded-full border-2 border-gray-700 cursor-pointer bg-gradient-to-r from-amber-500 to-pink-500"
                   onClick={() => {

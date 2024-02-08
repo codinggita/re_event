@@ -71,7 +71,7 @@ function App() {
           // )
         }
 
-        <Toaster position="top-center" />
+        <Toaster position="top-center" richColors   />
       </div>
 
       {!shouldHideFooter ? <Footer /> : null}

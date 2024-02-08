@@ -8,7 +8,7 @@ import UserModel from '../models/User.js';
 
 import jwt from 'jsonwebtoken';
 // export { jwt };
-async function sendVerificationEmail(email, otp) {
+const sendVerificationEmail = async (email, otp) => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -431,12 +431,12 @@ async function sendVerificationEmail(email, otp) {
 
     console.log('OTP sent successfully');
   } catch (error) {
-    console.error(error);
-    // Handle the error appropriately (e.g., log it, return an error response)
+    console.error(error.message);
+    throw new Error('Failed to send OTP'); // Throw the error for better handling
   }
-}
+};
 
-async function generateUniqueOtp() {
+const generateUniqueOtp = async () => {
   let otp = otpGenerator.generate(5, {
     upperCaseAlphabets: false,
     lowerCaseAlphabets: false,
@@ -453,45 +453,31 @@ async function generateUniqueOtp() {
   }
 
   return otp;
-}
+};
 
 export const sendOtp = async (req, res) => {
   const { email } = req.body;
-  let otp; // Define otp variable here
 
   try {
-    // const checkUserPresent = await UserModel.findOne({ email });
-
-
-    // if (checkUserPresent) {
-    //   return res.status(401).json({
-    //     success: false,
-    //     message: 'User is already registered',
-    //   });
-    // }
-
-    // Check if an OTP document with the same email already exists
     const existingOtp = await OtpModel.findOne({ email });
+    let otp;
 
     if (existingOtp) {
-      // Update the existing OTP document instead of creating a new one
       otp = await generateUniqueOtp();
       existingOtp.otp = otp;
       await existingOtp.save();
     } else {
-      // Create a new OTP document
       otp = await generateUniqueOtp();
       const newOtp = new OtpModel({ email, otp });
       await newOtp.save();
     }
 
-    // Send verification email
     await sendVerificationEmail(email, otp);
 
     res.status(200).send('OTP sent successfully');
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
+    console.error(error.message);
+    res.status(500).send('Failed to send OTP');
   }
 };
 
@@ -558,8 +544,10 @@ export const verifyOtp = async (req, res) => {
 };
 export const getProfile = async (req, res) => {
   try {
+    // console.log(req.headers.authorization.split(' ')[1]);
     const token = req.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // console.log(token)
+
 
     const decodedjwt = jwt.decode(token, process.env.JWT_SECRET);
     console.log(decodedjwt);
@@ -570,6 +558,67 @@ export const getProfile = async (req, res) => {
       success: true,
       message: 'User fetched successfully',
       decodedjwt: decodedjwt,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
+export const getProfile2 = async (req, res) => {
+
+  try {
+    // console.log(req.headers.authorization.split(' ')[1]);
+    const token = req.headers.authorization.split(' ')[1];
+    console.log(token)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
+
+    const user = await UserModel.findById(decoded.userId);
+    const responseArray = {
+      user: user.username,
+      decode: decoded
+    }
+    res.status(200).json({
+      success: true,
+      message: 'User fetched successfully',
+      decodedjwt: responseArray,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+export const setUsername = async (req, res) => {
+  try {
+    const { username, uid } = req.body;
+    console.log(username, uid)
+
+    // Check if the provided username already exists
+    const existingUser = await UserModel.findOne({ username });
+
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: 'Username already exists. Please choose a different one.',
+      });
+    }
+
+    // // Get the user ID from the request, assuming you have it available in req.user
+    const userId = uid; // Modify this based on your authentication setup
+
+    // // Update the user's username in the database
+    await UserModel.findByIdAndUpdate(userId, { username });
+
+    res.status(200).json({
+      success: true,
+      message: 'Username set successfully.',
     });
   } catch (error) {
     console.error(error);

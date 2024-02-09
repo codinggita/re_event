@@ -24,7 +24,7 @@ const Checkin = () => {
     const makeScanCall = async () => {
       try {
         const response = await axios.post(
-          `http://localhost:3000/events/qrscancall/${id}`,
+          `https://re-event-backend.onrender.com/events/qrscancall/${id}`,
           { scannedData: data }
         );
         //   console.log(response.data.matchedUser.approveStatus)
@@ -49,7 +49,7 @@ const Checkin = () => {
     const fetchGuests = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/getcheckinusers/${id}`
+          `https://re-event-backend.onrender.com/events/getcheckinusers/${id}`
         );
         console.log(response.data);
         setGuestsData(response.data);

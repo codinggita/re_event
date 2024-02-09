@@ -19,7 +19,7 @@ const GuestsCard = () => {
     const getEvent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/geteventbyid/${id}`
+          `https://re-event-backend.onrender.com/events/geteventbyid/${id}`
         );
         setEvent(response.data);
         setTotalRegistrations(response.data.registeredUsers.length);

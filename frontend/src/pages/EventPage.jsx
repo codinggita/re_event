@@ -40,7 +40,7 @@ const EventPage = () => {
   //   const trackEventView = async () => {
   //     try {
   //       const response = await axios.get(
-  //         `http://localhost:3000/events/trackEventPageView/`
+  //         `https://re-event-backend.onrender.com/events/trackEventPageView/`
   //       );
   //     } catch (error) {
   //       console.error('Error tracking event view:', error);
@@ -53,7 +53,7 @@ const EventPage = () => {
     const getuserEvents = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/geteventsbyuserid/${_umail}`
+          `https://re-event-backend.onrender.com/events/geteventsbyuserid/${_umail}`
         );
         const userEvents = response.data.createdEvents;
         const isthis = userEvents.some((event) => event === id);
@@ -69,7 +69,7 @@ const EventPage = () => {
     const getEvent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/geteventbyid/${id}`
+          `https://re-event-backend.onrender.com/events/geteventbyid/${id}`
         );
 
         const eventData = response.data;
@@ -90,7 +90,7 @@ const EventPage = () => {
       const loadingPromise = toast.promise(
         new Promise((resolve, reject) => {
           axios
-            .post(`http://localhost:3000/events/neweventAddUser/${id}`, {
+            .post(`https://re-event-backend.onrender.com/events/neweventAddUser/${id}`, {
               _uid: _id,
               email: _umail,
             })
@@ -127,7 +127,7 @@ const EventPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/checkuserev/${id}/${_id}`
+          `https://re-event-backend.onrender.com/events/checkuserev/${id}/${_id}`
         );
 
         if (response.status === 200) {

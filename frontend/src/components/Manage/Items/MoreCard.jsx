@@ -17,7 +17,7 @@ const MoreCard = () => {
 
   const handleDeleteEvent = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3000/events/deleteevent/${id}`);
+      const response = await axios.delete(`https://re-event-backend.onrender.com/events/deleteevent/${id}`);
       if (response.status === 200) {
         // console.log('Event deleted successfully');
         toast.success('Event deleted successfully');

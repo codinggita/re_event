@@ -18,7 +18,7 @@ const EventCard = (props) => {
     const getuserEvents = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/geteventsbyuserid/${_umail}`
+          `https://re-event-backend.onrender.com/events/geteventsbyuserid/${_umail}`
         );
         // console.log(response.data.createdEvents);
         const userEvents = response.data.createdEvents.map((event) => event);

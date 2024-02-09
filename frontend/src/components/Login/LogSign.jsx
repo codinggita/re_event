@@ -38,7 +38,7 @@ const LogSign = () => {
       success: "OTP sent successfully",
     });
       const response = await axios.post(
-        "http://localhost:3000/login/send-otp",
+        "https://re-event-backend.onrender.com/login/send-otp",
         { email }
       )
     
@@ -57,7 +57,7 @@ const LogSign = () => {
     try {
       console.log(otp, email);
       const checker = await axios.post(
-        "http://localhost:3000/login/verify-otp",
+        "https://re-event-backend.onrender.com/login/verify-otp",
         { otp, email }
       );
       const token = checker.data.token;
@@ -74,7 +74,7 @@ const LogSign = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:3000/login/me2",
+        "https://re-event-backend.onrender.com/login/me2",
         config
       );
       setCookie("user", response.data, { path: "/" });

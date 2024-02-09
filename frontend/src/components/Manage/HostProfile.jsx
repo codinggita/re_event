@@ -37,7 +37,7 @@ const HostProfile = (props) => {
 
     const handleInviteHost = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/events/addneweventtohost', { userEmail: email, eventcode: id });
+            const response = await axios.post('https://re-event-backend.onrender.com/events/addneweventtohost', { userEmail: email, eventcode: id });
 
             if (response.data.message) {
                 toast.success(response.data.message);
@@ -49,7 +49,7 @@ const HostProfile = (props) => {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/events/addnewhostotevent', { eventcode: id, hostEmail: email });
+            const response = await axios.post('https://re-event-backend.onrender.com/addnewhostotevent', { eventcode: id, hostEmail: email });
 
             if (response.data.message) {
                 toast.success(response.data.message);

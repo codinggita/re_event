@@ -24,7 +24,7 @@ const Questions = () => {
     const getEvent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/geteventbyid/${id}`
+          `https://re-event-backend.onrender.com/events/geteventbyid/${id}`
         );
         setEvent(response.data);
         setQuestions(response.data.questions || []);
@@ -72,7 +72,7 @@ const Questions = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:3000/events/${existingQuestions.length > 0 ? 'editquestionsforevent' : 'addquestionstoevent'}/${id}`,
+        `https://re-event-backend.onrender.com/events/${existingQuestions.length > 0 ? 'editquestionsforevent' : 'addquestionstoevent'}/${id}`,
         {
           questions,
         }

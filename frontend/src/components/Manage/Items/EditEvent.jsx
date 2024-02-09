@@ -29,7 +29,7 @@ const EditEvent = () => {
 
   const getEventDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/events/geteventbyid/${id}`);
+      const response = await axios.get(`https://re-event-backend.onrender.com/events/geteventbyid/${id}`);
       setEvent(response.data);
       setEditedEvent(response.data);
 
@@ -69,7 +69,7 @@ const EditEvent = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.put(`http://localhost:3000/events/editevent/${id}`, editedEvent);
+      const response = await axios.put(`https://re-event-backend.onrender.com/events/editevent/${id}`, editedEvent);
       console.log('Event updated:', response.data);
       toast.success('Event updated successfully');
     } catch (error) {

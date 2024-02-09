@@ -17,7 +17,7 @@ const MyEvents = () => {
     const getUserEvents = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/geteventsbyuserid/${email1}`
+          `https://re-event-backend.onrender.com/events/geteventsbyuserid/${email1}`
         );
         setData(response.data);
         setRegisteredEvents(response.data.registeredEvents);
@@ -32,7 +32,7 @@ const MyEvents = () => {
   const getEventDetails = async (eventcode) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/events/geteventbyid/${eventcode}`
+        `https://re-event-backend.onrender.com/events/geteventbyid/${eventcode}`
       );
       setEventDetails(response.data); // Store event details in state
       toast.success("Event details fetched successfully");

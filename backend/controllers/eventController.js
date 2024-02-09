@@ -1,5 +1,5 @@
 import EventModel from '../models/event.js';
-import UserModel from '../models/User.js';
+import UserModel from '../models/user.js';
 import { nanoid } from 'nanoid';
 import { ObjectId } from 'mongodb';
 import bcrypt from 'bcrypt';

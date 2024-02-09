@@ -71,7 +71,7 @@ const CreateNew = (props) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/events/newevent",
+        "https://re-event-backend.onrender.com/events/newevent",
         {
           ...newevent,
           eventcreatedby: email1,
@@ -109,7 +109,7 @@ const CreateNew = (props) => {
 
   const addEventToCreatorUser = async (creatorId, eventcode) => {
     try {
-      await axios.post("http://localhost:3000/events/addeventtocreatoruser", {
+      await axios.post("https://re-event-backend.onrender.com/events/addeventtocreatoruser", {
         creatorId,
         eventcode,
       });

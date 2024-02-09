@@ -24,7 +24,7 @@ const Profile = () => {
   useEffect(() => {
     const getuser = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/events/geteventsbyuserid/${email}`);
+        const response = await axios.get(`https://re-event-backend.onrender.com/events/geteventsbyuserid/${email}`);
         setUserdata(response.data);
       } catch (error) {
         console.error('Error:', error);

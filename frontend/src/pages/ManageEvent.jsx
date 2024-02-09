@@ -45,7 +45,7 @@ const ManageEvent = () => {
     const getuserEvents = async () => {
       try {
         const response = await axios.get(
-          `hhttps://re-event-backend.onrender.com/events/geteventsbyuserid/${_umail}`
+          `https://re-event-backend.onrender.com/events/geteventsbyuserid/${_umail}`
         );
         const userEvents = response.data.createdEvents;
         const isthis = userEvents.some((event) => event === id);

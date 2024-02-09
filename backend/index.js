@@ -22,6 +22,7 @@ app.use(session({
     cookie: { secure: false },
 }));
 
+//changed
 
 import eventRoutes from './routes/eventRoutes.js';
 

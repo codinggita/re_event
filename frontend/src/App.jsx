@@ -47,7 +47,7 @@ function App() {
                 <Route path="/create" element={<CreateNew width={"75%"} saveName={"Create Event"} mt={"15%"} />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="*" element={<h1>Not Found</h1>} />
+                <Route path="*" element={<div className="flex items-center justify-center h-full w-full">Not Found</div>} />
                 <Route path="/e/:id" element={<EventPage />} />
                 <Route path="/create/conform" element={<EventConfrom />} />
                 <Route path="/manage/:id" element={<ManageEvent />} />

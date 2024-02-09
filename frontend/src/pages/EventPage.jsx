@@ -84,53 +84,45 @@ const EventPage = () => {
 
     getEvent();
   }, [id]);
-
   const handleApiEventCall = async () => {
-    const loadingPromise = toast.promise(
-      new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve();
-        }, 500);
-
-        // setNewEvent({...newevent, registeredusers: [...newevent.registeredusers, _uid]})
-        axios
-          .post(`http://localhost:3000/events/neweventAddUser/${id}`, {
-            _uid: _id,
-            email: _umail,
-          })
-          .then((response) => {
-            if (response.status === 200) {
-              resolve("Registered for the event successfully");
-            } else if (response.status === 205) {
-              reject(new Error("You are already registered for this event"));
-            }
-            console.log(response, "checking qr hash");
-            setQrHash(response.data.hashedQRCode);
-          })
-          .catch((error) => {
-            reject(error);
-          });
-      }),
-      {
-        loading: "Loading...",
-        success: (data) => {
-          return data;
-        },
-        error: (error) => {
-          return error.message || "Error";
-        },
-        duration: 5000,
-      }
-    );
-
     try {
+      // Start loading
+      const loadingPromise = toast.promise(
+        new Promise((resolve, reject) => {
+          axios
+            .post(`http://localhost:3000/events/neweventAddUser/${id}`, {
+              _uid: _id,
+              email: _umail,
+            })
+            .then((response) => {
+              if (response.status === 200) {
+                resolve("Registered for the event successfully");
+              } else if (response.status === 205) {
+                reject(new Error("You are already registered for this event"));
+              }
+              setQrHash(response.data.hashedQRCode);
+            })
+            .catch((error) => {
+              reject(error);
+            });
+        }),
+        {
+          loading: "Loading...",
+          success: (data) => data,
+          error: (error) => error.message || "Error",
+          duration: 5000,
+        }
+      );
+  
+      // Wait for the loadingPromise to resolve
       await loadingPromise;
+  
     } catch (error) {
       // Handle error if needed
       console.error("Error:", error);
     }
   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -167,18 +159,7 @@ const EventPage = () => {
     });
   };
 
-  const handleDownloadQRCode = () => {
-    // const canvas = qrCodeRef.current.querySelector('canvas');
-    // const pngUrl = canvas
-    //   .toDataURL("image/png")
-    //   .replace("image/png", "image/octet-stream");
-    // let downloadLink = document.createElement("a");
-    // downloadLink.href = pngUrl;
-    // downloadLink.download = "QRCode.png";
-    // document.body.appendChild(downloadLink);
-    // downloadLink.click();
-    // document.body.removeChild(downloadLink);
-  };
+
 
   return (
     <>

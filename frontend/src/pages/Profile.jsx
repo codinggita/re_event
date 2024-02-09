@@ -14,9 +14,9 @@ const Profile = () => {
   const { userProfileMenu, setUserprofilemenu } = useMainDashContext();
   const ActiveComponent = components[userProfileMenu] || null;
   const cookie = Cookies.get('user');
-  console.log(cookie);
+  // console.log(cookie);
   const user = JSON.parse(cookie);
-  console.log(user);
+  // console.log(user);
   const email = user.decodedjwt.decode.email;
   const username = user.decodedjwt.user;
 

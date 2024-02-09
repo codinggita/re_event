@@ -34,11 +34,11 @@ const ManageEvent = () => {
   const { managetab } = useMainDashContext();
   const ActiveComponent = components[managetab] || null;
   const cookie = Cookies.get("user");
-  console.log(cookie);
+  // console.log(cookie);
   const user = JSON.parse(cookie);
-  console.log(user);
+  // console.log(user);
   const _umail = user.decodedjwt.decode.email;
-  console.log(_umail);
+  // console.log(_umail);
   const [isUserEvent, setIsUserEvent] = useState(false);
   const { id } = useParams();
   useEffect(() => {

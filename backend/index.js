@@ -10,7 +10,10 @@ import session from 'express-session';
 import jwt from 'jsonwebtoken';
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://re-event-backend.onrender.com','https://rvent.vercel.app'],
+    credentials: true,
+}));
 app.use(express.json());
 app.use(session({
     secret: 'your_secret_key', // Replace with a strong secret key

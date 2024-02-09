@@ -1,7 +1,8 @@
 import nodemailer from 'nodemailer';
 import otpGenerator from 'otp-generator';
 import OtpModel from '../models/otpModel.js';
-import UserModel from '../models/User.js';
+const userModulePath = path.resolve(__dirname, '../models/User.js');
+import UserModel from userModulePath;
 
 
 

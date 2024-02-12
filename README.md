@@ -13,6 +13,23 @@
 FIGMA Link : https://www.figma.com/file/Azwbe6cIDtYnQIyqfgiXu7/re%3AEvent
 <br>
 
+<div align="center">
+  <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/c1e3ab65-189f-4039-80f3-6e028b413b25" />
+ &nbsp; &nbsp;
+ <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/01924903-d283-45f0-8eb3-d7dfdae86b99" />
+</div>
+<br>
+<br>
+<div align="center">
+  <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/986f18e7-1c8f-42d9-81fe-21129d65a922" />
+ &nbsp; &nbsp;
+ <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/3a8fd870-d5ac-4321-b516-04396a692fff" />
+</div>
+
+
+
+
+
 - Which problem Project is Solving?
 
   - re:Event streamlines events with real-time collaboration, smart resource allocation, and automated scheduling. From simplified ticketing to secure authentication and hosts effortlessly create, manage, and enhance events.

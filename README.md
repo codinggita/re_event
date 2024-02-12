@@ -1,14 +1,34 @@
-# Project Initial Report
+
+# Project Name: re:Event
 
 ##  T.Bala Shiva (12108042) and K.Sai Adithya (12107691)
 
-### Project Name: re:Event
-
-## API Documentation : https://documenter.getpostman.com/view/19902058/2s9YymFjGx
+ Frontend deployed link : https://rvent.vercel.app/
+ <br>
+ API end point : https://re-event-backend.onrender.com/
+<br>
+<br>
+ API Documentation : https://documenter.getpostman.com/view/19902058/2s9YymFjGx
+<br>
+FIGMA Link : https://www.figma.com/file/Azwbe6cIDtYnQIyqfgiXu7/re%3AEvent
 <br>
 
-## FIGMA Link : https://www.figma.com/file/Azwbe6cIDtYnQIyqfgiXu7/re%3AEvent
+<div align="center">
+  <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/c1e3ab65-189f-4039-80f3-6e028b413b25" />
+ &nbsp; &nbsp;
+ <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/01924903-d283-45f0-8eb3-d7dfdae86b99" />
+</div>
 <br>
+<br>
+<div align="center">
+  <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/986f18e7-1c8f-42d9-81fe-21129d65a922" />
+ &nbsp; &nbsp;
+ <img width="48%" src="https://github.com/SaiAdithya3/re_event/assets/91713156/3a8fd870-d5ac-4321-b516-04396a692fff" />
+</div>
+
+
+
+
 
 - Which problem Project is Solving?
 

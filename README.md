@@ -1,12 +1,13 @@
-# Project Initial Report
+
+# Project Name: re:Event
 
 ##  T.Bala Shiva (12108042) and K.Sai Adithya (12107691)
 
-### Project Name: re:Event
-
+## Frontend deployed link : https://rvent.vercel.app/
+## API end point : https://re-event-backend.onrender.com/
+<br>
 ## API Documentation : https://documenter.getpostman.com/view/19902058/2s9YymFjGx
 <br>
-
 ## FIGMA Link : https://www.figma.com/file/Azwbe6cIDtYnQIyqfgiXu7/re%3AEvent
 <br>
 

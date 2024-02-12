@@ -3,12 +3,13 @@
 
 ##  T.Bala Shiva (12108042) and K.Sai Adithya (12107691)
 
-## Frontend deployed link : https://rvent.vercel.app/
-## API end point : https://re-event-backend.onrender.com/
+ Frontend deployed link : https://rvent.vercel.app/
+ <br>
+ API end point : https://re-event-backend.onrender.com/
 <br>
-## API Documentation : https://documenter.getpostman.com/view/19902058/2s9YymFjGx
+ API Documentation : https://documenter.getpostman.com/view/19902058/2s9YymFjGx
 <br>
-## FIGMA Link : https://www.figma.com/file/Azwbe6cIDtYnQIyqfgiXu7/re%3AEvent
+FIGMA Link : https://www.figma.com/file/Azwbe6cIDtYnQIyqfgiXu7/re%3AEvent
 <br>
 
 - Which problem Project is Solving?
